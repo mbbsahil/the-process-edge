@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahil Anand — The Process Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --paper:#F6F3EC;
+    --brass:#B08D57;
+    --teal:#1F5F5B;
+    --line:#D8D2C3;
+    --muted:#5B5F6B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  ::selection{ background:var(--brass); color:var(--paper); }
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* NAV */
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:28px 32px; border-bottom:1px solid var(--line);
+    max-width:1080px; margin:0 auto;
+  }
+  .logo{ font-family:'Fraunces', serif; font-weight:700; font-size:1.15rem; letter-spacing:0.02em; }
+  .logo span{ color:var(--brass); }
+  .navlinks{ display:flex; gap:28px; font-size:0.85rem; font-weight:500; color:var(--muted); }
+  .navlinks a:hover{ color:var(--ink); }
+
+  /* HERO */
+  .hero{ padding:100px 32px 80px; max-width:1080px; margin:0 auto; position:relative; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:0.12em;
+    color:var(--teal); text-transform:uppercase; margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:24px; height:1px; background:var(--teal); }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(2.4rem, 5vw, 4rem);
+    line-height:1.08; max-width:820px; letter-spacing:-0.01em;
+  }
+  h1 em{ font-style:italic; color:var(--brass); }
+  .subhead{ margin-top:26px; max-width:560px; font-size:1.05rem; color:var(--muted); }
+  .cta-row{ display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.8rem; padding:14px 26px;
+    border-radius:2px; letter-spacing:0.03em; transition:all 0.15s ease;
+    border:1px solid var(--ink);
+  }
+  .btn-solid{ background:var(--ink); color:var(--paper); }
+  .btn-solid:hover{ background:var(--teal); border-color:var(--teal); }
+  .btn-outline{ color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:var(--paper); }
+
+  /* LEDGER TRAIL — signature element */
+  .trail{
+    margin-top:80px; border:1px solid var(--line); background:#fff;
+    display:grid; grid-template-columns:repeat(3, 1fr);
+  }
+  .trail-step{ padding:26px 28px; border-right:1px solid var(--line); position:relative; }
+  .trail-step:last-child{ border-right:none; }
+  .trail-step::after{
+    content:'→'; position:absolute; right:-13px; top:50%; transform:translateY(-50%);
+    color:var(--brass); font-size:1.1rem; background:#fff; width:24px; text-align:center;
+  }
+  .trail-step:last-child::after{ content:''; }
+  .trail-label{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; color:var(--teal); text-transform:uppercase; }
+  .trail-value{ font-family:'Fraunces', serif; font-size:1.5rem; margin-top:8px; font-weight:600; }
+  .trail-sub{ font-size:0.82rem; color:var(--muted); margin-top:4px; }
+
+  /* SECTION HEADERS */
+  section{ padding:90px 32px; max-width:1080px; margin:0 auto; border-top:1px solid var(--line); }
+  .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; gap:20px; flex-wrap:wrap; }
+  .sec-title{ font-family:'Fraunces', serif; font-size:2rem; font-weight:600; }
+  .sec-note{ font-size:0.85rem; color:var(--muted); max-width:280px; }
+
+  /* CASE STUDIES */
+  .case-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .case-card{ background:#fff; padding:32px; }
+  .case-tag{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--brass); text-transform:uppercase; letter-spacing:0.08em; }
+  .case-title{ font-family:'Fraunces', serif; font-size:1.3rem; margin:12px 0 10px; font-weight:600; }
+  .case-desc{ font-size:0.92rem; color:var(--muted); margin-bottom:16px; }
+  .case-metric{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--teal); border-top:1px dashed var(--line); padding-top:12px; }
+
+  /* TOOL */
+  .tool-box{
+    background:var(--ink); color:var(--paper); padding:48px; border-radius:2px;
+    display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap;
+  }
+  .tool-box h3{ font-family:'Fraunces', serif; font-size:1.5rem; max-width:400px; font-weight:600; }
+  .tool-box p{ color:#B8BECF; font-size:0.9rem; margin-top:10px; max-width:400px; }
+  .tool-box .btn{ border-color:var(--brass); color:var(--brass); flex-shrink:0; }
+  .tool-box .btn:hover{ background:var(--brass); color:var(--ink); }
+
+  /* CALCULATOR */
+  .calc-box{
+    background:var(--ink); color:var(--paper); padding:44px;
+    display:grid; grid-template-columns:1fr 1fr; gap:40px;
+  }
+  .calc-box h3{ font-family:'Fraunces', serif; font-size:1.4rem; font-weight:600; }
+  .calc-lead{ color:#B8BECF; font-size:0.85rem; margin:8px 0 20px; }
+  .calc-inputs label{ display:block; font-size:0.78rem; color:#B8BECF; margin-top:14px; font-family:'IBM Plex Mono', monospace; }
+  .calc-inputs input{
+    display:block; width:100%; margin-top:6px; padding:10px 12px;
+    background:#1c2b4d; border:1px solid #33436b; color:var(--paper);
+    border-radius:2px; font-family:'Inter',sans-serif; font-size:0.9rem;
+  }
+  .calc-results{ background:#1c2b4d; border:1px solid #33436b; padding:28px; align-self:start; }
+  .res-row{ display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid #33436b; font-size:0.88rem; }
+  .res-row:last-child{ border-bottom:none; }
+  .res-row span{ color:#B8BECF; }
+  .res-row b{ font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:0.95rem; }
+
+  /* BLOG */
+  .post-list{ display:flex; flex-direction:column; }
+  .post-item{ border-bottom:1px solid var(--line); }
+  .post-item:first-child{ border-top:1px solid var(--line); }
+  .post-row{
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+    padding:22px 0; cursor:pointer; list-style:none;
+  }
+  .post-row::-webkit-details-marker{ display:none; }
+  .post-row::after{ content:'+'; font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:1.1rem; }
+  .post-item[open] .post-row::after{ content:'−'; }
+  .post-title{ font-family:'Fraunces', serif; font-size:1.15rem; font-weight:600; }
+  .post-meta{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted); white-space:nowrap; }
+  .post-body{ padding:0 0 28px; max-width:720px; }
+  .post-body p{ font-size:0.92rem; color:var(--muted); margin-bottom:14px; }
+
+  /* RESOURCES */
+  .res-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .res-card{ border:1px solid var(--line); padding:24px; background:#fff; }
+  .res-card .num{ font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:0.8rem; }
+  .res-card h4{ font-family:'Fraunces', serif; margin:10px 0 8px; font-size:1.05rem; }
+  .res-card p{ font-size:0.85rem; color:var(--muted); }
+
+  /* ABOUT */
+  .about-flex{ display:flex; gap:48px; flex-wrap:wrap; }
+  .about-flex p{ max-width:560px; color:var(--muted); font-size:0.98rem; margin-bottom:14px; }
+  .stat-col{ display:flex; flex-direction:column; gap:20px; min-width:180px; }
+  .stat{ border-left:2px solid var(--brass); padding-left:14px; }
+  .stat b{ font-family:'Fraunces', serif; font-size:1.4rem; display:block; }
+  .stat span{ font-size:0.78rem; color:var(--muted); }
+
+  /* FOOTER */
+  footer{ padding:60px 32px; text-align:center; border-top:1px solid var(--line); }
+  footer .logo{ justify-content:center; margin-bottom:14px; }
+  footer p{ color:var(--muted); font-size:0.85rem; }
+  footer .flinks{ margin-top:16px; display:flex; justify-content:center; gap:24px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; }
+  footer .flinks a:hover{ color:var(--brass); }
+
+  @media(max-width:720px){
+    .trail{ grid-template-columns:1fr; }
+    .trail-step::after{ content:'↓'; right:auto; left:50%; top:auto; bottom:-13px; transform:translateX(-50%); }
+    .trail-step:last-child::after{content:'';}
+    .case-grid, .res-grid, .calc-box{ grid-template-columns:1fr; }
+    .about-flex{ flex-direction:column; }
+  }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">the process <span>edge</span></div>
+  <div class="navlinks">
+    <a href="#work">Case Studies</a>
+    <a href="#tool">Free Tool</a>
+    <a href="#writing">Writing</a>
+    <a href="#reading">Reading Room</a>
+    <a href="#about">About</a>
+    <a href="#work-with-me">Work With Me</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Process Excellence · Automation · Lean Six Sigma</div>
+  <h1>I turn manual chaos into <em>measurable</em> flow.</h1>
+  <p class="subhead">20+ years helping organizations replace broken, manual workflows with automated, auditable systems — in finance operations, compliance, and back-office audit functions.</p>
+  <div class="cta-row">
+    <a href="#work" class="btn btn-solid">See Case Studies</a>
+    <a href="#tool" class="btn btn-outline">Try the ROI Calculator</a>
+    <a href="#work-with-me" class="btn btn-outline">Work With Me</a>
+  </div>
+
+  <div class="trail">
+    <div class="trail-step">
+      <div class="trail-label">Entry 01 — Problem</div>
+      <div class="trail-value">74 findings</div>
+      <div class="trail-sub">buried in a manual vendor audit trail</div>
+    </div>
+    <div class="trail-step">
+      <div class="trail-label">Entry 02 — Method</div>
+      <div class="trail-value">6σ + automation</div>
+      <div class="trail-sub">mapped, scripted, and monitored</div>
+    </div>
+    <div class="trail-step">
+      <div class="trail-label">Entry 03 — Result</div>
+      <div class="trail-value">Zero backlog</div>
+      <div class="trail-sub">closed, tracked, self-reporting</div>
+    </div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="sec-head">
+    <div class="sec-title">Case studies</div>
+    <div class="sec-note">Real engagements, generalized — client names withheld, outcomes are mine to show.</div>
+  </div>
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-tag">Vendor Audit</div>
+      <div class="case-title">Closing a 74-point audit backlog</div>
+      <div class="case-desc">A pan-India professional services firm had a stalled vendor audit remediation. Rebuilt the closure tracker and dependency chain end to end.</div>
+      <div class="case-metric">→ Full closure, zero re-open findings</div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Workflow Automation</div>
+      <div class="case-title">Killing a recurring monthly exceptions cycle</div>
+      <div class="case-desc">A finance ops team spent days each month chasing PM exceptions manually. Built a scripted escalation suite that runs itself.</div>
+      <div class="case-metric">→ Manual effort cut from days to minutes</div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Data Integrity</div>
+      <div class="case-title">De-duplicating a national client database</div>
+      <div class="case-desc">Thousands of client records across cities, riddled with duplicates. Designed a flagging + naming SOP adopted firm-wide.</div>
+      <div class="case-metric">→ Clean, sync'd, single source of truth</div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Platform Governance</div>
+      <div class="case-title">Governing a firm-wide operating platform</div>
+      <div class="case-desc">A core ops platform had no change control. Introduced CR governance, invoice automation, and ticket workflows.</div>
+      <div class="case-metric">→ Predictable releases, fewer fire drills</div>
+    </div>
+  </div>
+</section>
+
+<section id="tool">
+  <div class="sec-head">
+    <div class="sec-title">Free tool</div>
+    <div class="sec-note">No signup required. Built for finance & audit teams sizing up automation.</div>
+  </div>
+  <div class="calc-box">
+    <div class="calc-inputs">
+      <h3>Process Automation ROI Calculator</h3>
+      <p class="calc-lead">Enter your current manual process numbers below.</p>
+      <label>Hours spent on this process per week
+        <input type="number" id="calcHours" value="10" min="0">
+      </label>
+      <label>Number of people involved
+        <input type="number" id="calcHeadcount" value="2" min="1">
+      </label>
+      <label>Average fully-loaded cost per person, per hour (₹)
+        <input type="number" id="calcRate" value="500" min="0">
+      </label>
+      <label>Current error/rework rate (%)
+        <input type="number" id="calcError" value="8" min="0" max="100">
+      </label>
+      <label>Expected time reduction after automation (%)
+        <input type="number" id="calcReduction" value="70" min="0" max="100">
+      </label>
+      <label>One-time automation build cost (₹)
+        <input type="number" id="calcBuildCost" value="150000" min="0">
+      </label>
+      <button class="btn" style="margin-top:12px; cursor:pointer; background:var(--ink); color:var(--paper);" onclick="calcROI()">Calculate ROI</button>
+    </div>
+    <div class="calc-results" id="calcResults">
+      <div class="res-row"><span>Weekly hours saved</span><b id="rHours">—</b></div>
+      <div class="res-row"><span>Monthly cost saved</span><b id="rMonthly">—</b></div>
+      <div class="res-row"><span>Annual cost saved</span><b id="rAnnual">—</b></div>
+      <div class="res-row"><span>Payback period</span><b id="rPayback">—</b></div>
+      <div class="res-row"><span>Rework cost saved / year (est.)</span><b id="rError">—</b></div>
+    </div>
+  </div>
+</section>
+
+<script>
+function calcROI(){
+  var hours = parseFloat(document.getElementById('calcHours').value) || 0;
+  var heads = parseFloat(document.getElementById('calcHeadcount').value) || 0;
+  var rate = parseFloat(document.getElementById('calcRate').value) || 0;
+  var errorPct = parseFloat(document.getElementById('calcError').value) || 0;
+  var reductionPct = parseFloat(document.getElementById('calcReduction').value) || 0;
+  var buildCost = parseFloat(document.getElementById('calcBuildCost').value) || 0;
+
+  var weeklyCost = hours * heads * rate;
+  var weeklyHoursSaved = hours * (reductionPct/100);
+  var weeklyCostSaved = weeklyCost * (reductionPct/100);
+  var monthlyCostSaved = weeklyCostSaved * 4.33;
+  var annualCostSaved = weeklyCostSaved * 52;
+  var annualErrorSaved = (weeklyCost * 52) * (errorPct/100) * (reductionPct/100);
+  var paybackWeeks = weeklyCostSaved > 0 ? (buildCost / weeklyCostSaved) : 0;
+
+  document.getElementById('rHours').innerText = weeklyHoursSaved.toFixed(1) + ' hrs/week';
+  document.getElementById('rMonthly').innerText = '₹' + Math.round(monthlyCostSaved).toLocaleString('en-IN');
+  document.getElementById('rAnnual').innerText = '₹' + Math.round(annualCostSaved).toLocaleString('en-IN');
+  document.getElementById('rError').innerText = '₹' + Math.round(annualErrorSaved).toLocaleString('en-IN');
+  document.getElementById('rPayback').innerText = paybackWeeks > 0 ? Math.ceil(paybackWeeks) + ' weeks' : 'N/A';
+}
+</script>
+
+<section id="writing">
+  <div class="sec-head">
+    <div class="sec-title">Writing</div>
+    <div class="sec-note">Long-form versions of what I post — on process, automation, and where AI actually helps.</div>
+  </div>
+  <div class="post-list">
+    <details class="post-item">
+      <summary class="post-row">
+        <div class="post-title">Why most "automation" projects automate the wrong step</div>
+        <div class="post-meta">6 MIN READ</div>
+      </summary>
+      <div class="post-body">
+        <p>Most automation efforts start with a simple question: "what's eating our time?" That's the wrong question. The right one is: "what step, if it disappeared entirely, would change the outcome?" These are rarely the same step.</p>
+        <p>I've seen teams spend months automating data entry into a system, only to find the real bottleneck was three approvals later — a manager who reviews requests once a week because nobody flagged it as urgent. The data entry got faster. The overall cycle time barely moved.</p>
+        <p>The pattern repeats because automating the visible, repetitive step feels productive and is easy to sell internally. It's a clean before-and-after story. Fixing an approval bottleneck means confronting an org design or ownership problem — a much harder conversation, and one that doesn't fit neatly into a project charter.</p>
+        <p>Before automating anything, I map the full cycle — every handoff, every wait state, every place where a task sits untouched. Not just the steps a person performs, but the steps a task waits for. Wait time is almost always larger than work time, and wait time is where automation has the least natural pull because nobody "owns" the waiting.</p>
+        <p>A simple test I use: if you automated this step perfectly — instantly, with zero errors — would the customer or the business notice a meaningfully faster outcome? If the answer is "a little," you've found a comfortable project, not an impactful one. If the answer is "yes, dramatically," you've found the actual bottleneck, even if it's harder to touch.</p>
+        <p>Automation works best when it removes waiting, not just typing.</p>
+      </div>
+    </details>
+    <details class="post-item">
+      <summary class="post-row">
+        <div class="post-title">The audit trail nobody reads until something breaks</div>
+        <div class="post-meta">5 MIN READ</div>
+      </summary>
+      <div class="post-body">
+        <p>Every organization has an audit trail. Almost nobody looks at it until an auditor asks a question nobody can answer, or a number doesn't reconcile and someone needs to know why.</p>
+        <p>The problem isn't that audit trails don't exist — it's that they're built as a compliance afterthought, bolted onto a process rather than designed into it. A log file that captures "user X changed field Y" tells you what happened, but not why it was allowed to happen, or whether it should have triggered a review.</p>
+        <p>A good audit trail answers three questions on its own, without someone having to reconstruct the story: what changed, who approved it, and what rule justified the approval. Most systems only reliably answer the first one.</p>
+        <p>When I've rebuilt audit trails for vendor and process audits, the biggest improvement wasn't more logging — it was tighter linkage. Every exception needed a visible owner and a closure date, not just a record that it existed. A 74-point finding backlog isn't a logging problem; it's an ownership and dependency-tracking problem wearing a logging costume.</p>
+        <p>If your audit trail only gets opened during an audit, it isn't doing its job day-to-day. It should be boring enough that a reviewer trusts it without reading every line — and specific enough that when something does break, the answer is already sitting there.</p>
+      </div>
+    </details>
+    <details class="post-item">
+      <summary class="post-row">
+        <div class="post-title">Lean Six Sigma isn't a factory tool anymore</div>
+        <div class="post-meta">7 MIN READ</div>
+      </summary>
+      <div class="post-body">
+        <p>Lean Six Sigma still gets filed under "manufacturing methodology" in a lot of people's heads — belts, defect rates, assembly lines. That framing made sense twenty years ago. It doesn't hold up anymore.</p>
+        <p>The core of Six Sigma was never about factories. It was about reducing variation and removing waste in any repeatable process — and knowledge work is full of repeatable processes: invoice approvals, compliance reviews, client onboarding, monthly reporting cycles. These have defect rates too; they just show up as rework, missed SLAs, and reconciliation errors instead of scrapped parts.</p>
+        <p>Where Six Sigma earns its keep in a services or back-office context is in forcing a team to define what "defect" even means for a non-physical process. Is a defect a late report? A restated number? A client escalation? Most teams have never written that definition down, which means nobody can measure improvement against it.</p>
+        <p>Paired with automation and AI-enabled monitoring, the classic DMAIC cycle — Define, Measure, Analyze, Improve, Control — becomes more powerful, not less relevant. AI can help measure variation continuously instead of through periodic sampling, and automation can enforce the "Control" phase so a fixed process doesn't quietly drift back to its old habits within a few months.</p>
+        <p>The tool hasn't gone out of date. The mental picture of where it applies has just stayed stuck in 2005.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="resources">
+  <div class="sec-head">
+    <div class="sec-title">Resources</div>
+    <div class="sec-note">Real templates, free to download — no email required.</div>
+  </div>
+  <div class="res-grid">
+    <div class="res-card">
+      <div class="num">01</div>
+      <h4>Process Mapping Template</h4>
+      <p>A swimlane-style structure for spotting where manual steps hide.</p>
+      <button class="btn" style="margin-top:14px; cursor:pointer; background:transparent; border-color:var(--ink); font-size:0.72rem; padding:9px 16px;" onclick="downloadTemplate('process-map')">Download .txt</button>
+    </div>
+    <div class="res-card">
+      <div class="num">02</div>
+      <h4>Vendor Audit Closure Tracker</h4>
+      <p>The exact tracker structure used to close a large audit backlog.</p>
+      <button class="btn" style="margin-top:14px; cursor:pointer; background:transparent; border-color:var(--ink); font-size:0.72rem; padding:9px 16px;" onclick="downloadTemplate('audit-tracker')">Download .csv</button>
+    </div>
+    <div class="res-card">
+      <div class="num">03</div>
+      <h4>Six Sigma Quick-Reference</h4>
+      <p>DMAIC checklist, condensed to one page for busy reviewers.</p>
+      <button class="btn" style="margin-top:14px; cursor:pointer; background:transparent; border-color:var(--ink); font-size:0.72rem; padding:9px 16px;" onclick="downloadTemplate('six-sigma')">Download .txt</button>
+    </div>
+  </div>
+</section>
+
+<script>
+function downloadTemplate(kind){
+  var content = '';
+  var filename = '';
+  var mime = 'text/plain';
+
+  if(kind === 'process-map'){
+    filename = 'process-mapping-template.txt';
+    content = "PROCESS MAPPING TEMPLATE\n" +
+      "=========================\n\n" +
+      "Process name: ______________________\n" +
+      "Process owner: ______________________\n" +
+      "Date mapped: ______________________\n\n" +
+      "SWIMLANES (one row per role/department involved)\n" +
+      "---------------------------------------------------\n" +
+      "Lane: ______________________\n" +
+      "  Step 1: ______________________  | Wait time before: _____ | Tool used: _____\n" +
+      "  Step 2: ______________________  | Wait time before: _____ | Tool used: _____\n" +
+      "  Step 3: ______________________  | Wait time before: _____ | Tool used: _____\n\n" +
+      "Lane: ______________________\n" +
+      "  Step 1: ______________________  | Wait time before: _____ | Tool used: _____\n" +
+      "  Step 2: ______________________  | Wait time before: _____ | Tool used: _____\n\n" +
+      "KEY QUESTIONS PER STEP\n" +
+      "---------------------------------------------------\n" +
+      "1. Is this step manual, semi-automated, or automated?\n" +
+      "2. What triggers this step to start?\n" +
+      "3. How long does it typically wait before someone acts on it?\n" +
+      "4. What happens if this step is skipped or delayed?\n" +
+      "5. Would automating this step change the end outcome for the customer/business?\n\n" +
+      "BOTTLENECK SUMMARY\n" +
+      "---------------------------------------------------\n" +
+      "Longest wait time identified: ______________________\n" +
+      "Step causing the most rework: ______________________\n" +
+      "Recommended first fix: ______________________\n";
+  }
+
+  if(kind === 'audit-tracker'){
+    filename = 'vendor-audit-closure-tracker.csv';
+    mime = 'text/csv';
+    content = "Finding ID,Category,Description,Risk Level,Owner,Dependency,Target Closure Date,Status,Evidence Attached,Re-opened (Y/N),Closure Notes\n" +
+      "F-001,Access Control,Example: shared login credentials in use,High,,,,, Open,,,\n" +
+      "F-002,Data Retention,Example: no defined retention period,Medium,,,,, Open,,,\n" +
+      "F-003,Vendor Contract,Example: SLA not documented,Medium,,,,, Open,,,\n";
+  }
+
+  if(kind === 'six-sigma'){
+    filename = 'six-sigma-dmaic-quick-reference.txt';
+    content = "SIX SIGMA — DMAIC QUICK REFERENCE\n" +
+      "=========================\n\n" +
+      "DEFINE\n" +
+      "- What problem are we solving, in one sentence?\n" +
+      "- Who is the customer of this process, and what do they need?\n" +
+      "- What does a 'defect' mean in this context?\n\n" +
+      "MEASURE\n" +
+      "- What data already exists to measure current performance?\n" +
+      "- What is the current defect/error rate?\n" +
+      "- Is the measurement itself reliable and repeatable?\n\n" +
+      "ANALYZE\n" +
+      "- What are the top 3 root causes of variation or defects?\n" +
+      "- Where does the process show the most inconsistency?\n" +
+      "- Is the cause a people issue, a system issue, or a design issue?\n\n" +
+      "IMPROVE\n" +
+      "- What is the smallest change that addresses the root cause?\n" +
+      "- Has the change been piloted before full rollout?\n" +
+      "- What's the expected before/after metric?\n\n" +
+      "CONTROL\n" +
+      "- Who owns monitoring this process going forward?\n" +
+      "- What triggers an alert if performance drifts back?\n" +
+      "- How often is this reviewed (monthly/quarterly)?\n";
+  }
+
+  var blob = new Blob([content], {type: mime});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+
+<section id="about">
+  <div class="sec-head">
+    <div class="sec-title">About</div>
+    <div class="sec-note">A career built at the intersection of process, ERP, and AI — independent of any single employer.</div>
+  </div>
+  <div class="about-flex">
+    <div>
+      <p>I'm Sahil, with 20+ years spanning Process Excellence, ERP Transformation, Digital Enablement, Governance, and Business Process Improvement. I've led enterprise-wide transformation initiatives, process standardization, ERP adoption, and analytics-driven decision making across multi-location organizations.</p>
+      <p>My grounding is in business process mapping, ERP implementation support, stakeholder management, UAT, reporting automation, KPI governance, and continuous improvement frameworks — the discipline of bridging business and technology teams to make transformation actually stick.</p>
+      <p>I started in Lean Six Sigma, leading global process-improvement initiatives and mentoring Green Belt and Yellow Belt teams in Banking & Financial Services operations. I later spent years deepening my capability in Six Sigma, Quality Management, Project Management, and Business Transformation before moving into ERP-led digital transformation and, more recently, AI-enabled governance and automation.</p>
+      <p>This site is my own — independent thinking on process, ERP, and AI, not tied to any current employer.</p>
+    </div>
+    <div class="stat-col">
+      <div class="stat"><b>20+ yrs</b><span>Process Excellence & ERP Transformation</span></div>
+      <div class="stat"><b>LSSMB</b><span>Lean Six Sigma Master Black Belt</span></div>
+      <div class="stat"><b>MBA</b><span>Operations & Six Sigma, IMT Ghaziabad</span></div>
+      <div class="stat"><b>CASA</b><span>Certified AI Solutions Architect</span></div>
+      <div class="stat"><b>ISO 9001:2015</b><span>Lead Auditor</span></div>
+      <div class="stat"><b>ITIL &amp; PM</b><span>ITIL Foundation · Project Mgmt, IIT Delhi</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="reading">
+  <div class="sec-head">
+    <div class="sec-title">Reading room</div>
+    <div class="sec-note">Government and regulatory updates on data, automation, and AI — tracked for the process & compliance crowd.</div>
+  </div>
+  <div class="res-grid">
+    <div class="res-card">
+      <div class="num">GOV · DATA</div>
+      <h4>DPDP Rules, 2025 — now in force</h4>
+      <p>India's Digital Personal Data Protection Rules were notified in November 2025, fully operationalizing the 2023 Act. Rollout is phased over roughly 18 months, with a digital Data Protection Board, defined erasure and retention timelines, and stricter consent requirements for processing minors' data. For any process or automation function handling personal data, this changes what "compliant" now means.</p>
+    </div>
+    <div class="res-card">
+      <div class="num">GOV · AI</div>
+      <h4>India AI Governance Guidelines</h4>
+      <p>Unveiled at the India AI Impact Summit 2026, the guidelines rest on seven principles ("sutras") — trust, human-centricity, fairness, accountability, transparency, safety, and inclusive innovation. New bodies like the AI Governance Group and an AI Safety Institute are meant to coordinate oversight. The approach is largely voluntary for now, but it signals where mandatory rules are headed.</p>
+    </div>
+    <div class="res-card">
+      <div class="num">GOV · CONTENT</div>
+      <h4>IT Amendment Rules, 2026 (synthetic content)</h4>
+      <p>Effective February 2026, these rules impose labelling requirements and fast takedown timelines for synthetically generated content (deepfakes, AI images/audio/video). Text output isn't covered directly, but platforms enabling AI content creation now carry due-diligence obligations — relevant for anyone automating content or reporting workflows.</p>
+    </div>
+  </div>
+  <p style="margin-top:24px; font-size:0.82rem; color:var(--muted);">Have a regulatory update or reading suggestion? Tell me in the feedback box below — this section grows from what visitors want tracked.</p>
+</section>
+
+<section id="feedback">
+  <div class="sec-head">
+    <div class="sec-title">Feedback</div>
+    <div class="sec-note">Tell me what's useful, what's missing, or what you'd like to see next.</div>
+  </div>
+  <div class="tool-box">
+    <div style="flex:1; min-width:260px;">
+      <h3>What would make this site better for you?</h3>
+      <p>Your note goes straight to my inbox — no forms stored, no tracking, just a message.</p>
+      <textarea id="fbText" placeholder="Type your feedback here..." style="width:100%; margin-top:16px; min-height:90px; background:#1c2b4d; border:1px solid #33436b; color:var(--paper); border-radius:2px; padding:12px; font-family:'Inter',sans-serif; font-size:0.9rem;"></textarea>
+    </div>
+    <button class="btn" style="border-color:var(--brass); color:var(--brass); background:transparent; cursor:pointer;" onclick="var t=document.getElementById('fbText').value || 'No message entered.'; window.location.href='mailto:masterblackbeltpe@icloud.com?subject=' + encodeURIComponent('Feedback — The Process Edge') + '&body=' + encodeURIComponent(t);">Send Feedback</button>
+  </div>
+</section>
+
+<section id="work-with-me">
+  <div class="sec-head">
+    <div class="sec-title">Work with me</div>
+    <div class="sec-note">If a process is costing you time, money, or audit headaches — let's fix it.</div>
+  </div>
+  <div class="case-grid">
+    <div class="case-card">
+      <div class="case-tag">Advisory</div>
+      <div class="case-title">Process & Audit Diagnostic</div>
+      <div class="case-desc">A focused review of a broken or manual process — where the time goes, where the risk sits, and what to fix first.</div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Implementation</div>
+      <div class="case-title">ERP & Automation Rollout Support</div>
+      <div class="case-desc">Hands-on support through requirement gathering, UAT, stakeholder alignment, and post-go-live stabilization.</div>
+    </div>
+    <div class="case-card">
+      <div class="case-tag">Enablement</div>
+      <div class="case-title">Lean Six Sigma / AI-for-Ops Training</div>
+      <div class="case-desc">Practical, non-academic training for teams — Six Sigma fundamentals or AI-enabled automation, tailored to your function.</div>
+    </div>
+  </div>
+  <div class="tool-box" style="margin-top:1px;">
+    <div>
+      <h3>Have a process worth fixing?</h3>
+      <p>Tell me briefly what you're dealing with — I'll reply personally, no sales team, no forms buried in a CRM.</p>
+    </div>
+    <a href="mailto:masterblackbeltpe@icloud.com?subject=Work%20With%20Me%20%E2%80%94%20The%20Process%20Edge" class="btn">Get in Touch</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="logo">the process <span>edge</span></div>
+  <p>Have a process worth fixing? Let's talk.</p>
+  <div class="flinks">
+    <a href="mailto:masterblackbeltpe@icloud.com">Email</a>
+    <a href="#">LinkedIn</a>
+  </div>
+  <div style="margin-top:24px;">
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=sahilanand.the-process-edge" alt="visitor counter" style="height:22px; opacity:0.85;">
+  </div>
+</footer>
+
+</body>
+</html>
