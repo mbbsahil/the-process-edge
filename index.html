@@ -528,10 +528,46 @@ function downloadTemplate(kind){
       <h3>What would make this site better for you?</h3>
       <p>Your note goes straight to my inbox — no forms stored, no tracking, just a message.</p>
       <textarea id="fbText" placeholder="Type your feedback here..." style="width:100%; margin-top:16px; min-height:90px; background:#1c2b4d; border:1px solid #33436b; color:var(--paper); border-radius:2px; padding:12px; font-family:'Inter',sans-serif; font-size:0.9rem;"></textarea>
+      <div id="fbStatus" style="margin-top:10px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass); min-height:16px;"></div>
     </div>
-    <button class="btn" style="border-color:var(--brass); color:var(--brass); background:transparent; cursor:pointer;" onclick="var t=document.getElementById('fbText').value || 'No message entered.'; window.location.href='mailto:masterblackbeltpe@icloud.com?subject=' + encodeURIComponent('Feedback — The Process Edge') + '&body=' + encodeURIComponent(t);">Send Feedback</button>
+    <button id="fbBtn" class="btn" style="border-color:var(--brass); color:var(--brass); background:transparent; cursor:pointer;" onclick="sendFeedback()">Send Feedback</button>
   </div>
 </section>
+
+<script>
+function sendFeedback(){
+  var text = document.getElementById('fbText').value.trim();
+  var status = document.getElementById('fbStatus');
+  var btn = document.getElementById('fbBtn');
+
+  if(!text){
+    status.innerText = 'Please type something before sending.';
+    return;
+  }
+
+  btn.disabled = true;
+  status.innerText = 'Sending...';
+
+  fetch('https://formspree.io/f/xpqvojdg', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: text, source: 'The Process Edge website' })
+  })
+  .then(function(res){
+    if(res.ok){
+      status.innerText = 'Thanks — got it!';
+      document.getElementById('fbText').value = '';
+    } else {
+      status.innerText = 'Something went wrong. Please try again.';
+    }
+    btn.disabled = false;
+  })
+  .catch(function(){
+    status.innerText = 'Something went wrong. Please try again.';
+    btn.disabled = false;
+  });
+}
+</script>
 
 <section id="work-with-me">
   <div class="sec-head">
