@@ -183,7 +183,34 @@
   .mail-close{ position:absolute; top:12px; right:14px; background:none; border:none; font-size:1.4rem; color:var(--muted); cursor:pointer; line-height:1; }
   .mail-close:hover{ color:var(--ink); }
 
+  /* FAQ ASSISTANT */
+  .bot-fab{ position:fixed; right:24px; bottom:24px; z-index:90; display:flex; align-items:center; gap:10px; background:var(--ink); color:var(--paper); border:1px solid var(--ink); border-radius:999px; padding:12px 20px 12px 16px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; letter-spacing:0.03em; cursor:pointer; box-shadow:0 6px 20px rgba(20,33,61,0.25); transition:background 0.15s ease; }
+  .bot-fab:hover{ background:var(--teal); border-color:var(--teal); }
+  .bot-fab .dot{ width:8px; height:8px; border-radius:50%; background:var(--brass); }
+  .bot-panel{ position:fixed; right:24px; bottom:24px; z-index:95; width:360px; max-width:calc(100vw - 32px); height:520px; max-height:calc(100vh - 48px); background:var(--paper); border:1px solid var(--line); border-radius:2px; box-shadow:0 12px 40px rgba(20,33,61,0.25); display:none; flex-direction:column; overflow:hidden; }
+  .bot-panel.open{ display:flex; }
+  .bot-head{ background:var(--ink); color:var(--paper); padding:16px 18px; display:flex; justify-content:space-between; align-items:center; }
+  .bot-head b{ font-family:'Fraunces', serif; font-size:1.05rem; font-weight:600; display:block; }
+  .bot-head span{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--brass); letter-spacing:0.08em; text-transform:uppercase; }
+  .bot-head button{ background:none; border:none; color:#B8BECF; font-size:1.5rem; cursor:pointer; line-height:1; }
+  .bot-head button:hover{ color:var(--paper); }
+  .bot-log{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; }
+  .bot-msg{ max-width:88%; padding:10px 14px; font-size:0.88rem; line-height:1.5; border-radius:2px; }
+  .bot-msg.bot{ background:#fff; border:1px solid var(--line); align-self:flex-start; color:var(--ink); }
+  .bot-msg.user{ background:var(--ink); color:var(--paper); align-self:flex-end; }
+  .bot-msg a{ color:var(--teal); text-decoration:underline; }
+  .bot-chips{ display:flex; flex-wrap:wrap; gap:6px; align-self:flex-start; }
+  .bot-chips button{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; padding:6px 10px; border:1px solid var(--brass); color:var(--ink); background:transparent; border-radius:2px; cursor:pointer; }
+  .bot-chips button:hover{ background:var(--brass); color:var(--paper); }
+  .bot-form{ display:flex; border-top:1px solid var(--line); background:#fff; }
+  .bot-form input{ flex:1; border:none; padding:14px 16px; font-family:'Inter', sans-serif; font-size:0.9rem; color:var(--ink); background:transparent; outline:none; min-width:0; }
+  .bot-form button{ border:none; background:var(--ink); color:var(--paper); padding:0 18px; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; cursor:pointer; }
+  .bot-form button:hover{ background:var(--teal); }
+  .bot-note{ font-family:'IBM Plex Mono', monospace; font-size:0.65rem; color:var(--muted); text-align:center; padding:6px; background:#fff; }
+
   @media(max-width:720px){
+    .bot-fab{ right:16px; bottom:16px; }
+    .bot-panel{ right:16px; bottom:16px; height:min(560px, calc(100vh - 32px)); }
     nav{ flex-direction:column; align-items:flex-start; gap:14px; }
     .navlinks{ flex-wrap:wrap; gap:10px 18px; }
     .train-grid{ grid-template-columns:1fr; }
@@ -706,18 +733,18 @@ function sendFeedback(){
   var ov=document.getElementById('mailOverlay');
   var copyBtn=document.getElementById('mailCopy');
   window.closeMail=function(){ ov.classList.remove('open'); };
-  document.querySelectorAll('a[href^="mailto:"]').forEach(function(link){
-    link.addEventListener('click', function(e){
-      e.preventDefault();
-      var subj='';
-      try{ subj=new URL(link.href).searchParams.get('subject')||''; }catch(err){}
-      var s=encodeURIComponent(subj), to=encodeURIComponent(ADDR);
-      document.getElementById('mailGmail').href='https://mail.google.com/mail/?view=cm&fs=1&to='+to+'&su='+s;
-      document.getElementById('mailOutlook').href='https://outlook.live.com/mail/0/deeplink/compose?to='+to+'&subject='+s;
-      document.getElementById('mailApp').href=link.href;
-      copyBtn.textContent='Copy email address';
-      ov.classList.add('open');
-    });
+  document.addEventListener('click', function(e){
+    var link=e.target.closest ? e.target.closest('a[href^="mailto:"]') : null;
+    if(!link || link.closest('#mailOverlay')) return;
+    e.preventDefault();
+    var subj='';
+    try{ subj=new URL(link.href).searchParams.get('subject')||''; }catch(err){}
+    var s=encodeURIComponent(subj), to=encodeURIComponent(ADDR);
+    document.getElementById('mailGmail').href='https://mail.google.com/mail/?view=cm&fs=1&to='+to+'&su='+s;
+    document.getElementById('mailOutlook').href='https://outlook.live.com/mail/0/deeplink/compose?to='+to+'&subject='+s;
+    document.getElementById('mailApp').href=link.href;
+    copyBtn.textContent='Copy email address';
+    ov.classList.add('open');
   });
   document.querySelectorAll('.mail-opts a').forEach(function(a){ a.addEventListener('click', function(){ setTimeout(closeMail, 150); }); });
   copyBtn.addEventListener('click', function(){
@@ -727,6 +754,96 @@ function sendFeedback(){
   });
   ov.addEventListener('click', function(e){ if(e.target===ov) closeMail(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMail(); });
+})();
+</script>
+
+<button class="bot-fab" id="botFab" type="button" aria-label="Open the site assistant"><span class="dot"></span>Ask me</button>
+<div class="bot-panel" id="botPanel" role="dialog" aria-label="The Process Edge assistant">
+  <div class="bot-head">
+    <div><b>The Process Edge</b><span>Quick answers</span></div>
+    <button type="button" id="botClose" aria-label="Close assistant">&times;</button>
+  </div>
+  <div class="bot-log" id="botLog" aria-live="polite"></div>
+  <form class="bot-form" id="botForm" autocomplete="off">
+    <input id="botInput" type="text" placeholder="Type a question…" aria-label="Your question" maxlength="200">
+    <button type="submit">Send</button>
+  </form>
+  <div class="bot-note">Automated answers · Sahil replies personally by email</div>
+</div>
+<script>
+(function(){
+  var MAIL='mailto:masterblackbeltpe@icloud.com?subject=';
+  var bookLink='<a href="'+MAIL+'Training%20Session%20Enquiry%20%E2%80%94%20The%20Process%20Edge">email Sahil</a>';
+  var askLink='<a href="'+MAIL+'Question%20from%20The%20Process%20Edge">email Sahil</a>';
+  var workLink='<a href="'+MAIL+'Work%20With%20Me%20%E2%80%94%20The%20Process%20Edge">email Sahil</a>';
+  var MENU=['Training programs','Formats & duration','Fees','Book a session','Services','About Sahil','Contact'];
+
+  var KB=[
+    { k:['yellow'], a:'<b>Yellow Belt — 2 days.</b> Core Lean Six Sigma concepts, DMAIC basics and waste identification. Ideal if you are joining an improvement team.', c:['Green Belt','Book a session'] },
+    { k:['green'], a:'<b>Green Belt — 4 days.</b> The full DMAIC toolkit with hands-on Excel templates, so you can lead improvement projects within your own function.', c:['Black Belt','Book a session'] },
+    { k:['black'], a:'<b>Black Belt — 8 days.</b> Advanced statistics, experimental design and project leadership — for people driving cross-functional improvement programs.', c:['PFMEA workshop','Book a session'] },
+    { k:['pfmea','fmea','failure mode','risk'], a:'<b>PFMEA Workshop — 1 day.</b> Process Failure Mode & Effects Analysis: identify, score and mitigate process risks before they reach the customer.', c:['Training programs','Book a session'] },
+    { k:['fee','fees','price','pricing','cost','charge','charges','how much','rate','₹','rs','inr','discount'], w:3, a:'Fees depend on the program, format and group size, so Sahil shares them personally. Please '+bookLink+' with the program you are interested in and he will reply with details.', c:['Book a session','Training programs'] },
+    { k:['book','enrol','enroll','register','join','batch','date','dates','schedule','when','next','slot','seat'], w:3, a:'To book a session or ask about upcoming batches, '+bookLink+' with the program, preferred format (online, classroom or corporate in-house) and group size. He replies personally with dates.', c:['Formats & duration','Fees'] },
+    { k:['format','formats','online','offline','classroom','in-house','inhouse','corporate','virtual','location','where','mode','duration','long','days','hours'], a:'Training is available <b>online</b>, in a <b>classroom</b>, or as <b>corporate in-house</b> sessions for your team.<br>Typical durations: Yellow Belt 2 days · Green Belt 4 days · Black Belt 8 days · PFMEA 1 day.', c:['Book a session','Fees'] },
+    { k:['certif','certificate','exam','accredit'], w:3, a:'Certification details for each program are shared on enquiry. Please '+bookLink+' and mention the belt level you are aiming for.', c:['Training programs','Book a session'] },
+    { k:['training','program','programs','programme','course','courses','belt','belts','learn','teach','workshop','class','lean six sigma','six sigma','lss'], a:'Sahil conducts Lean Six Sigma training for students and professionals, using his own LSS and PFMEA training decks and Excel tool templates:<br>• <b>Yellow Belt</b> — 2 days<br>• <b>Green Belt</b> — 4 days<br>• <b>Black Belt</b> — 8 days<br>• <b>PFMEA Workshop</b> — 1 day', c:['Yellow Belt','Green Belt','Black Belt','PFMEA workshop'] },
+    { k:['dmaic'], a:'<b>DMAIC</b> is the core Six Sigma improvement cycle: Define, Measure, Analyze, Improve, Control. It is covered from Yellow Belt onwards, in most depth at Green and Black Belt.', c:['Training programs'] },
+    { k:['service','services','consult','consulting','hire','help my','audit','erp','automation','automate','diagnostic','rollout','implementation','work with','project'], a:'Sahil offers three kinds of support:<br>• <b>Process & Audit Diagnostic</b> — where the time goes, where the risk sits, what to fix first<br>• <b>ERP & Automation Rollout Support</b> — requirements, UAT, stakeholder alignment, post-go-live<br>• <b>Lean Six Sigma / AI-for-Ops Training</b><br>To discuss your situation, '+workLink+'.', c:['Contact','About Sahil'] },
+    { k:['about','who','sahil','experience','background','credential','credentials','qualification','master black belt','mbb','cv','profile'], a:'Sahil Anand has 20+ years in Process Excellence, ERP Transformation and automation. He is a <b>Lean Six Sigma Master Black Belt</b> and holds an Executive MBA in Operations & Six Sigma (IMT Ghaziabad), Certified AI Solutions Architect, ISO 9001:2015 Lead Auditor, ITIL Foundation and Project Management (IIT Delhi). He is based in New Delhi.', c:['Training programs','Services'] },
+    { k:['contact','email','mail','reach','linkedin','talk','call','connect','message'], a:'You can '+askLink+' (masterblackbeltpe@icloud.com) or connect on <a href="https://www.linkedin.com/in/sahil-anand-41474a1a7/" target="_blank" rel="noopener">LinkedIn</a>. Sahil replies personally.', c:['Book a session'] },
+    { k:['roi','calculator','tool','free tool'], a:'There is a free <a href="#tool">Process Automation ROI Calculator</a> on this page — no signup needed. It estimates hours saved, cost saved and payback period.', c:['Services'] },
+    { k:['template','templates','download','resource','resources','tracker'], a:'Free templates are in the <a href="#resources">Resources</a> section: a Process Mapping Template, a Vendor Audit Closure Tracker and a Six Sigma DMAIC Quick-Reference.', c:['Training programs'] },
+    { k:['thank','thanks','great','ok','okay','cool'], a:'Happy to help! Anything else you would like to know?', c:MENU },
+    { k:['hi','hello','hey','namaste','good morning','good evening'], a:'Hello! What would you like to know?', c:MENU }
+  ];
+
+  var log=document.getElementById('botLog'), panel=document.getElementById('botPanel'), fab=document.getElementById('botFab'), input=document.getElementById('botInput');
+  var started=false;
+
+  function esc(t){ var d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
+  function add(html, who){ var m=document.createElement('div'); m.className='bot-msg '+who; m.innerHTML=html; log.appendChild(m); log.scrollTop=log.scrollHeight; }
+  function chips(list){
+    var old=log.querySelector('.bot-chips'); if(old) old.remove();
+    if(!list||!list.length) return;
+    var w=document.createElement('div'); w.className='bot-chips';
+    list.forEach(function(t){ var b=document.createElement('button'); b.type='button'; b.textContent=t; b.onclick=function(){ ask(t); }; w.appendChild(b); });
+    log.appendChild(w); log.scrollTop=log.scrollHeight;
+  }
+  function match(q){
+    q=' '+q.toLowerCase().replace(/[^a-z0-9₹\- ]/g,' ').replace(/\s+/g,' ')+' ';
+    var best=null, score=0;
+    KB.forEach(function(item, i){
+      var sc=0;
+      item.k.forEach(function(k){
+        var short=k.length<=3;
+        if(short ? q.indexOf(' '+k+' ')>-1 : q.indexOf(k)>-1) sc+= k.length>4?2:1;
+      });
+      sc*= (item.w||1);
+      if(sc>score || (sc===score && sc>0 && i<KB.indexOf(best))){ score=sc; best=item; }
+    });
+    return best;
+  }
+  function ask(text){
+    text=(text||'').trim(); if(!text) return;
+    add(esc(text),'user');
+    var r=match(text);
+    setTimeout(function(){
+      if(r){ add(r.a,'bot'); chips(r.c); }
+      else { add('I don\'t have an answer for that yet. Please '+askLink+' — he replies personally.','bot'); chips(MENU); }
+    }, 250);
+  }
+  function open(){
+    panel.classList.add('open'); fab.style.display='none';
+    if(!started){ started=true; add('Hi! I can answer quick questions about Sahil\'s Lean Six Sigma training and services. Pick a topic or type your question.','bot'); chips(MENU); }
+    setTimeout(function(){ input.focus(); }, 50);
+  }
+  function close(){ panel.classList.remove('open'); fab.style.display=''; }
+  fab.addEventListener('click', open);
+  document.getElementById('botClose').addEventListener('click', close);
+  document.getElementById('botForm').addEventListener('submit', function(e){ e.preventDefault(); ask(input.value); input.value=''; });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && panel.classList.contains('open') && !document.getElementById('mailOverlay').classList.contains('open')) close(); }, true);
+  log.addEventListener('click', function(e){ var a=e.target.closest('a[href^="#"]'); if(a && window.innerWidth<720) close(); });
 })();
 </script>
 
