@@ -166,6 +166,9 @@
 
   /* ABOUT */
   .about-flex{ display:flex; gap:48px; flex-wrap:wrap; }
+  .about-photo{ width:200px; flex-shrink:0; margin-bottom:16px; }
+  .about-photo img{ width:200px; height:200px; object-fit:cover; display:block; border:1px solid var(--line); border-radius:2px; box-shadow:8px 8px 0 var(--brass); }
+  .about-photo figcaption{ margin-top:18px; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted); letter-spacing:0.04em; }
   .about-flex p{ max-width:560px; color:var(--muted); font-size:0.98rem; margin-bottom:14px; }
   .stat-col{ display:flex; flex-direction:column; gap:20px; min-width:180px; }
   .stat{ border-left:2px solid var(--brass); padding-left:14px; }
@@ -564,6 +567,10 @@ function downloadTemplate(kind){
       <p>This site is my own — independent thinking on process, ERP, and AI, not tied to any current employer.</p>
     </div>
     <div class="stat-col">
+      <figure class="about-photo">
+        <img src="sahil.jpg" alt="Sahil Anand" width="200" height="200" loading="lazy">
+        <figcaption>Sahil Anand · New Delhi</figcaption>
+      </figure>
       <div class="stat"><b>20+ yrs</b><span>Process Excellence & ERP Transformation</span></div>
       <div class="stat"><b>LSSMB</b><span>Lean Six Sigma Master Black Belt</span></div>
       <div class="stat"><b>MBA</b><span>Operations & Six Sigma, IMT Ghaziabad</span></div>
