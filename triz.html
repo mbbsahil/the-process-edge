@@ -27,6 +27,10 @@ section[hidden]{display:none}
 .hint{color:var(--mute);font-size:14px;margin:0 0 10px}
 label{display:block;font-size:14px;font-weight:600;margin:10px 0 4px}
 .mres{border:1px solid var(--acc);border-radius:8px;padding:12px 14px;margin-top:8px}
+.sugg{font-size:13px;color:var(--mute);margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sugg .chip{font-size:12px;padding:3px 9px}
+.sugg .chip.on{background:var(--acc);border-color:var(--acc);color:var(--card)}
+a{color:var(--acc)}
 .mres .chips{margin:8px 0}
 .mres .chip{cursor:default;border-color:var(--acc);font-weight:600}
 input,textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px}
@@ -77,10 +81,11 @@ footer{color:var(--mute);font-size:13px;padding:40px 0}
   <div class="step"><h3><span>2</span>State the contradiction</h3>
    <p class="hint">If I improve <i>this</i>… then <i>that</i> gets worse.</p>
    <div class="row">
-    <div><label for="imp">I want to improve…</label><input id="imp" placeholder="e.g. Speed of approval"></div>
-    <div><label for="wor">…but this gets worse</label><input id="wor" placeholder="e.g. Control / risk of wrong payments"></div>
+    <div><label for="imp">I want to improve…</label><input id="imp" placeholder="e.g. Speed of approval"><div class="sugg" id="si"></div></div>
+    <div><label for="wor">…but this gets worse</label><input id="wor" placeholder="e.g. Control / risk of wrong payments"><div class="sugg" id="sw"></div></div>
    </div>
-   <p class="hint" style="margin-top:14px">Now map each side to one of Altshuller's 39 engineering parameters. Business meanings are shown to help.</p>
+   <p class="hint" style="margin-top:6px">Not sure how to phrase it? <a href="#" class="exl" data-x="0">Try an example</a> · <a href="#" class="exl" data-x="1">another</a> · <a href="#" class="exl" data-x="2">one more</a></p>
+   <p class="hint" style="margin-top:14px">We match your words to Altshuller's 39 parameters and pre-select the closest one. Change it if a different one fits better.</p>
    <div class="row">
     <div><label for="pi">Improving parameter</label><select id="pi"></select><p class="hint" id="gi"></p></div>
     <div><label for="pw">Worsening parameter</label><select id="pw"></select><p class="hint" id="gw"></p></div>
@@ -135,7 +140,27 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
 ['prob','imp','wor'].forEach(k=>{const el=$('#'+k);el.value=st[k];el.oninput=()=>{st[k]=el.value;save()}});
 // contradiction matrix
 const opts='<option value="">— choose a parameter —</option>'+PAR.map(p=>`<option value="${p.n}">${p.n}. ${esc(p.name)}</option>`).join('');
-['pi','pw'].forEach(k=>{const el=$('#'+k);el.innerHTML=opts;el.value=st[k];el.onchange=()=>{st[k]=el.value;save();renderMatrix()}});
+['pi','pw'].forEach(k=>{const el=$('#'+k);el.innerHTML=opts;el.value=st[k];el.onchange=()=>{st[k]=el.value;st[k+'m']=true;save();renderMatrix();renderSugg()}});
+// plain-language → parameter matching
+const KW={1:['weight','heavy','workload','burden','load'],2:['overhead','fixed cost','infrastructure','rent'],3:['length','handoff','hand-off','route','travel','long process','many steps','chain'],4:['footprint','distance','span'],5:['coverage','reach','surface'],6:['floor space','office space','space','premises','area'],7:['batch','shipment','consignment','lot size'],8:['storage','warehouse','stockroom','shelf'],9:['speed','fast','quick','delay','late','slow','turnaround','tat','cycle time','lead time','on time','timely','deadline','closure','close','response time','sla'],10:['effort','push','follow-up','follow up','followup','chase','chasing','escalat','persuad','reminder'],11:['pressure','stress','burnout','strain','tension','overload'],12:['layout','structure','format','template','shape','form','design'],13:['stability','stable','attrition','turnover','disruption','continuity','volatil'],14:['strength','robust','resilien','strong','sturdy'],15:['lifespan','longevity','wear','last longer','durab'],16:['asset life','shelf life','permanent'],17:['temperature','heat','cooling','hot','cold','thermal'],18:['visibility','visible','transparen','brightness','lighting','clarity'],19:['manpower','man-hours','man hours','energy','fuel','labour','labor'],20:['idle cost','standby','electricity','utility bill'],21:['capacity','bandwidth','power','output rate','scale up'],22:['wasted effort','duplicat','redundan','double work','repetit'],23:['wastage','waste','scrap','leakage','spoil','loss of material','pilferage'],24:['information','data','document','communicat','knowledge','record','details','missing','reporting','visibility of'],25:['waiting','wait','idle','rework','downtime','bottleneck','backlog','pending','queue','time wasted','waste of time','delay'],26:['quantity','headcount','resources','stock','inventory','amount','number of','volume'],27:['reliab','error','mistake','defect','failure','consisten','depend','support','cooperat','co-operat','responsive','quality','compliance','non-complian','trust'],28:['measure','tracking','track','metric','kpi','forecast','estimate','monitoring data'],29:['precision','precise','accura','exact','tolerance','correct'],30:['risk','threat','fraud','cyber','external','regulator','market','vendor','supplier','third party','competition'],31:['side effect','pollution','emission','complaint','dissatisf','penalty','harm','damage','reputation'],32:['manufactur','produc','implement','execut','deliver','build','rollout','roll out'],33:['convenien','user friendly','user-friendly','ease of use','easy','usabil','experience','satisfaction','simple','friendly','hassle'],34:['repair','fix','maintenance','recover','troubleshoot','restore','resolution'],35:['flexib','adapt','customi','variety','agile','change','versatil','tailor'],36:['complex','complicated','features','sophisticat'],37:['control','oversight','governance','supervis','monitor','check','sign-off','sign off','review','audit trail'],38:['automat','manual','digital','bot','rpa','software','tool','system'],39:['productiv','output','throughput','efficien','completion','complete','utili','performance','closure']};
+function match(txt){
+ txt=' '+txt.toLowerCase().replace(/[^a-z0-9\- ]/g,' ')+' ';const toks=txt.split(/\s+/).filter(Boolean);const sc={};
+ for(const n in KW)for(const k of KW[n]){const hit=k.includes(' ')?txt.includes(' '+k):toks.some(t=>t.startsWith(k));if(hit){const pos=txt.indexOf(' '+k);sc[n]=(sc[n]||0)+1+k.length/20+(pos>=0?0.4*(1-pos/txt.length):0)}}
+ return Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>+e[0]);
+}
+function renderSugg(){
+ [['imp','pi','si'],['wor','pw','sw']].forEach(([t,p,s])=>{
+  const m=match(st[t]||'');const box=$('#'+s);
+  if(!st[t]||!st[t].trim()){box.innerHTML='';return}
+  if(!m.length){box.innerHTML='<span>No close match — choose a parameter below.</span>';return}
+  if(!st[p+'m']&&String(m[0])!==String(st[p])){st[p]=String(m[0]);$('#'+p).value=st[p];save();renderMatrix()}
+  box.innerHTML='<span>Closest parameters:</span>'+m.map(n=>`<button class="chip${String(n)===String(st[p])?' on':''}" data-p="${p}" data-n="${n}">${n}. ${esc(PAR[n-1].name)}</button>`).join('');
+  box.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{st[p]=c.dataset.n;st[p+'m']=true;$('#'+p).value=st[p];save();renderMatrix();renderSugg()});
+ });
+}
+['imp','wor'].forEach(k=>$('#'+k).addEventListener('input',renderSugg));
+const EXS=[{prob:'Audit closure is getting delayed because the client does not share information on time.',imp:'Speed of audit closure',wor:'Information from the client arrives late or incomplete'},{prob:'Every invoice needs partner sign-off, so approvals take 6 days.',imp:'Faster invoice approval turnaround',wor:'Control and risk of wrong payments'},{prob:'We want to automate month-end reporting, but the process is already complicated.',imp:'Level of automation in reporting',wor:'Complexity of the system to maintain'}];
+document.querySelectorAll('.exl').forEach(a=>a.onclick=e=>{e.preventDefault();const x=EXS[+a.dataset.x];['prob','imp','wor'].forEach(k=>{st[k]=x[k];$('#'+k).value=x[k]});st.pim=st.pwm=false;st.pi=st.pw='';save();renderSugg();renderMatrix()});
 const SEP=[1,2,3,10,15,19,35]; // separation in space / time / condition
 function suggested(){const i=+st.pi,w=+st.pw;if(!i||!w)return null;return i===w?{phys:true,list:SEP}:{phys:false,list:MX[i-1][w-1]}}
 function renderMatrix(){
@@ -169,7 +194,7 @@ const msg=m=>{$('#msg').textContent=m;setTimeout(()=>$('#msg').textContent='',25
 $('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text()],{type:'text/plain'}));a.download='triz-worksheet.txt';a.click();msg('Downloaded.')};
 $('#copy').onclick=()=>navigator.clipboard.writeText(text()).then(()=>msg('Copied.'),()=>msg('Copy not available in this browser — use Download.'));
 $('#print').onclick=()=>window.print();
-$('#reset').onclick=()=>{st={prob:'',imp:'',wor:'',pi:'',pw:'',sel:[],ideas:{}};save();['prob','imp','wor','pi','pw'].forEach(k=>$('#'+k).value='');renderMatrix();renderChips();renderIdeas()};
+$('#reset').onclick=()=>{st={prob:'',imp:'',wor:'',pi:'',pw:'',sel:[],ideas:{}};save();renderSugg();['prob','imp','wor','pi','pw'].forEach(k=>$('#'+k).value='');renderMatrix();renderChips();renderIdeas()};
 
 // explore
 function renderGrid(q=''){
@@ -186,7 +211,7 @@ $('#spinBtn').onclick=()=>{const p=P[Math.floor(Math.random()*40)];
  $('#spAdd').onclick=()=>{if(!st.sel.includes(p.n)){st.sel.push(p.n);save();renderChips();renderIdeas()}$('#spAdd').textContent='✓ Added'};
  $('#spinBtn').textContent='Spin again'};
 
-renderMatrix();renderChips();renderIdeas();renderGrid();
+renderMatrix();renderSugg();renderChips();renderIdeas();renderGrid();
 </script>
 </body>
 </html>
