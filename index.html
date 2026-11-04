@@ -142,6 +142,15 @@
   .res-row b{ font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:0.95rem; }
 
   /* BLOG */
+  /* DPDP UPDATES */
+  .dpdp-ed{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin:28px 0 10px; }
+  .dpdp-ed:first-child{ margin-top:0; }
+  .dpdp-cat{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--brass); text-transform:uppercase; letter-spacing:0.08em; }
+  .dpdp-why{ border-left:2px solid var(--brass); padding-left:12px; margin-top:10px; }
+  .dpdp-src{ font-size:0.8rem; color:var(--muted); margin-top:10px; }
+  .dpdp-src a{ color:var(--teal); }
+  .dpdp-empty{ color:var(--muted); font-size:0.92rem; padding:18px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .dpdp-note{ font-size:0.75rem; color:var(--muted); margin-top:18px; }
   .post-list{ display:flex; flex-direction:column; }
   .post-item{ border-bottom:1px solid var(--line); }
   .post-item:first-child{ border-top:1px solid var(--line); }
@@ -261,6 +270,7 @@
     <a href="#work">Case Studies</a>
     <a href="#tool">Free Tool</a>
     <a href="#writing">Writing</a>
+    <a href="#dpdp">DPDP Updates</a>
     <a href="#reading">Reading Room</a>
     <a href="#about">About</a>
     <a href="#work-with-me">Work With Me</a>
@@ -443,6 +453,56 @@ function calcROI(){
     </details>
   </div>
 </section>
+
+<section id="dpdp">
+  <div class="sec-head">
+    <div class="sec-title">DPDP Act Updates</div>
+    <div class="sec-note">Weekly notes on India's Digital Personal Data Protection Act — rules, deadlines and what they mean for your business. Full enforcement: May 2027.</div>
+  </div>
+  <div id="dpdpFeed"><div class="dpdp-empty">Loading the latest updates…</div></div>
+  <div class="dpdp-note">Updated every Friday. Summaries are for general awareness, not legal advice — please check the linked source.</div>
+</section>
+
+<script>
+(function(){
+  var SHEET_ID='1-DPQv5mK6A9pamsXol1m8KIUmqBuDxrAvIQWKMePbhQ';
+  var MAX_EDITIONS=3;
+  var feed=document.getElementById('dpdpFeed');
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function val(c){ return c ? (c.f!=null ? c.f : c.v) : ''; }
+  function fail(){ feed.innerHTML='<div class="dpdp-empty">Updates are being refreshed — please check back shortly.</div>'; }
+  window.__dpdpFeed=function(res){
+    try{
+      if(!res || res.status!=='ok'){ fail(); return; }
+      var rows=(res.table.rows||[]).map(function(r){ var c=r.c||[]; return {ed:val(c[0]),cat:val(c[1]),h:val(c[2]),sum:val(c[3]),why:val(c[4]),src:val(c[5]),link:val(c[6]),dt:val(c[7])}; })
+        .filter(function(r){ return r.h; });
+      if(!rows.length){ feed.innerHTML='<div class="dpdp-empty">The first weekly update will appear here this Friday.</div>'; return; }
+      var eds=[], by={};
+      rows.forEach(function(r){ if(!by[r.ed]){ by[r.ed]=[]; eds.push(r.ed); } by[r.ed].push(r); });
+      eds.reverse(); /* rows are appended oldest-first, so the newest edition is last */
+      var html='';
+      eds.slice(0,MAX_EDITIONS).forEach(function(ed){
+        html+='<div class="dpdp-ed">Week of '+esc(ed)+'</div><div class="post-list">';
+        by[ed].forEach(function(r){
+          var link=/^https?:\/\//i.test(r.link)?r.link:'';
+          html+='<details class="post-item"><summary class="post-row"><div class="post-title">'+esc(r.h)+'</div><div class="post-meta dpdp-cat">'+esc(r.cat)+'</div></summary><div class="post-body">'
+            +'<p>'+esc(r.sum)+'</p>'
+            +(r.why?'<p class="dpdp-why"><b>What it means for businesses:</b> '+esc(r.why)+'</p>':'')
+            +((r.src||link)?'<div class="dpdp-src">Source: '+(link?'<a href="'+esc(link)+'" target="_blank" rel="noopener">'+esc(r.src||'Link')+'</a>':esc(r.src))+(r.dt?' · '+esc(r.dt):'')+'</div>':'')
+            +'</div></details>';
+        });
+        html+='</div>';
+      });
+      feed.innerHTML=html;
+    }catch(e){ fail(); }
+  };
+  var s=document.createElement('script');
+  s.src='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=responseHandler:__dpdpFeed&headers=1&t='+Date.now();
+  s.onerror=fail;
+  setTimeout(function(){ if(/Loading/.test(feed.textContent)) fail(); },10000);
+  document.body.appendChild(s);
+})();
+</script>
 
 <section id="resources">
   <div class="sec-head">
