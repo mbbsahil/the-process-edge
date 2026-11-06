@@ -33,6 +33,8 @@ Sahil conducts Lean Six Sigma training for students and professionals, using his
 - **Green Belt — 4 days:** full DMAIC toolkit with hands-on Excel templates. For leading improvement projects in your own function.
 - **Black Belt — 8 days:** advanced statistics, experimental design, project leadership. For people driving cross-functional programs.
 - **PFMEA Workshop — 1 day:** Process Failure Mode & Effects Analysis — identify, score and mitigate process risks.
+- **AI for Business Professionals — 3 hours, no coding (core course):** the AI landscape in plain English; generative AI and hands-on prompt engineering; how AI assistants use knowledge bases (and when to prompt vs add a KB vs fine-tune); checking whether a process is ready for AI (RPA vs intelligent automation, suitability scorecard, fix before you automate); responsible AI and India's DPDP Act; a one-page AI requirements canvas and 5-step roadmap.
+- **Voiceflow AI Agent Build Lab — 3 hours, optional add-on, separate fee:** taken after the core AI course. Participants build and publish their own AI helpdesk agent in Voiceflow: conversation design, slot filling, a knowledge base, generative AI answers with guardrails and human handoff, and an API demo.
 - **Formats:** Online, Classroom, Corporate in-house.
 - Fees, dates and batch sizes: confirmed personally on enquiry.
 
