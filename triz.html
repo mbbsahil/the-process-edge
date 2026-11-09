@@ -2,216 +2,509 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TRIZ Inventive Toolkit</title>
-<meta name="description" content="Free TRIZ toolkit: explore the 40 Inventive Principles and solve contradictions in any industry. By Sahil Anand, The Process Edge.">
-<style>
-:root{--bg:#f7f6f2;--card:#fff;--ink:#1d2330;--mute:#5b6372;--line:#e2e0d8;--acc:#0f5f73;--acc2:#e3f0f2;--hi:#c2571a}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13161c;--card:#1c2029;--ink:#e8e9ec;--mute:#9aa1ad;--line:#2d323d;--acc:#5fb7c9;--acc2:#1d3138;--hi:#f0904f}}
-:root[data-theme="dark"]{--bg:#13161c;--card:#1c2029;--ink:#e8e9ec;--mute:#9aa1ad;--line:#2d323d;--acc:#5fb7c9;--acc2:#1d3138;--hi:#f0904f}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-header{padding:40px 0 20px}
-.back{color:var(--mute);text-decoration:none;font-size:14px}
-h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:12px 0 8px;letter-spacing:-.01em}
-.lead{color:var(--mute);max-width:680px;margin:0}
-nav.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin:24px 0;overflow-x:auto}
-nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;font:inherit;font-weight:600;color:var(--mute);cursor:pointer;white-space:nowrap}
-nav.tabs button[aria-selected="true"]{color:var(--acc);border-color:var(--acc)}
-section[hidden]{display:none}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
-.step{margin-bottom:16px}
-.step h3{margin:0 0 4px;font-size:17px}
-.step h3 span{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--acc);color:var(--card);font-size:14px;margin-right:8px}
-.hint{color:var(--mute);font-size:14px;margin:0 0 10px}
-label{display:block;font-size:14px;font-weight:600;margin:10px 0 4px}
-.mres{border:1px solid var(--acc);border-radius:8px;padding:12px 14px;margin-top:8px}
-.sugg{font-size:13px;color:var(--mute);margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.sugg .chip{font-size:12px;padding:3px 9px}
-.sugg .chip.on{background:var(--acc);border-color:var(--acc);color:var(--card)}
-a{color:var(--acc)}
-.mres .chips{margin:8px 0}
-.mres .chip{cursor:default;border-color:var(--acc);font-weight:600}
-input,textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px}
-textarea{min-height:70px;resize:vertical}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:640px){.row{grid-template-columns:1fr}}
-.btn{font:inherit;font-weight:600;border-radius:8px;padding:9px 14px;border:1px solid var(--acc);background:var(--acc);color:var(--card);cursor:pointer}
-.btn.ghost{background:transparent;color:var(--acc)}
-.btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:5px 10px;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:var(--card)}
-.idea{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
-.idea h4{margin:0 0 4px}
-.num{color:var(--hi);font-weight:700;margin-right:6px}
-ul.sub{margin:6px 0;padding-left:20px;font-size:14px}
-.ex{font-size:14px;background:var(--acc2);border-radius:6px;padding:8px 10px;margin:8px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.grid .card{padding:16px}
-.grid h4{margin:0 0 6px}
-details summary{cursor:pointer;color:var(--acc);font-size:14px;font-weight:600}
-.spin{text-align:center;padding:36px 20px}
-.spin .big{font-size:clamp(26px,5vw,36px);font-weight:700;margin:8px 0}
-.spin .q{max-width:560px;margin:14px auto;text-align:left}
-footer{color:var(--mute);font-size:13px;padding:40px 0}
-@media print{nav.tabs,.btns,header .back,#explore,#spin,footer{display:none!important}section[hidden]{display:block}.card{border:0}}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TRIZ Business Solver — The Process Edge</title>
+<meta name="description" content="Free TRIZ tool: describe a business trade-off and get the contradiction, Altshuller's inventive principles and plain-language business actions. By Sahil Anand.">
+<meta name="author" content="Sahil Anand">
+<link rel="canonical" href="https://mbbsahil.github.io/the-process-edge/triz.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TRIZ Business Solver — The Process Edge">
+<meta property="og:description" content="Describe a trade-off; get the TRIZ contradiction, inventive principles and business actions. Free.">
+<meta property="og:url" content="https://mbbsahil.github.io/the-process-edge/triz.html">
+<meta property="og:image" content="https://mbbsahil.github.io/the-process-edge/image.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
-<body>
+<body style="margin:0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: problem form on the left, the three-step answer (contradiction → matrix → business actions) on the right; one column on phones. */
+:root{
+  --bg:#F6F3EC; --surface:#FFFFFF; --ink:#14213D; --muted:#5B5F6B; --line:#DDD6C6;
+  --brass:#A9824A; --brass-soft:#F1E7D6; --teal:#1F5F5B; --teal-soft:#E2EFEC;
+  --worse:#9A3B2E; --worse-soft:#F6E4E0; --focus:#1F5F5B;
+  --f-display:'Fraunces', Georgia, 'Times New Roman', serif;
+  --f-body:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono:'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F1626; --surface:#17213A; --ink:#EDE8DC; --muted:#A8AEBD; --line:#2C3956;
+  --brass:#D2AB6E; --brass-soft:#2E2A22; --teal:#6FC3B8; --teal-soft:#183530;
+  --worse:#E9887A; --worse-soft:#3A2220; --focus:#6FC3B8; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0F1626; --surface:#17213A; --ink:#EDE8DC; --muted:#A8AEBD; --line:#2C3956;
+  --brass:#D2AB6E; --brass-soft:#2E2A22; --teal:#6FC3B8; --teal-soft:#183530;
+  --worse:#E9887A; --worse-soft:#3A2220; --focus:#6FC3B8; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:15px; line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); padding-block:0 48px}
+.wrap{max-width:1180px; margin:0 auto}
+header.top{padding-block:32px 24px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:12px 32px; align-items:flex-end; justify-content:space-between}
+.brand{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--teal)}
+h1{font-family:var(--f-display); font-weight:600; font-size:clamp(1.9rem,4vw,2.7rem); line-height:1.08; margin:6px 0 0; text-wrap:balance}
+h1 em{color:var(--brass); font-style:italic}
+.lede{color:var(--muted); max-width:46ch; margin:0; font-size:.95rem}
+
+.grid{display:grid; grid-template-columns:minmax(0,380px) minmax(0,1fr); gap:32px; margin-top:28px; align-items:start}
+@media (max-width:900px){ .grid{grid-template-columns:minmax(0,1fr)} }
+
+/* Form */
+.form{background:var(--surface); border:1px solid var(--line); padding:24px; display:flex; flex-direction:column; gap:18px; position:sticky; top:calc(env(safe-area-inset-top,0px) + 16px)}
+@media (max-width:900px){ .form{position:static} }
+.form h2{font-family:var(--f-display); font-size:1.25rem; font-weight:600; margin:0}
+.field{display:flex; flex-direction:column; gap:6px}
+.field label{font-weight:600; font-size:.88rem; display:flex; align-items:center; gap:8px}
+.field small{color:var(--muted); font-size:.8rem}
+.tag{white-space:nowrap; font-family:var(--f-mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; border-radius:2px}
+.tag.up{background:var(--teal-soft); color:var(--teal)}
+.tag.down{background:var(--worse-soft); color:var(--worse)}
+textarea,input,select{font:inherit; color:var(--ink); background:var(--bg); border:1px solid var(--line); border-radius:2px; padding:10px 12px; width:100%}
+textarea{resize:vertical; min-height:84px}
+textarea:focus,input:focus,select:focus,button:focus-visible{outline:2px solid var(--focus); outline-offset:1px}
+.btns{display:flex; flex-wrap:wrap; gap:10px}
+button{font-family:var(--f-mono); font-size:.8rem; letter-spacing:.03em; padding:12px 18px; border-radius:2px; cursor:pointer; border:1px solid var(--ink); background:transparent; color:var(--ink)}
+button.primary{background:var(--ink); color:var(--bg)}
+button.primary:hover{background:var(--teal); border-color:var(--teal)}
+button:disabled{opacity:.55; cursor:progress}
+button.link{border:none; padding:0; text-decoration:underline; text-underline-offset:3px; color:var(--teal)}
+.status{font-family:var(--f-mono); font-size:.75rem; color:var(--muted); min-height:1.2em}
+.examples{display:flex; flex-wrap:wrap; gap:6px}
+.examples button{font-size:.7rem; padding:6px 10px; border-color:var(--line); color:var(--muted)}
+.examples button:hover{border-color:var(--brass); color:var(--ink)}
+
+/* Results */
+.results{display:flex; flex-direction:column; gap:28px; min-width:0}
+.step{display:flex; flex-direction:column; gap:14px}
+.step-head{display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line); padding-bottom:8px}
+.step-no{font-family:var(--f-mono); font-size:.72rem; color:var(--brass); letter-spacing:.1em}
+.step-head h2{font-family:var(--f-display); font-size:1.35rem; font-weight:600; margin:0}
+.step-head .note{margin-left:auto; font-size:.78rem; color:var(--muted); text-align:right}
+.statement{font-family:var(--f-display); font-size:1.12rem; line-height:1.4; margin:0; text-wrap:balance}
+
+.pair{display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:12px; align-items:stretch}
+@media (max-width:560px){ .pair{grid-template-columns:minmax(0,1fr)} .vs{justify-self:center} }
+.param{background:var(--surface); border:1px solid var(--line); border-top:4px solid var(--teal); padding:14px 16px; display:flex; flex-direction:column; gap:8px; min-width:0}
+.param.down{border-top-color:var(--worse)}
+.param .lab{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--teal)}
+.param.down .lab{color:var(--worse)}
+.param .biz{font-weight:600}
+.param .why{font-size:.84rem; color:var(--muted)}
+.param select{font-size:.85rem; padding:8px 10px}
+.vs{align-self:center; font-family:var(--f-display); font-style:italic; color:var(--brass); font-size:1.2rem}
+
+.cell{display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; background:var(--ink); color:var(--bg); padding:14px 18px}
+.cell .addr{font-family:var(--f-mono); font-size:.78rem; opacity:.85}
+.cell .nums{display:flex; gap:8px; flex-wrap:wrap}
+.cell .num{font-family:var(--f-mono); font-variant-numeric:tabular-nums; border:1px solid var(--brass); color:var(--brass); padding:3px 9px; font-size:.85rem}
+.empty{background:var(--brass-soft); padding:14px 16px; font-size:.9rem}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:14px}
+.card{background:var(--surface); border:1px solid var(--line); padding:18px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.card .ph{display:flex; align-items:baseline; gap:10px}
+.card .pno{font-family:var(--f-mono); font-size:.8rem; color:var(--brass); font-variant-numeric:tabular-nums}
+.card h3{font-family:var(--f-display); font-size:1.12rem; font-weight:600; margin:0}
+.card .plain{font-size:.88rem; color:var(--muted); margin:0}
+.card .idea{margin:0; padding:10px 12px; background:var(--teal-soft); border-radius:2px; font-size:.92rem}
+.card .idea b{display:block; font-family:var(--f-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); font-weight:500; margin-bottom:3px}
+.card .out{display:grid; grid-template-columns:auto 1fr; gap:4px 10px; font-size:.86rem; margin:0}
+.card .out dt{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding-top:2px}
+.card .out dd{margin:0}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{font-family:var(--f-mono); font-size:.68rem; padding:2px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted)}
+.source-note{font-size:.8rem; color:var(--muted)}
+.summary{background:var(--surface); border:1px solid var(--brass); padding:16px 18px; display:flex; flex-direction:column; gap:10px}
+.summary p{margin:0}
+.summary .k{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--brass)}
+.sample-badge{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; background:var(--brass-soft); color:var(--brass); padding:3px 8px; border-radius:2px; align-self:flex-start}
+details.guide{border-top:1px solid var(--line); padding-top:12px; font-size:.86rem; color:var(--muted)}
+details.guide summary{cursor:pointer; color:var(--ink); font-weight:600}
+details.guide ol{padding-left:18px; margin:8px 0 0}
+.thinking{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--brass); margin-right:6px; animation:pulse 1s infinite ease-in-out}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion: reduce){ .thinking{animation:none} }
+footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-size:.78rem; color:var(--muted)}
+</style>
+
 <div class="wrap">
-<header>
-  <a class="back" href="./">← The Process Edge</a>
-  <h1>TRIZ Inventive Toolkit</h1>
-  <p class="lead">TRIZ says most hard problems are <b>contradictions</b>: improving one thing makes another worse. Instead of compromising, use the 40 Inventive Principles to find a solution that removes the trade-off. Works for manufacturing, finance, services, healthcare, software and more.</p>
-</header>
+  <header class="top">
+    <div>
+      <a class="brand" href="./" style="text-decoration:none">← The Process Edge · TRIZ Toolkit</a>
+      <h1>Solve the trade-off, <em>don't accept it.</em></h1>
+    </div>
+    <p class="lede">Describe the problem, say what you want to improve and what gets worse. The tool finds the TRIZ contradiction, looks up Altshuller's matrix and turns the inventive principles into business actions.</p>
+  </header>
 
-<nav class="tabs" role="tablist">
-  <button role="tab" aria-selected="true" data-t="solve">1 · Solve a contradiction</button>
-  <button role="tab" aria-selected="false" data-t="explore">2 · Explore the 40 principles</button>
-  <button role="tab" aria-selected="false" data-t="spin">3 · Idea spinner</button>
-</nav>
+  <div class="grid">
+    <form class="form" id="f" autocomplete="off">
+      <h2>Your problem</h2>
+      <div class="field">
+        <label for="problem">Describe the situation</label>
+        <textarea id="problem" rows="4" placeholder="e.g. Our month-end close takes 8 working days; management wants 4."></textarea>
+      </div>
+      <div class="field">
+        <label for="improve"><span class="tag up">Improve</span> What do you want to get better?</label>
+        <input id="improve" placeholder="e.g. Close the books faster">
+      </div>
+      <div class="field">
+        <label for="worsen"><span class="tag down">Gets worse</span> What suffers when you push for it?</label>
+        <input id="worsen" placeholder="e.g. More errors and rework in the numbers">
+      </div>
+      <div class="btns">
+        <button type="submit" class="primary" id="go">Find solutions</button>
+        <button type="button" id="clear">Clear</button>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+      <div class="field">
+        <small>Try a ready example</small>
+        <div class="examples" id="examples"></div>
+      </div>
+      <details class="guide">
+        <summary>How it works</summary>
+        <ol>
+          <li>Your "improve" and "gets worse" are matched to two of TRIZ's 39 standard parameters, shown in business language.</li>
+          <li>Altshuller's contradiction matrix gives the inventive principles that most often resolved that exact conflict.</li>
+          <li>Each principle is translated into an action for your problem, the business outcome and a KPI to track.</li>
+        </ol>
+        <p>If the match looks wrong, change either parameter from its dropdown; the principles update instantly.</p>
+      </details>
+    </form>
 
-<section id="solve">
- <div class="card">
-  <div class="step"><h3><span>1</span>Describe the problem</h3>
-   <p class="hint">One or two sentences. What is happening, where, and why it matters.</p>
-   <textarea id="prob" placeholder="e.g. Our invoice approval takes 6 days because every invoice needs partner sign-off."></textarea></div>
-  <div class="step"><h3><span>2</span>State the contradiction</h3>
-   <p class="hint">If I improve <i>this</i>… then <i>that</i> gets worse.</p>
-   <div class="row">
-    <div><label for="imp">I want to improve…</label><input id="imp" placeholder="e.g. Speed of approval"><div class="sugg" id="si"></div></div>
-    <div><label for="wor">…but this gets worse</label><input id="wor" placeholder="e.g. Control / risk of wrong payments"><div class="sugg" id="sw"></div></div>
-   </div>
-   <p class="hint" style="margin-top:6px">Not sure how to phrase it? <a href="#" class="exl" data-x="0">Try an example</a> · <a href="#" class="exl" data-x="1">another</a> · <a href="#" class="exl" data-x="2">one more</a></p>
-   <p class="hint" style="margin-top:14px">We match your words to Altshuller's 39 parameters and pre-select the closest one. Change it if a different one fits better.</p>
-   <div class="row">
-    <div><label for="pi">Improving parameter</label><select id="pi"></select><p class="hint" id="gi"></p></div>
-    <div><label for="pw">Worsening parameter</label><select id="pw"></select><p class="hint" id="gw"></p></div>
-   </div>
-   <div id="mres"></div></div>
-  <div class="step"><h3><span>3</span>Choose principles to try</h3>
-   <p class="hint">Use the matrix suggestions, pick a few yourself, or get five at random. Random prompts often spark the best ideas.</p>
-   <div class="btns"><button class="btn" id="rand">Suggest 5 at random</button><button class="btn ghost" id="clear">Clear selection</button></div>
-   <div class="chips" id="chips"></div></div>
-  <div class="step"><h3><span>4</span>Generate ideas</h3>
-   <p class="hint">For each principle, ask: “How could this idea remove my contradiction?” Write anything — judge later.</p>
-   <div id="ideas"><p class="hint"><i>Select principles in step 3 to start.</i></p></div></div>
-  <div class="step"><h3><span>5</span>Save your worksheet</h3>
-   <div class="btns"><button class="btn" id="dl">Download (.txt)</button><button class="btn ghost" id="copy">Copy to clipboard</button><button class="btn ghost" id="print">Print / PDF</button><button class="btn ghost" id="reset">Start over</button></div>
-   <p class="hint" id="msg"></p></div>
- </div>
-</section>
+    <main class="results" id="results"></main>
+  </div>
 
-<section id="explore" hidden>
- <input id="q" placeholder="Search principles, e.g. feedback, batch, automate…" style="margin-bottom:14px">
- <div class="grid" id="grid"></div>
-</section>
-
-<section id="spin" hidden>
- <div class="card spin">
-  <p class="hint">Stuck? Get a random principle and apply it to your problem in 2 minutes.</p>
-  <div id="sp"></div>
-  <button class="btn" id="spinBtn">Spin a principle</button>
- </div>
-</section>
-
-<footer>The 40 Inventive Principles were developed by Genrich Altshuller as part of TRIZ (Theory of Inventive Problem Solving), together with the 39×39 Contradiction Matrix used in step 2. Business examples by Sahil Anand · Lean Six Sigma Master Black Belt · <a href="./#contact" style="color:var(--acc)">Need help applying TRIZ? Get in touch.</a></footer>
+  <footer>Contradiction matrix: G. S. Altshuller's 39 × 39 matrix (standard English transcription). Business translations of the 40 inventive principles by Sahil Anand, Lean Six Sigma Master Black Belt. Suggestions are starting points for discussion; test them before rolling out.<br>Prefer the full worksheet with all 40 principles and an idea spinner? <a href="triz-worksheet.html" style="color:var(--teal)">Open the TRIZ worksheet</a>.</footer>
 </div>
 
 <script>
-const P=[{"n": 1, "name": "Segmentation", "s": ["Divide an object into independent parts.", "Make an object easy to assemble or disassemble.", "Increase the degree of fragmentation or segmentation."], "ex": "Split a month-end close into daily mini-closes; sell services as modular packages."}, {"n": 2, "name": "Taking out", "s": ["Separate an interfering part or property from an object, or single out the only necessary part (or property) of an object."], "ex": "Pull exceptions out of the main approval flow into a separate queue so routine items move freely."}, {"n": 3, "name": "Local quality", "s": ["Change an object's structure from uniform to non-uniform", "Change an external environment (or external influence) from uniform to non-uniform.", "Make each part of an object function in conditions most suitable for its operation.", "Make each part of an object fulfill a different and/or complementary useful function."], "ex": "Set different SLAs and controls by customer tier or risk level instead of one rule for all."}, {"n": 4, "name": "Asymmetry", "s": ["Change the shape or properties of an object from symmetrical to asymmetrical.", "Change the shape of an object to suit external asymmetries (e.g. ergonomic features)", "If an object is asymmetrical, increase its degree of asymmetry."], "ex": "Use risk-weighted audit sampling rather than equal sampling across all areas."}, {"n": 5, "name": "Merging", "s": ["Bring closer together (or merge) identical or similar objects or operations in space", "Make objects or operations contiguous or parallel; bring them together in time."], "ex": "Batch similar invoices or approvals so they are processed together in one sitting."}, {"n": 6, "name": "Universality", "s": ["Make a part or object perform multiple functions; eliminate the need for other parts."], "ex": "Design one intake form that serves onboarding, KYC and billing at once."}, {"n": 7, "name": "Nested doll", "s": ["Place one object inside another", "Place multiple objects inside others.", "Make one part pass (dynamically) through a cavity in the other."], "ex": "Embed the checklist inside the ERP screen rather than in a separate document."}, {"n": 8, "name": "Anti-weight", "s": ["To compensate for the weight of an object, merge it with other objects that provide lift.", "To compensate for the weight of an object, make it interact with the environment (e.g. use aerodynamic, hydrodynamic, buoyancy and other forces)."], "ex": "Offset a costly programme by pairing it with a partner, sponsor or grant that carries the load."}, {"n": 9, "name": "Preliminary anti-action", "s": ["If it will be necessary to perform an action with both harmful and useful effects, this action should be replaced with anti-actions to control harmful effects.", "Create beforehand stresses in an object that will oppose known undesirable working stresses later on."], "ex": "Run a pre-mortem before launch to neutralise the risks you already expect."}, {"n": 10, "name": "Preliminary action", "s": ["Perform, before it is needed, the required change of an object (either fully or partially).", "Pre-arrange objects such that they can come into action from the most convenient place without losing time for their delivery."], "ex": "Send pre-filled templates and data requests before the client meeting."}, {"n": 11, "name": "Beforehand cushioning", "s": ["Prepare emergency means beforehand to compensate for the relatively low reliability of an object (‘belt and braces’)"], "ex": "Assign backup approvers and keep tested backups before anything fails."}, {"n": 12, "name": "Equipotentiality", "s": ["If an object has to be raised or lowered, redesign the object’s environment so the need to raise or lower is eliminated or performed by the environment"], "ex": "Give frontline staff the authority to decide, so issues don't travel up and down the hierarchy."}, {"n": 13, "name": "The other way round", "s": ["Invert the action(s) used to solve the problem (e.g. instead of cooling an object, heat it).", "Make movable parts (or the external environment) fixed, and fixed parts movable).", "Turn the object (or process) 'upside down'."], "ex": "Let clients pull status from a live dashboard instead of you pushing update emails."}, {"n": 14, "name": "Spheroidality - Curvature", "s": ["Instead of using rectilinear parts, surfaces, or forms, use curvilinear ones; move from flat surfaces to spherical ones; from parts shaped as a cube (parallelepiped) to ball-shaped structures.", "Use rollers, balls, spirals, domes.", "Go from linear to rotary motion (or vice versa)", "Use centrifugal forces."], "ex": "Replace one-way linear handoffs with continuous PDCA loops or round-robin allocation."}, {"n": 15, "name": "Dynamics", "s": ["Allow (or design) the characteristics of an object, external environment, or process to change to be optimal or to find an optimal operating condition.", "Divide an object into parts capable of movement relative to each other.", "If an object (or process) is rigid or inflexible, make it movable or adaptive.", "Increase the degree of free motion"], "ex": "Flex staffing, pricing or workflows automatically with demand."}, {"n": 16, "name": "Partial or excessive actions", "s": ["If 100 percent of an object is hard to achieve using a given solution method then, by using 'slightly less' or 'slightly more' of the same method, the problem may be considerably easier to solve."], "ex": "Ship an 80% pilot now instead of waiting for a perfect rollout."}, {"n": 17, "name": "Another dimension", "s": ["If an object contains or moves in a straight line, consider use of dimensions or movement outside the line.", "If an object contains or moves in a plane, consider use of dimensions or movement outside the current plane.", "Use a multi-storey arrangement of objects instead of a single-storey arrangement.", "Tilt or re-orient the object, lay it on its side.", "Use 'another side' of a given area."], "ex": "Add a second axis: tiered support levels, or a parallel track alongside the main process."}, {"n": 18, "name": "Mechanical vibration", "s": ["Cause an object to oscillate or vibrate.", "Increase its frequency (even up to the ultrasonic).", "Use an object's resonant frequency.", "Use piezoelectric vibrators instead of mechanical ones.", "Use combined ultrasonic and electromagnetic field oscillations."], "ex": "Use short, frequent pulses — daily stand-ups or quick pulse surveys — to keep things moving."}, {"n": 19, "name": "Periodic action", "s": ["Instead of continuous action, use periodic or pulsating actions.", "If an action is already periodic, change the periodic magnitude or frequency.", "Use pauses between actions to perform a different action."], "ex": "Swap continuous monitoring for scheduled batch runs; use the gaps for training or maintenance."}, {"n": 20, "name": "Continuity of useful action", "s": ["Carry on work continuously; make all parts of an object work at full load or optimum efficiency, all the time.", "Eliminate all idle or intermittent actions or work."], "ex": "Remove waiting time between steps; hand work across time zones so it never sits idle."}, {"n": 21, "name": "Skipping", "s": ["Conduct a process , or certain stages (e.g. destructible, harmful or hazardous operations) at high speed."], "ex": "Do the painful cutover or migration in one short, fast window rather than dragging it out."}, {"n": 22, "name": "Blessing in disguise (Turn lemons into lemonade)", "s": ["Use harmful factors (particularly, harmful effects of the environment or surroundings) to achieve a positive effect.", "Eliminate the primary harmful action by adding it to another harmful action to resolve the problem.", "Amplify a harmful factor to such a degree that it is no longer harmful."], "ex": "Turn complaint data into your product roadmap."}, {"n": 23, "name": "Feedback", "s": ["Introduce feedback (referring back, cross-checking) to improve a process or action.", "If feedback is already used, change its magnitude or influence in accordance with operating conditions."], "ex": "Introduce real-time dashboards, control charts or customer feedback loops."}, {"n": 24, "name": "Intermediary", "s": ["Use an intermediary carrier article or intermediary process.", "Merge one object temporarily with another (which can be easily removed)."], "ex": "Put a shared mailbox, bot or coordinator between two parties that clash."}, {"n": 25, "name": "Self-service", "s": ["Make an object serve or organise itself by performing auxiliary helpful functions", "Use waste resources, energy, or substances."], "ex": "Let customers serve themselves via a portal; reuse by-product data for reporting."}, {"n": 26, "name": "Copying", "s": ["Instead of an unavailable, expensive, fragile object, use simpler and inexpensive copies.", "Replace an object, or process with optical copies.", "If visible optical copies are already used, move to infrared or ultraviolet copies."], "ex": "Use a simulation, digital twin or recorded video instead of an expensive physical visit."}, {"n": 27, "name": "Cheap short-living objects", "s": ["Replace an expensive object with a multiple of inexpensive objects, compromising certain qualities, such as service life."], "ex": "Build throwaway low-code prototypes to test ideas cheaply."}, {"n": 28, "name": "Mechanics substitution", "s": ["Replace a mechanical means with a sensory (optical, acoustic, taste or smell) means.", "Use electric, magnetic and electromagnetic fields to interact with the object.", "Change from static to movable fields, from unstructured fields to those having structure.", "Use fields in conjunction with field-activated (e.g. ferromagnetic) particles."], "ex": "Replace manual checks with automated alerts, sensors or validation rules."}, {"n": 29, "name": "Pneumatics and hydraulics", "s": ["Use gas and liquid parts of an object instead of solid parts (e.g. inflatable, filled with liquids, air cushion, hydrostatic, hydro-reactive)."], "ex": "Use a floating pool of shared resources instead of fixed, rigid teams."}, {"n": 30, "name": "Flexible shells and thin films", "s": ["Use flexible shells and thin films instead of three dimensional structures", "Isolate the object from the external environment using flexible shells and thin films."], "ex": "Wrap a legacy system in a thin API or UI layer instead of rebuilding it."}, {"n": 31, "name": "Porous materials", "s": ["Make an object porous or add porous elements (inserts, coatings, etc.).", "If an object is already porous, use the pores to introduce a useful substance or function."], "ex": "Leave deliberate slack in schedules or open APIs so useful inputs can flow in."}, {"n": 32, "name": "Colour changes", "s": ["Change the colour of an object or its external environment.", "Change the transparency of an object or its external environment.", "In order to improve observability of things that are difficult to see, use coloured additives or luminescent elements", "Change the emissivity properties of an object subject to radiant heating"], "ex": "Use colour-coded visual management (RAG status, heat maps) to make problems visible."}, {"n": 33, "name": "Homogeneity", "s": ["Make objects interacting with a given object of the same material (or material with identical properties)."], "ex": "Standardise one data format or master template across every system and team."}, {"n": 34, "name": "Discarding and recovering", "s": ["Make portions of an object that have fulfilled their functions go away (discard by dissolving, evaporating, etc.) or modify these directly during operation.", "Conversely, restore consumable parts of an object directly in operation."], "ex": "Auto-archive closed tickets and retire reports nobody uses."}, {"n": 35, "name": "Parameter changes", "s": ["Change an object's physical state (e.g. to a gas, liquid, or solid).", "Change the concentration or consistency.", "Change the degree of flexibility.", "Change the temperature.", "Change the pressure.", "Change other parameters"], "ex": "Change the state of work — paper to digital, monthly to weekly, manual to automated."}, {"n": 36, "name": "Phase transitions", "s": ["Use phenomena occurring during phase transitions (e.g. volume changes, loss or absorption of heat, etc.)."], "ex": "Use transition moments (onboarding, year-end, reorganisation) to introduce change."}, {"n": 37, "name": "Thermal expansion", "s": ["Use thermal expansion (or contraction) of materials.", "If thermal expansion is being used, use multiple materials with different coefficients of thermal expansion."], "ex": "Use capacity that expands and contracts with load, like cloud scaling or seasonal staff."}, {"n": 38, "name": "Strong oxidants", "s": ["Replace common air with oxygen-enriched air.", "Replace enriched air with pure oxygen.", "Expose air or oxygen to ionizing radiation.", "Use ionized oxygen.", "Replace ozonized (or ionized) oxygen with ozone."], "ex": "Intensify the environment — a focused kaizen blitz or an expert accelerator team."}, {"n": 39, "name": "Inert atmosphere", "s": ["Replace a normal environment with an inert one.", "Add neutral parts, or inert additives to an object."], "ex": "Use a neutral facilitator, or a sandbox environment where tests can't cause harm."}, {"n": 40, "name": "Composite materials", "s": ["Change from uniform to composite (multiple) materials where each material is tuned to a particular functional requirement."], "ex": "Form cross-functional teams or hybrid human + AI workflows, each part doing what it does best."}];
-const PAR=[{"n": 1, "name": "Weight of moving object", "g": "e.g. workload, inventory or effort carried through a moving process"}, {"n": 2, "name": "Weight of stationary object", "g": "e.g. fixed overheads, infrastructure, static load"}, {"n": 3, "name": "Length of moving object", "g": "e.g. length of a process chain or route"}, {"n": 4, "name": "Length of stationary object", "g": "e.g. physical footprint, fixed distance"}, {"n": 5, "name": "Area of moving object", "g": "e.g. surface area, coverage of a moving operation"}, {"n": 6, "name": "Area of stationary object", "g": "e.g. floor space, office or storage area"}, {"n": 7, "name": "Volume of moving object", "g": "e.g. volume of a moving batch or shipment"}, {"n": 8, "name": "Volume of stationary object", "g": "e.g. storage volume, warehouse capacity"}, {"n": 9, "name": "Speed", "g": "how fast work, people or material move"}, {"n": 10, "name": "Force", "g": "effort or push needed to make things happen"}, {"n": 11, "name": "Tension, pressure", "g": "pressure on people, systems or materials"}, {"n": 12, "name": "Shape", "g": "form, layout or structure"}, {"n": 13, "name": "Stability of object", "g": "stability of the system, team or design"}, {"n": 14, "name": "Strength", "g": "strength, robustness, ability to resist load"}, {"n": 15, "name": "Durability of moving object", "g": "how long a moving or active part lasts"}, {"n": 16, "name": "Durability of stationary object", "g": "how long a fixed asset or structure lasts"}, {"n": 17, "name": "Temperature", "g": "temperature, or 'heat' in a process"}, {"n": 18, "name": "Brightness", "g": "visibility, lighting, transparency"}, {"n": 19, "name": "Energy spent by moving object", "g": "energy or effort used by an active process"}, {"n": 20, "name": "Energy spent by stationary object", "g": "energy used by idle or fixed resources"}, {"n": 21, "name": "Power", "g": "output rate, capacity per unit time"}, {"n": 22, "name": "Waste of energy", "g": "energy or effort that is wasted"}, {"n": 23, "name": "Waste of substance", "g": "materials, data or resources that are wasted"}, {"n": 24, "name": "Loss of information", "g": "information that is lost or not captured"}, {"n": 25, "name": "Waste of time", "g": "time that is wasted (waiting, rework, delays)"}, {"n": 26, "name": "Amount of substance", "g": "quantity of material, data or resource"}, {"n": 27, "name": "Reliability", "g": "reliability, consistency, error-free operation"}, {"n": 28, "name": "Accuracy of measurement", "g": "how accurately you can measure or track"}, {"n": 29, "name": "Accuracy of manufacturing", "g": "how precisely work is done or made"}, {"n": 30, "name": "Harmful factors acting on object", "g": "external harm acting on you (risks, threats)"}, {"n": 31, "name": "Harmful side effects", "g": "harmful side effects you create"}, {"n": 32, "name": "Manufacturability", "g": "ease of producing or delivering"}, {"n": 33, "name": "Convenience of use", "g": "ease of use for customers or staff"}, {"n": 34, "name": "Repairability", "g": "ease of fixing or recovering"}, {"n": 35, "name": "Adaptability", "g": "flexibility to handle change or variety"}, {"n": 36, "name": "Complexity of device", "g": "complexity of the product or system"}, {"n": 37, "name": "Complexity of control", "g": "difficulty of controlling or monitoring"}, {"n": 38, "name": "Level of automation", "g": "degree of automation"}, {"n": 39, "name": "Productivity", "g": "productivity, throughput, output per effort"}];const MX=[[[],[],[15,8,29,34],[],[29,17,38,34],[],[29,2,40,28],[],[2,8,15,38],[8,10,18,37],[10,36,37,40],[10,14,35,40],[1,35,19,39],[28,27,18,40],[5,34,31,35],[],[6,29,4,38],[19,1,32],[35,12,34,31],[],[12,36,18,31],[6,2,34,19],[5,35,3,31],[10,24,35],[10,35,20,28],[3,26,18,31],[1,3,11,27],[28,27,35,26],[28,35,26,18],[22,21,18,27],[22,35,31,39],[27,28,1,36],[35,3,2,24],[2,27,28,11],[29,5,15,8],[26,30,36,34],[28,29,26,32],[26,35,18,19],[35,3,24,37]],[[],[],[],[10,1,29,35],[],[35,30,13,2],[],[5,35,14,2],[],[8,10,19,35],[13,29,10,18],[13,10,29,14],[26,39,1,40],[28,2,10,27],[],[2,27,19,6],[28,19,32,22],[19,32,35],[],[18,19,28,1],[15,19,18,22],[18,19,28,15],[5,8,13,30],[10,15,35],[10,20,35,26],[19,6,18,26],[10,28,8,3],[18,26,28],[10,1,35,17],[2,19,22,37],[35,22,1,39],[28,1,9],[6,13,1,32],[2,27,28,11],[19,15,29],[1,10,26,39],[25,28,17,15],[2,26,35],[1,28,15,35]],[[8,15,29,34],[],[],[],[15,17,4],[],[7,17,4,35],[],[13,4,8],[17,10,4],[1,8,35],[1,8,10,29],[1,8,15,34],[8,35,29,34],[19],[],[10,15,19],[32],[8,35,24],[],[1,35],[7,2,35,39],[4,29,23,10],[1,24],[15,2,29],[29,35],[10,14,29,40],[28,32,4],[10,28,29,37],[1,15,17,24],[17,15],[1,29,17],[15,29,35,4],[1,28,10],[14,15,1,16],[1,19,26,24],[35,1,26,24],[17,24,26,16],[14,4,28,29]],[[],[35,28,40,29],[],[],[],[17,7,10,40],[],[35,8,2,14],[],[28,10],[1,14,35],[13,14,15,7],[39,37,35],[15,14,28,26],[],[1,10,35],[3,35,38,18],[3,25],[],[],[12,8],[6,28],[10,28,24,35],[24,26],[30,29,14],[],[15,29,28],[32,28,3],[2,32,10],[1,18],[],[15,17,27],[2,25],[3],[1,35],[1,26],[26],[],[30,14,7,26]],[[2,17,29,4],[],[14,15,18,4],[],[],[],[7,14,17,4],[],[29,30,4,34],[19,30,35,2],[10,15,36,28],[5,34,29,4],[11,2,13,39],[3,15,40,14],[6,3],[],[2,15,16],[15,32,19,13],[19,32],[],[19,10,32,18],[15,17,30,26],[10,35,2,39],[30,26],[26,4],[29,30,6,13],[29,9],[26,28,32,3],[2,32],[22,33,28,1],[17,2,18,39],[13,1,26,24],[15,17,13,16],[15,13,10,1],[15,30],[14,1,13],[2,36,26,18],[14,30,28,23],[10,26,34,2]],[[],[30,2,14,18],[],[26,7,9,39],[],[],[],[],[],[1,18,35,36],[10,15,36,37],[],[2,38],[40],[],[2,10,19,30],[35,39,38],[],[],[],[17,32],[17,7,30],[10,14,18,39],[30,16],[10,35,4,18],[2,18,40,4],[32,35,40,4],[26,28,32,3],[2,29,18,36],[27,2,39,35],[22,1,40],[40,16],[16,4],[16],[15,16],[1,18,36],[2,35,30,18],[23],[10,15,17,7]],[[2,26,29,40],[],[1,7,4,35],[],[1,7,4,17],[],[],[],[29,4,38,34],[15,35,36,37],[6,35,36,37],[1,15,29,4],[28,10,1,39],[9,14,15,7],[6,35,4],[],[34,39,10,18],[2,13,10],[35],[],[35,6,13,18],[7,15,13,16],[36,39,34,10],[2,22],[2,6,34,10],[29,30,7],[14,1,40,11],[25,26,28],[25,28,2,16],[22,21,27,35],[17,2,40,1],[29,1,40],[15,13,30,12],[10],[15,29],[26,1],[29,26,4],[35,34,16,24],[10,6,2,34]],[[],[35,10,19,14],[19,14],[35,8,2,14],[],[],[],[],[],[2,18,37],[24,35],[7,2,35],[34,28,35,40],[9,14,17,15],[],[35,34,38],[35,6,4],[],[],[],[30,6],[],[10,39,35,34],[],[35,16,32,18],[35,3],[2,35,16],[],[35,10,25],[34,39,19,27],[30,18,35,4],[35],[],[1],[],[1,31],[2,17,26],[],[35,37,10,2]],[[2,28,13,38],[],[13,14,8],[],[29,30,34],[],[7,29,34],[],[],[13,28,15,19],[6,18,38,40],[35,15,18,34],[28,33,1,18],[8,3,26,14],[3,19,35,5],[],[28,30,36,2],[10,13,19],[8,15,35,38],[],[19,35,38,2],[14,20,19,35],[10,13,28,38],[13,26],[],[10,19,29,38],[11,35,27,28],[28,32,1,24],[10,28,32,25],[1,28,35,23],[2,24,35,21],[35,13,8,1],[32,28,13,12],[34,2,28,27],[15,10,26],[10,28,4,34],[3,34,27,16],[10,18],[]],[[8,1,37,18],[18,13,1,28],[17,19,9,36],[28,10],[19,10,15],[1,18,36,37],[15,9,12,37],[2,36,18,37],[13,28,15,12],[],[18,21,11],[10,35,40,34],[35,10,21],[35,10,14,27],[19,2],[],[35,10,21],[],[19,17,10],[1,16,36,37],[19,35,18,37],[14,15],[8,35,40,5],[],[10,37,36],[14,29,18,36],[3,35,13,21],[35,10,23,24],[28,29,37,36],[1,35,40,18],[13,3,36,24],[15,37,18,1],[1,28,3,25],[15,1,11],[15,17,18,20],[26,35,10,18],[36,37,10,19],[2,35],[3,28,35,37]],[[10,36,37,40],[13,29,10,18],[35,10,36],[35,1,14,16],[10,15,36,28],[10,15,36,37],[6,35,10],[35,24],[6,35,36],[36,35,21],[],[35,4,15,10],[35,33,2,40],[9,18,3,40],[19,3,27],[],[35,39,19,2],[],[14,24,10,37],[],[10,35,14],[2,36,25],[10,36,3,37],[],[37,36,4],[10,14,36],[10,13,19,35],[6,28,25],[3,35],[22,2,37],[2,33,27,18],[1,35,16],[11],[2],[35],[19,1,35],[2,36,37],[35,24],[10,14,35,37]],[[8,10,29,40],[15,10,26,3],[29,34,5,4],[13,14,10,7],[5,34,4,10],[],[14,4,15,22],[7,2,35],[35,15,34,18],[35,10,37,40],[34,15,10,14],[],[33,1,18,4],[30,14,10,40],[14,26,9,25],[],[22,14,19,32],[13,15,32],[2,6,34,14],[],[4,6,2],[14],[35,29,3,5],[],[14,10,34,17],[36,22],[10,40,16],[28,32,1],[32,30,40],[22,1,2,35],[35,1],[1,32,17,28],[32,15,26],[2,13,1],[1,15,29],[16,29,1,28],[15,13,39],[15,1,32],[17,26,34,10]],[[21,35,2,39],[26,39,1,40],[13,15,1,28],[37],[2,11,13],[39],[28,10,19,39],[34,28,35,40],[33,15,28,18],[10,35,21,16],[2,35,40],[22,1,18,4],[],[17,9,15],[13,27,10,35],[39,3,35,23],[35,1,32],[32,3,27,16],[13,19],[27,4,29,18],[32,35,27,31],[14,2,39,6],[2,14,30,40],[],[35,27],[15,32,35],[],[13],[18],[35,24,30,18],[35,40,27,39],[35,19],[32,35,30],[2,35,10,16],[35,30,34,2],[2,35,22,26],[35,22,39,23],[1,8,35],[23,35,40,3]],[[1,8,40,15],[40,26,27,1],[1,15,8,35],[15,14,28,26],[3,34,40,29],[9,40,28],[10,15,14,7],[9,14,17,15],[8,13,26,14],[10,18,3,14],[10,3,18,40],[10,30,35,40],[13,17,35],[],[27,3,26],[],[30,10,40],[35,19],[19,35,10],[35],[10,26,35,28],[35],[35,28,31,40],[],[29,3,28,10],[29,10,27],[11,3],[3,27,16],[3,27],[18,35,37,1],[15,35,22,2],[11,3,10,32],[32,40,25,2],[27,11,3],[15,3,32],[2,13,25,28],[27,3,15,40],[15],[29,35,10,14]],[[19,5,34,31],[],[2,19,9],[],[3,17,19],[],[10,2,19,30],[],[3,35,5],[19,2,16],[19,3,27],[14,26,28,25],[13,3,35],[27,3,10],[],[],[19,35,39],[2,19,4,35],[28,6,35,18],[],[19,10,35,38],[],[28,27,3,18],[10],[20,10,28,18],[3,35,10,40],[11,2,13],[3],[3,27,16,40],[22,15,33,28],[21,39,16,22],[27,1,4],[12,27],[29,10,27],[1,35,13],[10,4,29,15],[19,29,39,35],[6,10],[35,17,14,19]],[[],[6,27,19,16],[],[1,40,35],[],[],[],[35,34,38],[],[],[],[],[39,3,35,23],[],[],[],[19,18,36,40],[],[],[],[16],[],[27,16,18,38],[10],[28,20,10,16],[3,35,31],[34,27,6,40],[10,26,24],[],[17,1,40,33],[22],[35,10],[1],[1],[2],[],[25,34,6,35],[1],[20,10,16,38]],[[36,22,6,38],[22,35,32],[15,19,9],[15,19,9],[3,35,39,18],[35,38],[34,39,40,18],[35,6,4],[2,28,36,30],[35,10,3,21],[35,39,19,2],[14,22,19,32],[1,35,32],[10,30,22,40],[19,13,39],[19,18,36,40],[],[32,30,21,16],[19,15,3,17],[],[2,14,17,25],[21,17,35,38],[21,36,29,31],[],[35,28,21,18],[3,17,30,39],[19,35,3,10],[32,19,24],[24],[22,33,35,2],[22,35,2,24],[26,27],[26,27],[4,10,16],[2,18,27],[2,17,16],[3,27,35,31],[26,2,19,16],[15,28,35]],[[19,1,32],[2,35,32],[19,32,16],[],[19,32,26],[],[2,13,10],[],[10,13,19],[26,19,6],[],[32,30],[32,3,27],[35,19],[2,19,6],[],[32,35,19],[],[32,1,19],[32,35,1,15],[32],[13,16,1,6],[13,1],[1,6],[19,1,26,17],[1,19],[],[11,15,32],[3,32],[15,19],[35,19,32,39],[19,35,28,26],[28,26,19],[15,17,13,16],[15,1,19],[6,32,13],[32,15],[2,26,10],[2,25,16]],[[12,18,28,31],[],[12,28],[],[15,19,25],[],[35,13,18],[],[8,15,35],[16,26,21,2],[23,14,25],[12,2,29],[19,13,17,24],[5,19,9,35],[28,35,6,18],[],[19,24,3,14],[2,15,19],[],[],[6,19,37,18],[12,22,15,24],[35,24,18,5],[],[35,38,19,18],[34,23,16,18],[19,21,11,27],[3,1,32],[],[1,35,6,27],[2,35,6],[28,26,30],[19,35],[1,15,17,28],[15,17,13,16],[2,29,27,28],[35,38],[32,2],[12,28,35]],[[],[19,9,6,27],[],[],[],[],[],[],[],[36,37],[],[],[27,4,29,18],[35],[],[],[],[19,2,35,32],[],[],[],[],[28,27,18,31],[],[],[3,35,31],[10,36,23],[],[],[10,2,22,37],[19,22,18],[1,4],[],[],[],[],[19,35,16,25],[],[1,6]],[[8,36,38,31],[19,26,17,27],[1,10,35,37],[],[19,38],[17,32,13,38],[35,6,38],[30,6,25],[15,35,2],[26,2,36,35],[22,10,35],[29,14,2,40],[35,32,15,31],[26,10,28],[19,35,10,38],[16],[2,14,17,25],[16,6,19],[16,6,19,37],[],[],[10,35,38],[28,27,18,38],[10,19],[35,20,10,6],[4,34,19],[19,24,26,31],[32,15,2],[32,2],[19,22,31,2],[2,35,18],[26,10,34],[26,35,10],[35,2,10,34],[19,17,34],[20,19,30,34],[19,35,16],[28,2,17],[28,35,34]],[[15,6,19,28],[19,6,18,9],[7,2,6,13],[6,38,7],[15,26,17,30],[17,7,30,18],[7,18,23],[7],[16,35,38],[36,38],[],[],[14,2,39,6],[26],[],[],[19,38,7],[1,13,32,15],[],[],[3,38],[],[35,27,2,37],[19,10],[10,18,32,7],[7,18,25],[11,10,35],[32],[],[21,22,35,2],[21,35,2,22],[],[35,32,1],[2,19],[],[7,23],[35,3,15,23],[2],[28,10,29,35]],[[35,6,23,40],[35,6,22,32],[14,29,10,39],[10,28,24],[35,2,10,31],[10,18,39,31],[1,29,30,36],[3,39,18,31],[10,13,28,38],[14,15,18,40],[3,36,37,10],[29,35,3,5],[2,14,30,40],[35,28,31,40],[28,27,3,18],[27,16,18,38],[21,36,39,31],[1,6,13],[35,18,24,5],[28,27,12,31],[28,27,18,38],[35,27,2,31],[],[],[15,18,35,10],[6,3,10,24],[10,29,39,35],[16,34,31,28],[35,10,24,31],[33,22,30,40],[10,1,34,29],[15,34,33],[32,28,2,24],[2,35,34,27],[15,10,2],[35,10,28,24],[35,18,10,13],[35,10,18],[28,35,10,23]],[[10,24,35],[10,35,5],[1,26],[26],[30,26],[30,16],[],[2,22],[26,32],[],[],[],[],[],[10],[10],[],[19],[],[],[10,19],[19,10],[],[],[24,26,28,32],[24,28,35],[10,28,23],[],[],[22,10,1],[10,21,22],[32],[27,22],[],[],[],[35,33],[35],[13,23,15]],[[10,20,37,35],[10,20,26,5],[15,2,29],[30,24,14,5],[26,4,5,16],[10,35,17,4],[2,5,34,10],[35,16,32,18],[],[10,37,36,5],[37,36,4],[4,10,34,17],[35,3,22,5],[29,3,28,18],[20,10,28,18],[28,20,10,16],[35,29,21,18],[1,19,26,17],[35,38,19,18],[1],[35,20,10,6],[10,5,18,32],[35,18,10,39],[24,26,28,32],[],[35,38,18,16],[10,30,4],[24,34,28,32],[24,26,28,18],[35,18,34],[35,22,18,39],[35,28,34,4],[4,28,10,34],[32,1,10],[35,28],[6,29],[18,28,32,10],[24,28,35,30],[]],[[35,6,18,31],[27,26,18,35],[29,14,35,18],[],[15,14,29],[2,18,40,4],[15,20,29],[],[35,29,34,28],[35,14,3],[10,36,14,3],[35,14],[15,2,17,40],[14,35,34,10],[3,35,10,40],[3,35,31],[3,17,39],[],[34,29,16,18],[3,35,31],[35],[7,18,25],[6,3,10,24],[24,28,35],[35,38,18,16],[],[18,3,28,40],[13,2,28],[33,30],[35,33,29,31],[3,35,40,39],[29,1,35,27],[35,29,25,10],[2,32,10,25],[15,3,29],[3,13,27,10],[3,27,29,18],[8,35],[13,29,3,27]],[[3,8,10,40],[3,10,8,28],[15,9,14,4],[15,29,28,11],[17,10,14,16],[32,35,40,4],[3,10,14,24],[2,35,24],[21,35,11,28],[8,28,10,3],[10,24,35,19],[35,1,16,11],[],[11,28],[2,35,3,25],[34,27,6,40],[3,35,10],[11,32,13],[21,11,27,19],[36,23],[21,11,26,31],[10,11,35],[10,35,29,39],[10,28],[10,30,4],[21,28,40,3],[],[32,3,11,23],[11,32,1],[27,35,2,40],[35,2,40,26],[],[27,17,40],[1,11],[13,35,8,24],[13,35,1],[27,40,28],[11,13,27],[1,35,29,38]],[[32,35,26,28],[28,35,25,26],[28,26,5,16],[32,28,3,16],[26,28,32,3],[26,28,32,3],[32,13,6],[],[28,13,32,24],[32,2],[6,28,32],[6,28,32],[32,35,13],[28,6,32],[28,6,32],[10,26,24],[6,19,28,24],[6,1,32],[3,6,32],[],[3,6,32],[26,32,27],[10,16,31,28],[],[24,34,28,32],[2,6,32],[5,11,1,23],[],[],[28,24,22,26],[3,33,39,10],[6,35,25,18],[1,13,17,34],[1,32,13,11],[13,35,2],[27,35,10,34],[26,24,32,28],[28,2,10,34],[10,34,28,32]],[[28,32,13,18],[28,35,27,9],[10,28,29,37],[2,32,10],[28,33,29,32],[2,29,18,36],[32,23,2],[25,10,35],[10,28,32],[28,19,34,36],[3,35],[32,30,40],[30,18],[3,27],[3,27,40],[],[19,26],[3,32],[32,2],[],[32,2],[13,32,2],[35,31,10,24],[],[32,26,28,18],[32,30],[11,32,1],[],[],[26,28,10,36],[4,17,34,26],[],[1,32,35,23],[25,10],[],[26,2,18],[],[26,28,18,23],[10,18,32,39]],[[22,21,27,39],[2,22,13,24],[17,1,39,4],[1,18],[22,1,33,28],[27,2,39,35],[22,23,37,35],[34,39,19,27],[21,22,35,28],[13,35,39,18],[22,2,37],[22,1,3,35],[35,24,30,18],[18,35,37,1],[22,15,33,28],[17,1,40,33],[22,33,35,2],[1,19,32,13],[1,24,6,27],[10,2,22,37],[19,22,31,2],[21,22,35,2],[33,22,19,40],[22,10,2],[35,18,34],[35,33,29,31],[27,24,2,40],[28,33,23,26],[26,28,10,18],[],[],[24,35,2],[2,25,28,39],[35,10,2],[35,11,22,31],[22,19,29,40],[22,19,29,40],[33,3,34],[22,35,13,24]],[[19,22,15,39],[35,22,1,39],[17,15,16,22],[],[17,2,18,39],[22,1,40],[17,2,40],[30,18,35,4],[35,28,3,23],[35,28,1,40],[2,33,27,18],[35,1],[35,40,27,39],[15,35,22,2],[15,22,33,31],[21,39,16,22],[22,35,2,24],[19,24,39,32],[2,35,6],[19,22,18],[2,35,18],[21,35,2,22],[10,1,34],[10,21,29],[1,22],[3,24,39,1],[24,2,40,39],[3,33,26],[4,17,34,26],[],[],[],[],[],[],[19,1,31],[2,21,27,1],[2],[22,35,18,39]],[[28,29,15,16],[1,27,36,13],[1,29,13,17],[15,17,27],[13,1,26,12],[16,40],[13,29,1,40],[35],[35,13,8,1],[35,12],[35,19,1,37],[1,28,13,27],[11,13,1],[1,3,10,32],[27,1,4],[35,16],[27,26,18],[28,24,27,1],[28,26,27,1],[1,4],[27,1,12,24],[19,35],[15,34,33],[32,24,18,16],[35,28,34,4],[35,23,1,24],[],[1,35,12,18],[],[24,2],[],[],[2,5,13,16],[35,1,11,9],[2,13,15],[27,26,1],[6,28,11,1],[8,28,1],[35,1,10,28]],[[25,2,13,15],[6,13,1,25],[1,17,13,12],[],[1,17,13,16],[18,16,15,39],[1,16,35,15],[4,18,39,31],[18,13,34],[28,13,35],[2,32,12],[15,34,29,28],[32,35,30],[32,40,3,28],[29,3,8,25],[1,16,25],[26,27,13],[13,17,1,24],[1,13,24],[],[35,34,2,10],[2,19,13],[28,32,2,24],[4,10,27,22],[4,28,10,34],[12,35],[17,27,8,40],[25,13,2,34],[1,32,35,23],[2,25,28,39],[],[2,5,12],[],[12,26,1,32],[15,34,1,16],[32,26,12,17],[],[1,34,12,3],[15,1,28]],[[2,27,35,11],[2,27,35,11],[1,28,10,25],[3,18,31],[15,13,32],[16,25],[25,2,35,11],[1],[34,9],[1,11,10],[13],[1,13,2,4],[2,35],[11,1,2,9],[11,29,28,27],[1],[4,10],[15,1,13],[15,1,28,16],[],[15,10,32,2],[15,1,32,19],[2,35,34,27],[],[32,1,10,25],[2,28,10,25],[11,10,1,16],[10,2,13],[25,10],[35,10,2,16],[],[1,35,11,10],[1,12,26,15],[],[7,1,4,16],[35,1,13,11],[],[34,35,7,13],[1,32,10]],[[1,6,15,8],[19,15,29,16],[35,1,29,2],[1,35,16],[35,30,29,7],[15,16],[15,35,29],[],[35,10,14],[15,17,20],[35,16],[15,37,1,8],[35,30,14],[35,3,32,6],[13,1,35],[2,16],[27,2,3,35],[6,22,26,1],[19,35,29,13],[],[19,1,29],[18,15,1],[15,10,2,13],[],[35,28],[3,35,15],[35,13,8,24],[35,5,1,10],[],[35,11,32,31],[],[1,13,31],[15,34,1,16],[1,16,7,4],[],[15,29,37,28],[1],[27,34,35],[35,28,6,37]],[[26,30,34,36],[2,26,35,39],[1,19,26,24],[26],[14,1,13,16],[6,36],[34,26,6],[1,16],[34,10,28],[26,16],[19,1,35],[29,13,28,15],[2,22,17,19],[2,13,28],[10,4,28,15],[],[2,17,13],[24,17,13],[27,2,29,28],[],[20,19,30,34],[10,35,13,2],[35,10,28,29],[],[6,29],[13,3,27,10],[13,35,1],[2,26,10,34],[26,24,32],[22,19,29,40],[19,1],[27,26,1,13],[27,9,26,24],[1,13],[29,15,28,37],[],[15,10,37,28],[15,1,24],[12,17,28]],[[27,26,28,13],[6,13,28,1],[16,17,26,24],[26],[2,13,18,17],[2,39,30,16],[29,1,4,16],[2,18,26,31],[3,4,16,35],[30,28,40,19],[35,36,37,32],[27,13,1,39],[11,22,39,30],[27,3,15,28],[19,29,39,25],[25,34,6,35],[3,27,35,16],[2,24,26],[35,38],[19,35,16],[18,1,16,10],[35,3,15,19],[1,18,10,24],[35,33,27,22],[18,28,32,9],[3,27,29,18],[27,40,28,8],[26,24,32,28],[],[22,19,29,28],[2,21],[5,28,11,29],[2,5],[12,26],[1,15],[15,10,37,28],[],[34,21],[35,18]],[[28,26,18,35],[28,26,35,10],[14,13,17,28],[23],[17,14,13],[],[35,13,16],[],[28,10],[2,35],[13,35],[15,32,1,13],[18,1],[25,13],[6,9],[],[26,2,19],[8,32,19],[2,32,13],[],[28,2,27],[23,28],[35,10,18,5],[35,33],[24,28,35,30],[35,13],[11,27,32],[28,26,10,34],[28,26,18,23],[2,33],[2],[1,26,13],[1,12,34,3],[1,35,13],[27,4,1,35],[15,24,10],[34,27,25],[],[5,12,35,26]],[[35,26,24,37],[28,27,15,3],[18,4,28,38],[30,7,14,26],[10,26,34,31],[10,35,17,7],[2,6,34,10],[35,37,10,2],[],[28,15,10,36],[10,37,14],[14,10,34,40],[35,3,22,39],[29,28,10,18],[35,10,2,18],[20,10,16,38],[35,21,28,10],[26,17,19,1],[35,10,38,19],[1],[35,20,10],[28,10,29,35],[28,10,35,23],[13,15,23],[],[35,38],[1,35,10,38],[1,10,34,28],[18,10,32,1],[22,35,13,24],[35,22,18,39],[35,28,2,24],[1,28,7,10],[1,32,10,25],[1,35,28,37],[12,17,28,24],[35,18,27,2],[5,12,35,26],[]]];
-const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const L='ABCDEF';
-let st={prob:'',imp:'',wor:'',pi:'',pw:'',sel:[],ideas:{}};
-try{const s=JSON.parse(localStorage.getItem('triz-ws'));if(s)st=Object.assign(st,s)}catch(e){}
-const save=()=>{try{localStorage.setItem('triz-ws',JSON.stringify(st))}catch(e){}};
-const sub=p=>'<ul class="sub">'+p.s.map((x,i)=>`<li><b>${L[i]}.</b> ${esc(x)}</li>`).join('')+'</ul>';
+const MATRIX = {"1,3":[15,8,29,34],"1,5":[29,17,38,34],"1,7":[29,2,40,28],"1,9":[2,8,15,38],"1,10":[8,10,18,37],"1,11":[10,36,37,40],"1,12":[10,14,35,40],"1,13":[1,35,19,39],"1,14":[28,27,18,40],"1,15":[5,34,31,35],"1,17":[6,29,4,38],"1,18":[19,1,32],"1,19":[35,12,34,31],"1,21":[12,36,18,31],"1,22":[6,2,34,19],"1,23":[5,35,3,31],"1,24":[10,24,35],"1,25":[10,35,20,28],"1,26":[3,26,18,31],"1,27":[1,3,11,27],"1,28":[28,27,35,26],"1,29":[28,35,26,18],"1,30":[22,21,18,27],"1,31":[22,35,31,39],"1,32":[27,28,1,36],"1,33":[35,3,2,24],"1,34":[2,27,28,11],"1,35":[29,5,15,8],"1,36":[26,30,36,34],"1,37":[28,29,26,32],"1,38":[26,35,18,19],"1,39":[35,3,24,37],"2,4":[10,1,29,35],"2,6":[35,30,13,2],"2,8":[5,35,14,2],"2,10":[8,10,19,35],"2,11":[13,29,10,18],"2,12":[13,10,29,14],"2,13":[26,39,1,40],"2,14":[28,2,10,27],"2,16":[2,27,19,6],"2,17":[28,19,32,22],"2,18":[19,32,35],"2,20":[18,19,28,1],"2,21":[15,19,18,22],"2,22":[18,19,28,15],"2,23":[5,8,13,30],"2,24":[10,15,35],"2,25":[10,20,35,26],"2,26":[19,6,18,26],"2,27":[10,28,8,3],"2,28":[18,26,28],"2,29":[10,1,35,17],"2,30":[2,19,22,37],"2,31":[35,22,1,39],"2,32":[28,1,9],"2,33":[6,13,1,32],"2,34":[2,27,28,11],"2,35":[19,15,29],"2,36":[1,10,26,39],"2,37":[25,28,17,15],"2,38":[2,26,35],"2,39":[1,28,15,35],"3,1":[8,15,29,34],"3,5":[15,17,4],"3,7":[7,17,4,35],"3,9":[13,4,8],"3,10":[17,10,4],"3,11":[1,8,35],"3,12":[1,8,10,29],"3,13":[1,8,15,34],"3,14":[8,35,29,34],"3,15":[19],"3,17":[10,15,19],"3,18":[32],"3,19":[8,35,24],"3,21":[1,35],"3,22":[7,2,35,39],"3,23":[4,29,23,10],"3,24":[1,24],"3,25":[15,2,29],"3,26":[29,35],"3,27":[10,14,29,40],"3,28":[28,32,4],"3,29":[10,28,29,37],"3,30":[1,15,17,24],"3,31":[17,15],"3,32":[1,29,17],"3,33":[15,29,35,4],"3,34":[1,28,10],"3,35":[14,15,1,16],"3,36":[1,19,26,24],"3,37":[35,1,26,24],"3,38":[17,24,26,16],"3,39":[14,4,28,29],"4,2":[35,28,40,29],"4,6":[17,7,10,40],"4,8":[35,8,2,14],"4,10":[28,10],"4,11":[1,14,35],"4,12":[13,14,15,7],"4,13":[39,37,35],"4,14":[15,14,28,26],"4,16":[1,10,35],"4,17":[3,35,38,18],"4,18":[3,25],"4,21":[12,8],"4,22":[6,28],"4,23":[10,28,24,35],"4,24":[24,26],"4,25":[30,29,14],"4,27":[15,29,28],"4,28":[32,28,3],"4,29":[2,32,10],"4,30":[1,18],"4,32":[15,17,27],"4,33":[2,25],"4,34":[3],"4,35":[1,35],"4,36":[1,26],"4,37":[26],"4,39":[30,14,7,26],"5,1":[2,17,29,4],"5,3":[14,15,18,4],"5,7":[7,14,17,4],"5,9":[29,30,4,34],"5,10":[19,30,35,2],"5,11":[10,15,36,28],"5,12":[5,34,29,4],"5,13":[11,2,13,39],"5,14":[3,15,40,14],"5,15":[6,3],"5,17":[2,15,16],"5,18":[15,32,19,13],"5,19":[19,32],"5,21":[19,10,32,18],"5,22":[15,17,30,26],"5,23":[10,35,2,39],"5,24":[30,26],"5,25":[26,4],"5,26":[29,30,6,13],"5,27":[29,9],"5,28":[26,28,32,3],"5,29":[2,32],"5,30":[22,33,28,1],"5,31":[17,2,18,39],"5,32":[13,1,26,24],"5,33":[15,17,13,16],"5,34":[15,13,10,1],"5,35":[15,30],"5,36":[14,1,13],"5,37":[2,36,26,18],"5,38":[14,30,28,23],"5,39":[10,26,34,2],"6,2":[30,2,14,18],"6,4":[26,7,9,39],"6,10":[1,18,35,36],"6,11":[10,15,36,37],"6,13":[2,38],"6,14":[40],"6,16":[2,10,19,30],"6,17":[35,39,38],"6,21":[17,32],"6,22":[17,7,30],"6,23":[10,14,18,39],"6,24":[30,16],"6,25":[10,35,4,18],"6,26":[2,18,40,4],"6,27":[32,35,40,4],"6,28":[26,28,32,3],"6,29":[2,29,18,36],"6,30":[27,2,39,35],"6,31":[22,1,40],"6,32":[40,16],"6,33":[16,4],"6,34":[16],"6,35":[15,16],"6,36":[1,18,36],"6,37":[2,35,30,18],"6,38":[23],"6,39":[10,15,17,7],"7,1":[2,26,29,40],"7,3":[1,7,4,35],"7,5":[1,7,4,17],"7,9":[29,4,38,34],"7,10":[15,35,36,37],"7,11":[6,35,36,37],"7,12":[1,15,29,4],"7,13":[28,10,1,39],"7,14":[9,14,15,7],"7,15":[6,35,4],"7,17":[34,39,10,18],"7,18":[2,13,10],"7,19":[35],"7,21":[35,6,13,18],"7,22":[7,15,13,16],"7,23":[36,39,34,10],"7,24":[2,22],"7,25":[2,6,34,10],"7,26":[29,30,7],"7,27":[14,1,40,11],"7,28":[25,26,28],"7,29":[25,28,2,16],"7,30":[22,21,27,35],"7,31":[17,2,40,1],"7,32":[29,1,40],"7,33":[15,13,30,12],"7,34":[10],"7,35":[15,29],"7,36":[26,1],"7,37":[29,26,4],"7,38":[35,34,16,24],"7,39":[10,6,2,34],"8,2":[35,10,19,14],"8,3":[19,14],"8,4":[35,8,2,14],"8,10":[2,18,37],"8,11":[24,35],"8,12":[7,2,35],"8,13":[34,28,35,40],"8,14":[9,14,17,15],"8,16":[35,34,38],"8,17":[35,6,4],"8,21":[30,6],"8,23":[10,39,35,34],"8,25":[35,16,32,18],"8,26":[35,3],"8,27":[2,35,16],"8,29":[35,10,25],"8,30":[34,39,19,27],"8,31":[30,18,35,4],"8,32":[35],"8,34":[1],"8,36":[1,31],"8,37":[2,17,26],"8,39":[35,37,10,2],"9,1":[2,28,13,38],"9,3":[13,14,8],"9,5":[29,30,34],"9,7":[7,29,34],"9,10":[13,28,15,19],"9,11":[6,18,38,40],"9,12":[35,15,18,34],"9,13":[28,33,1,18],"9,14":[8,3,26,14],"9,15":[3,19,35,5],"9,17":[28,30,36,2],"9,18":[10,13,19],"9,19":[8,15,35,38],"9,21":[19,35,38,2],"9,22":[14,20,19,35],"9,23":[10,13,28,38],"9,24":[13,26],"9,26":[10,19,29,38],"9,27":[11,35,27,28],"9,28":[28,32,1,24],"9,29":[10,28,32,25],"9,30":[1,28,35,23],"9,31":[2,24,35,21],"9,32":[35,13,8,1],"9,33":[32,28,13,12],"9,34":[34,2,28,27],"9,35":[15,10,26],"9,36":[10,28,4,34],"9,37":[3,34,27,16],"9,38":[10,18],"10,1":[8,1,37,18],"10,2":[18,13,1,28],"10,3":[17,19,9,36],"10,4":[28,10],"10,5":[19,10,15],"10,6":[1,18,36,37],"10,7":[15,9,12,37],"10,8":[2,36,18,37],"10,9":[13,28,15,12],"10,11":[18,21,11],"10,12":[10,35,40,34],"10,13":[35,10,21],"10,14":[35,10,14,27],"10,15":[19,2],"10,17":[35,10,21],"10,19":[19,17,10],"10,20":[1,16,36,37],"10,21":[19,35,18,37],"10,22":[14,15],"10,23":[8,35,40,5],"10,25":[10,37,36],"10,26":[14,29,18,36],"10,27":[3,35,13,21],"10,28":[35,10,23,24],"10,29":[28,29,37,36],"10,30":[1,35,40,18],"10,31":[13,3,36,24],"10,32":[15,37,18,1],"10,33":[1,28,3,25],"10,34":[15,1,11],"10,35":[15,17,18,20],"10,36":[26,35,10,18],"10,37":[36,37,10,19],"10,38":[2,35],"10,39":[3,28,35,37],"11,1":[10,36,37,40],"11,2":[13,29,10,18],"11,3":[35,10,36],"11,4":[35,1,14,16],"11,5":[10,15,36,28],"11,6":[10,15,36,37],"11,7":[6,35,10],"11,8":[35,24],"11,9":[6,35,36],"11,10":[36,35,21],"11,12":[35,4,15,10],"11,13":[35,33,2,40],"11,14":[9,18,3,40],"11,15":[19,3,27],"11,17":[35,39,19,2],"11,19":[14,24,10,37],"11,21":[10,35,14],"11,22":[2,36,25],"11,23":[10,36,3,37],"11,25":[37,36,4],"11,26":[10,14,36],"11,27":[10,13,19,35],"11,28":[6,28,25],"11,29":[3,35],"11,30":[22,2,37],"11,31":[2,33,27,18],"11,32":[1,35,16],"11,33":[11],"11,34":[2],"11,35":[35],"11,36":[19,1,35],"11,37":[2,36,37],"11,38":[35,24],"11,39":[10,14,35,37],"12,1":[8,10,29,40],"12,2":[15,10,26,3],"12,3":[29,34,5,4],"12,4":[13,14,10,7],"12,5":[5,34,4,10],"12,7":[14,4,15,22],"12,8":[7,2,35],"12,9":[35,15,34,18],"12,10":[35,10,37,40],"12,11":[34,15,10,14],"12,13":[33,1,18,4],"12,14":[30,14,10,40],"12,15":[14,26,9,25],"12,17":[22,14,19,32],"12,18":[13,15,32],"12,19":[2,6,34,14],"12,21":[4,6,2],"12,22":[14],"12,23":[35,29,3,5],"12,25":[14,10,34,17],"12,26":[36,22],"12,27":[10,40,16],"12,28":[28,32,1],"12,29":[32,30,40],"12,30":[22,1,2,35],"12,31":[35,1],"12,32":[1,32,17,28],"12,33":[32,15,26],"12,34":[2,13,1],"12,35":[1,15,29],"12,36":[16,29,1,28],"12,37":[15,13,39],"12,38":[15,1,32],"12,39":[17,26,34,10],"13,1":[21,35,2,39],"13,2":[26,39,1,40],"13,3":[13,15,1,28],"13,4":[37],"13,5":[2,11,13],"13,6":[39],"13,7":[28,10,19,39],"13,8":[34,28,35,40],"13,9":[33,15,28,18],"13,10":[10,35,21,16],"13,11":[2,35,40],"13,12":[22,1,18,4],"13,14":[17,9,15],"13,15":[13,27,10,35],"13,16":[39,3,35,23],"13,17":[35,1,32],"13,18":[32,3,27,16],"13,19":[13,19],"13,20":[27,4,29,18],"13,21":[32,35,27,31],"13,22":[14,2,39,6],"13,23":[2,14,30,40],"13,25":[35,27],"13,26":[15,32,35],"13,28":[13],"13,29":[18],"13,30":[35,24,30,18],"13,31":[35,40,27,39],"13,32":[35,19],"13,33":[32,35,30],"13,34":[2,35,10,16],"13,35":[35,30,34,2],"13,36":[2,35,22,26],"13,37":[35,22,39,23],"13,38":[1,8,35],"13,39":[23,35,40,3],"14,1":[1,8,40,15],"14,2":[40,26,27,1],"14,3":[1,15,8,35],"14,4":[15,14,28,26],"14,5":[3,34,40,29],"14,6":[9,40,28],"14,7":[10,15,14,7],"14,8":[9,14,17,15],"14,9":[8,13,26,14],"14,10":[10,18,3,14],"14,11":[10,3,18,40],"14,12":[10,30,35,40],"14,13":[13,17,35],"14,15":[27,3,26],"14,17":[30,10,40],"14,18":[35,19],"14,19":[19,35,10],"14,20":[35],"14,21":[10,26,35,28],"14,22":[35],"14,23":[35,28,31,40],"14,25":[29,3,28,10],"14,26":[29,10,27],"14,27":[11,3],"14,28":[3,27,16],"14,29":[3,27],"14,30":[18,35,37,1],"14,31":[15,35,22,2],"14,32":[11,3,10,32],"14,33":[32,40,25,2],"14,34":[27,11,3],"14,35":[15,3,32],"14,36":[2,13,25,28],"14,37":[27,3,15,40],"14,38":[15],"14,39":[29,35,10,14],"15,1":[19,5,34,31],"15,3":[2,19,9],"15,5":[3,17,19],"15,7":[10,2,19,30],"15,9":[3,35,5],"15,10":[19,2,16],"15,11":[19,3,27],"15,12":[14,26,28,25],"15,13":[13,3,35],"15,14":[27,3,10],"15,17":[19,35,39],"15,18":[2,19,4,35],"15,19":[28,6,35,18],"15,21":[19,10,35,38],"15,23":[28,27,3,18],"15,24":[10],"15,25":[20,10,28,18],"15,26":[3,35,10,40],"15,27":[11,2,13],"15,28":[3],"15,29":[3,27,16,40],"15,30":[22,15,33,28],"15,31":[21,39,16,22],"15,32":[27,1,4],"15,33":[12,27],"15,34":[29,10,27],"15,35":[1,35,13],"15,36":[10,4,29,15],"15,37":[19,29,39,35],"15,38":[6,10],"15,39":[35,17,14,19],"16,2":[6,27,19,16],"16,4":[1,40,35],"16,8":[35,34,38],"16,13":[39,3,35,23],"16,17":[19,18,36,40],"16,21":[16],"16,23":[27,16,18,38],"16,24":[10],"16,25":[28,20,10,16],"16,26":[3,35,31],"16,27":[34,27,6,40],"16,28":[10,26,24],"16,30":[17,1,40,33],"16,31":[22],"16,32":[35,10],"16,33":[1],"16,34":[1],"16,35":[2],"16,37":[25,34,6,35],"16,38":[1],"16,39":[20,10,16,38],"17,1":[36,22,6,38],"17,2":[22,35,32],"17,3":[15,19,9],"17,4":[15,19,9],"17,5":[3,35,39,18],"17,6":[35,38],"17,7":[34,39,40,18],"17,8":[35,6,4],"17,9":[2,28,36,30],"17,10":[35,10,3,21],"17,11":[35,39,19,2],"17,12":[14,22,19,32],"17,13":[1,35,32],"17,14":[10,30,22,40],"17,15":[19,13,39],"17,16":[19,18,36,40],"17,18":[32,30,21,16],"17,19":[19,15,3,17],"17,21":[2,14,17,25],"17,22":[21,17,35,38],"17,23":[21,36,29,31],"17,25":[35,28,21,18],"17,26":[3,17,30,39],"17,27":[19,35,3,10],"17,28":[32,19,24],"17,29":[24],"17,30":[22,33,35,2],"17,31":[22,35,2,24],"17,32":[26,27],"17,33":[26,27],"17,34":[4,10,16],"17,35":[2,18,27],"17,36":[2,17,16],"17,37":[3,27,35,31],"17,38":[26,2,19,16],"17,39":[15,28,35],"18,1":[19,1,32],"18,2":[2,35,32],"18,3":[19,32,16],"18,5":[19,32,26],"18,7":[2,13,10],"18,9":[10,13,19],"18,10":[26,19,6],"18,12":[32,30],"18,13":[32,3,27],"18,14":[35,19],"18,15":[2,19,6],"18,17":[32,35,19],"18,19":[32,1,19],"18,20":[32,35,1,15],"18,21":[32],"18,22":[13,16,1,6],"18,23":[13,1],"18,24":[1,6],"18,25":[19,1,26,17],"18,26":[1,19],"18,28":[11,15,32],"18,29":[3,32],"18,30":[15,19],"18,31":[35,19,32,39],"18,32":[19,35,28,26],"18,33":[28,26,19],"18,34":[15,17,13,16],"18,35":[15,1,19],"18,36":[6,32,13],"18,37":[32,15],"18,38":[2,26,10],"18,39":[2,25,16],"19,1":[12,18,28,31],"19,3":[12,28],"19,5":[15,19,25],"19,7":[35,13,18],"19,9":[8,35,35],"19,10":[16,26,21,2],"19,11":[23,14,25],"19,12":[12,2,29],"19,13":[19,13,17,24],"19,14":[5,19,9,35],"19,15":[28,35,6,18],"19,17":[19,24,3,14],"19,18":[2,15,19],"19,21":[6,19,37,18],"19,22":[12,22,15,24],"19,23":[35,24,18,5],"19,25":[35,38,19,18],"19,26":[34,23,16,18],"19,27":[19,21,11,27],"19,28":[3,1,32],"19,30":[1,35,6,27],"19,31":[2,35,6],"19,32":[28,26,30],"19,33":[19,35],"19,34":[1,15,17,28],"19,35":[15,17,13,16],"19,36":[2,29,27,28],"19,37":[35,38],"19,38":[32,2],"19,39":[12,28,35],"20,2":[19,9,6,27],"20,10":[36,37],"20,13":[27,4,29,18],"20,14":[35],"20,18":[19,2,35,32],"20,23":[28,27,18,31],"20,26":[3,35,31],"20,27":[10,36,23],"20,30":[10,2,22,37],"20,31":[19,22,18],"20,32":[1,4],"20,37":[19,35,16,25],"20,39":[1,6],"21,1":[8,36,38,31],"21,2":[19,26,17,27],"21,3":[1,10,35,37],"21,5":[19,38],"21,6":[17,32,13,38],"21,7":[35,6,38],"21,8":[30,6,25],"21,9":[15,35,2],"21,10":[26,2,36,35],"21,11":[22,10,35],"21,12":[29,14,2,40],"21,13":[35,32,15,31],"21,14":[26,10,28],"21,15":[19,35,10,38],"21,16":[16],"21,17":[2,14,17,25],"21,18":[16,6,19],"21,19":[16,6,19,37],"21,22":[10,35,38],"21,23":[28,27,18,38],"21,24":[10,19],"21,25":[35,20,10,6],"21,26":[4,34,19],"21,27":[19,24,26,31],"21,28":[32,15,2],"21,29":[32,2],"21,30":[19,22,31,2],"21,31":[2,35,18],"21,32":[26,10,34],"21,33":[26,35,10],"21,34":[35,2,10,34],"21,35":[19,17,34],"21,36":[20,19,30,34],"21,37":[19,35,16],"21,38":[28,2,17],"21,39":[28,35,34],"22,1":[15,6,19,28],"22,2":[19,6,18,9],"22,3":[7,2,6,13],"22,4":[6,38,7],"22,5":[15,26,17,30],"22,6":[17,7,30,18],"22,7":[7,18,23],"22,8":[7],"22,9":[16,35,38],"22,10":[36,38],"22,13":[14,2,39,6],"22,14":[26],"22,17":[19,38,7],"22,18":[1,13,32,15],"22,21":[3,38],"22,23":[35,27,2,37],"22,24":[19,10],"22,25":[10,18,32,7],"22,26":[7,18,25],"22,27":[11,10,35],"22,28":[32],"22,30":[21,22,35,2],"22,31":[21,35,2,22],"22,33":[35,32,1],"22,34":[2,19],"22,36":[7,23],"22,37":[35,3,15,23],"22,38":[2],"22,39":[28,10,29,35],"23,1":[35,6,23,40],"23,2":[35,6,22,32],"23,3":[14,29,10,39],"23,4":[10,28,24],"23,5":[35,2,10,31],"23,6":[10,18,39,31],"23,7":[1,29,30,36],"23,8":[3,39,18,31],"23,9":[10,13,28,38],"23,10":[14,15,18,40],"23,11":[3,36,37,10],"23,12":[29,35,3,5],"23,13":[2,14,30,40],"23,14":[35,28,31,40],"23,15":[28,27,3,18],"23,16":[27,16,18,38],"23,17":[21,36,39,31],"23,18":[1,6,13],"23,19":[35,18,24,5],"23,20":[28,27,12,31],"23,21":[28,27,18,38],"23,22":[35,27,2,31],"23,25":[15,18,35,10],"23,26":[6,3,10,24],"23,27":[10,29,39,35],"23,28":[16,34,31,28],"23,29":[35,10,24,31],"23,30":[33,22,30,40],"23,31":[10,1,34,29],"23,32":[15,34,33],"23,33":[32,28,2,24],"23,34":[2,35,34,27],"23,35":[15,10,2],"23,36":[35,10,28,24],"23,37":[35,18,10,13],"23,38":[35,10,18],"23,39":[28,35,10,23],"24,1":[10,24,35],"24,2":[10,35,5],"24,3":[1,26],"24,4":[26],"24,5":[30,26],"24,6":[30,16],"24,8":[2,22],"24,9":[26,32],"24,15":[10],"24,16":[10],"24,18":[19],"24,21":[10,19],"24,22":[19,10],"24,25":[24,26,28,32],"24,26":[24,28,35],"24,27":[10,28,23],"24,30":[22,10,1],"24,31":[10,21,22],"24,32":[32],"24,33":[27,22],"24,37":[35,33],"24,38":[35],"24,39":[13,23,15],"25,1":[10,20,37,35],"25,2":[10,20,26,5],"25,3":[15,2,29],"25,4":[30,24,14,5],"25,5":[26,4,5,16],"25,6":[10,35,17,4],"25,7":[2,5,34,10],"25,8":[35,16,32,18],"25,10":[10,37,36,5],"25,11":[37,36,4],"25,12":[4,10,34,17],"25,13":[35,3,22,5],"25,14":[29,3,28,18],"25,15":[20,10,28,18],"25,16":[28,20,10,16],"25,17":[35,29,21,18],"25,18":[1,19,26,17],"25,19":[35,38,19,18],"25,20":[1],"25,21":[35,20,10,6],"25,22":[10,5,18,32],"25,23":[35,18,10,39],"25,24":[24,26,28,32],"25,26":[35,38,18,16],"25,27":[10,30,4],"25,28":[24,34,28,32],"25,29":[24,26,28,18],"25,30":[35,18,34],"25,31":[35,22,18,39],"25,32":[35,28,34,4],"25,33":[4,28,10,34],"25,34":[32,1,10],"25,35":[35,28],"25,36":[6,29],"25,37":[18,28,32,10],"25,38":[24,28,35,30],"26,1":[35,6,18,31],"26,2":[27,26,18,35],"26,3":[29,14,35,18],"26,5":[15,14,29],"26,6":[2,18,40,4],"26,7":[15,20,29],"26,9":[35,29,34,28],"26,10":[35,14,3],"26,11":[10,36,14,3],"26,12":[35,14],"26,13":[15,2,17,40],"26,14":[14,35,34,10],"26,15":[3,35,10,40],"26,16":[3,35,31],"26,17":[3,17,39],"26,19":[34,29,16,18],"26,20":[3,35,31],"26,21":[35],"26,22":[7,18,25],"26,23":[6,3,10,24],"26,24":[24,28,35],"26,25":[35,38,18,16],"26,27":[18,3,28,40],"26,28":[13,2,28],"26,29":[33,30],"26,30":[35,33,29,31],"26,31":[3,35,40,39],"26,32":[29,1,35,27],"26,33":[35,29,25,10],"26,34":[2,32,10,25],"26,35":[15,3,29],"26,36":[3,13,27,10],"26,37":[3,27,29,18],"26,38":[8,35],"26,39":[13,29,3,27],"27,1":[3,8,10,40],"27,2":[3,10,8,28],"27,3":[15,9,14,4],"27,4":[15,29,28,11],"27,5":[17,10,14,16],"27,6":[32,35,40,4],"27,7":[3,10,14,24],"27,8":[2,35,24],"27,9":[21,35,11,28],"27,10":[8,28,10,3],"27,11":[10,24,35,19],"27,12":[35,1,16,11],"27,14":[11,28],"27,15":[2,35,3,25],"27,16":[34,27,6,40],"27,17":[3,35,10],"27,18":[11,32,13],"27,19":[21,11,27,19],"27,20":[36,23],"27,21":[21,11,26,31],"27,22":[10,11,35],"27,23":[10,35,29,39],"27,24":[10,28],"27,25":[10,30,4],"27,26":[21,28,40,3],"27,28":[32,3,11,23],"27,29":[11,32,1],"27,30":[27,35,2,40],"27,31":[35,2,40,26],"27,33":[27,17,40],"27,34":[1,11],"27,35":[13,35,8,24],"27,36":[13,35,1],"27,37":[27,40,28],"27,38":[11,13,27],"27,39":[1,35,29,38],"28,1":[32,35,26,28],"28,2":[28,35,25,26],"28,3":[28,26,5,16],"28,4":[32,28,3,16],"28,5":[26,28,32,3],"28,6":[26,28,32,3],"28,7":[32,13,6],"28,9":[28,13,32,24],"28,10":[32,2],"28,11":[6,28,32],"28,12":[6,28,32],"28,13":[32,35,13],"28,14":[28,6,32],"28,15":[28,6,32],"28,16":[10,26,24],"28,17":[6,19,28,24],"28,18":[6,1,32],"28,19":[3,6,32],"28,21":[3,6,32],"28,22":[26,32,27],"28,23":[10,16,31,28],"28,25":[24,34,28,32],"28,26":[2,6,32],"28,27":[5,11,1,23],"28,30":[28,24,22,26],"28,31":[3,33,39,10],"28,32":[6,35,25,18],"28,33":[1,13,17,34],"28,34":[1,32,13,11],"28,35":[13,35,2],"28,36":[27,35,10,34],"28,37":[26,24,32,28],"28,38":[28,2,10,34],"28,39":[10,34,28,32],"29,1":[28,32,13,18],"29,2":[28,35,27,9],"29,3":[10,28,29,37],"29,4":[2,32,10],"29,5":[28,33,29,32],"29,6":[2,29,18,36],"29,7":[32,23,2],"29,8":[25,10,35],"29,9":[10,28,32],"29,10":[28,19,34,36],"29,11":[3,35],"29,12":[32,30,40],"29,13":[30,18],"29,14":[3,27],"29,15":[3,27,40],"29,17":[19,26],"29,18":[3,32],"29,19":[32,2],"29,21":[32,2],"29,22":[13,32,2],"29,23":[35,31,10,24],"29,25":[32,26,28,18],"29,26":[32,30],"29,27":[11,32,1],"29,30":[26,28,10,36],"29,31":[4,17,34,26],"29,33":[1,32,35,23],"29,34":[25,10],"29,36":[26,2,18],"29,38":[26,28,18,23],"29,39":[10,18,32,39],"30,1":[22,21,27,39],"30,2":[2,22,13,24],"30,3":[17,1,39,4],"30,4":[1,18],"30,5":[22,1,33,28],"30,6":[27,2,39,35],"30,7":[22,23,37,35],"30,8":[34,39,19,27],"30,9":[21,22,35,28],"30,10":[13,35,39,18],"30,11":[22,2,37],"30,12":[22,1,3,35],"30,13":[35,24,30,18],"30,14":[18,35,37,1],"30,15":[22,15,33,28],"30,16":[17,1,40,33],"30,17":[22,33,35,2],"30,18":[1,19,32,13],"30,19":[1,24,6,27],"30,20":[10,2,22,37],"30,21":[19,22,31,2],"30,22":[21,22,35,2],"30,23":[33,22,19,40],"30,24":[22,10,2],"30,25":[35,18,34],"30,26":[35,33,29,31],"30,27":[27,24,2,40],"30,28":[28,33,23,26],"30,29":[26,28,10,18],"30,32":[24,35,2],"30,33":[2,25,28,39],"30,34":[35,10,2],"30,35":[35,11,22,31],"30,36":[22,19,29,40],"30,37":[22,19,29,40],"30,38":[33,3,34],"30,39":[22,35,13,24],"31,1":[19,22,15,39],"31,2":[35,22,1,39],"31,3":[17,15,16,22],"31,5":[17,2,18,39],"31,6":[22,1,40],"31,7":[17,2,40],"31,8":[30,18,35,4],"31,9":[35,28,3,23],"31,10":[35,28,1,40],"31,11":[2,33,27,18],"31,12":[35,1],"31,13":[35,40,27,39],"31,14":[15,35,22,2],"31,15":[15,22,33,31],"31,16":[21,39,16,22],"31,17":[22,35,2,24],"31,18":[19,24,39,32],"31,19":[2,35,6],"31,20":[19,22,18],"31,21":[2,35,18],"31,22":[21,35,2,22],"31,23":[10,1,34],"31,24":[10,21,29],"31,25":[1,22],"31,26":[3,24,39,1],"31,27":[24,2,40,39],"31,28":[3,33,26],"31,29":[4,17,34,26],"31,36":[19,1,31],"31,37":[2,21,27,1],"31,38":[2],"31,39":[22,35,18,39],"32,1":[28,29,15,16],"32,2":[1,27,36,13],"32,3":[1,29,13,17],"32,4":[15,17,27],"32,5":[13,1,26,12],"32,6":[16,40],"32,7":[13,29,1,40],"32,8":[35],"32,9":[35,13,8,1],"32,10":[35,12],"32,11":[35,19,1,37],"32,12":[1,28,13,27],"32,13":[11,13,1],"32,14":[1,3,10,32],"32,15":[27,1,4],"32,16":[35,16],"32,17":[27,26,18],"32,18":[28,24,27,1],"32,19":[28,26,27,1],"32,20":[1,4],"32,21":[27,1,12,24],"32,22":[19,35],"32,23":[15,34,33],"32,24":[32,24,18,16],"32,25":[35,28,34,4],"32,26":[35,23,1,24],"32,28":[1,35,12,18],"32,30":[24,2],"32,33":[2,5,13,16],"32,34":[35,1,11,9],"32,35":[2,13,15],"32,36":[27,26,1],"32,37":[6,28,11,1],"32,38":[8,28,1],"32,39":[35,1,10,28],"33,1":[25,2,13,15],"33,2":[6,13,1,25],"33,3":[1,17,13,12],"33,5":[1,17,13,16],"33,6":[18,16,15,39],"33,7":[1,16,35,15],"33,8":[4,18,39,31],"33,9":[18,13,34],"33,10":[28,13,35],"33,11":[2,32,12],"33,12":[15,34,29,28],"33,13":[32,35,30],"33,14":[32,40,3,28],"33,15":[29,3,8,25],"33,16":[1,16,25],"33,17":[26,27,13],"33,18":[13,17,1,24],"33,19":[1,13,24],"33,21":[35,34,2,10],"33,22":[2,19,13],"33,23":[28,32,2,24],"33,24":[4,10,27,22],"33,25":[4,28,10,34],"33,26":[12,35],"33,27":[17,27,8,40],"33,28":[25,13,2,34],"33,29":[1,32,35,23],"33,30":[2,25,28,39],"33,32":[2,5,12],"33,34":[12,26,1,32],"33,35":[15,34,1,16],"33,36":[32,26,12,17],"33,38":[1,34,12,3],"33,39":[15,1,28],"34,1":[2,27,35,11],"34,2":[2,27,35,11],"34,3":[1,28,10,25],"34,4":[3,18,31],"34,5":[15,13,32],"34,6":[16,25],"34,7":[25,2,35,11],"34,8":[1],"34,9":[34,9],"34,10":[1,11,10],"34,11":[13],"34,12":[1,13,2,4],"34,13":[2,35],"34,14":[11,1,2,9],"34,15":[11,29,28,27],"34,16":[1],"34,17":[4,10],"34,18":[15,1,13],"34,19":[15,1,28,16],"34,21":[15,10,32,2],"34,22":[15,1,32,19],"34,23":[2,35,34,27],"34,25":[32,1,10,25],"34,26":[2,28,10,25],"34,27":[11,10,1,16],"34,28":[10,2,13],"34,29":[25,10],"34,30":[35,10,2,16],"34,32":[1,35,11,10],"34,33":[1,12,26,15],"34,35":[7,1,4,16],"34,36":[35,1,13,11],"34,38":[34,35,7,13],"34,39":[1,32,10],"35,1":[1,6,15,8],"35,2":[19,15,29,16],"35,3":[35,1,29,2],"35,4":[1,35,16],"35,5":[35,30,29,7],"35,6":[15,16],"35,7":[15,35,29],"35,9":[35,10,14],"35,10":[15,17,20],"35,11":[35,16],"35,12":[15,37,1,8],"35,13":[35,30,14],"35,14":[35,3,32,6],"35,15":[13,1,35],"35,16":[2,16],"35,17":[27,2,3,35],"35,18":[6,22,26,1],"35,19":[19,35,29,13],"35,21":[19,1,29],"35,22":[18,15,1],"35,23":[15,10,2,13],"35,25":[35,28],"35,26":[3,35,15],"35,27":[35,13,8,24],"35,28":[35,5,1,10],"35,30":[35,11,32,31],"35,32":[1,13,31],"35,33":[15,34,1,16],"35,34":[1,16,7,4],"35,36":[15,29,37,28],"35,37":[1],"35,38":[27,34,35],"35,39":[35,28,6,37],"36,1":[26,30,34,36],"36,2":[2,26,35,39],"36,3":[1,19,26,24],"36,4":[26],"36,5":[14,1,13,16],"36,6":[6,36],"36,7":[34,26,6],"36,8":[1,16],"36,9":[34,10,28],"36,10":[26,16],"36,11":[19,1,35],"36,12":[29,13,28,15],"36,13":[2,22,17,19],"36,14":[2,13,28],"36,15":[10,4,28,15],"36,17":[2,17,13],"36,18":[24,17,13],"36,19":[27,2,29,28],"36,21":[20,19,30,34],"36,22":[10,35,13,2],"36,23":[35,10,28,29],"36,25":[6,29],"36,26":[13,3,27,10],"36,27":[13,35,1],"36,28":[2,26,10,34],"36,29":[26,24,32],"36,30":[22,19,29,40],"36,31":[19,1],"36,32":[27,26,1,13],"36,33":[27,9,26,24],"36,34":[1,13],"36,35":[29,15,28,37],"36,37":[15,10,37,28],"36,38":[15,1,24],"36,39":[12,17,28],"37,1":[27,26,28,13],"37,2":[6,13,28,1],"37,3":[16,17,26,24],"37,4":[26],"37,5":[2,13,18,17],"37,6":[2,39,30,16],"37,7":[29,1,4,16],"37,8":[2,18,26,31],"37,9":[3,4,16,35],"37,10":[30,28,40,19],"37,11":[35,36,37,32],"37,12":[27,13,1,39],"37,13":[11,22,39,30],"37,14":[27,3,15,28],"37,15":[19,29,39,25],"37,16":[25,34,6,35],"37,17":[3,27,35,16],"37,18":[2,24,26],"37,19":[35,38],"37,20":[19,35,16],"37,21":[18,1,16,10],"37,22":[35,3,15,19],"37,23":[1,18,10,24],"37,24":[35,33,27,22],"37,25":[18,28,32,9],"37,26":[3,27,29,18],"37,27":[27,40,28,8],"37,28":[26,24,32,28],"37,30":[22,19,29,28],"37,31":[2,21],"37,32":[5,28,11,29],"37,33":[2,5],"37,34":[12,26],"37,35":[1,15],"37,36":[15,10,37,28],"37,38":[34,21],"37,39":[35,18],"38,1":[28,26,18,35],"38,2":[28,26,35,10],"38,3":[14,13,17,28],"38,4":[23],"38,5":[17,14,13],"38,7":[35,13,16],"38,9":[28,10],"38,10":[2,35],"38,11":[13,35],"38,12":[15,32,1,13],"38,13":[18,1],"38,14":[25,13],"38,15":[6,9],"38,17":[26,2,19],"38,18":[8,32,19],"38,19":[2,32,13],"38,21":[28,2,27],"38,22":[23,28],"38,23":[35,10,18,5],"38,24":[35,33],"38,25":[24,28,35,30],"38,26":[35,13],"38,27":[11,27,32],"38,28":[28,26,10,34],"38,29":[28,26,18,23],"38,30":[2,33],"38,31":[2],"38,32":[1,26,13],"38,33":[1,12,34,3],"38,34":[1,35,13],"38,35":[27,4,1,35],"38,36":[15,24,10],"38,37":[34,27,25],"38,39":[5,12,35,26],"39,1":[35,26,24,37],"39,2":[28,27,15,3],"39,3":[18,4,28,38],"39,4":[30,7,14,26],"39,5":[10,26,34,31],"39,6":[10,35,17,7],"39,7":[2,6,34,10],"39,8":[35,37,10,2],"39,10":[28,15,10,36],"39,11":[10,37,14],"39,12":[14,10,34,40],"39,13":[35,3,22,39],"39,14":[29,28,10,18],"39,15":[35,10,2,18],"39,16":[20,10,16,38],"39,17":[35,21,28,10],"39,18":[26,17,19,1],"39,19":[35,10,38,19],"39,20":[1],"39,21":[35,20,10],"39,22":[28,10,29,35],"39,23":[28,10,35,23],"39,24":[13,15,23],"39,26":[35,38],"39,27":[1,35,10,38],"39,28":[1,10,34,28],"39,29":[18,10,32,1],"39,30":[22,35,13,24],"39,31":[35,22,18,39],"39,32":[35,28,2,24],"39,33":[1,28,7,10],"39,34":[1,32,10,25],"39,35":[1,35,28,37],"39,36":[12,17,28,24],"39,37":[35,18,27,2],"39,38":[5,12,35,26]};
 
-// tabs
-document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
- document.querySelectorAll('nav.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
- ['solve','explore','spin'].forEach(id=>$('#'+id).hidden=id!==b.dataset.t);
-});
+const PARAMS = [
+ [1,"Weight of moving object","Workload carried by the active process or people",["workload","load on","burden","heavy","overloaded","too much work"]],
+ [2,"Weight of stationary object","Fixed overheads and infrastructure burden",["overhead","fixed cost","infrastructure","fixed base","rent"]],
+ [3,"Length of moving object","Length of the process flow (steps, hand-offs)",["steps","handoff","hand-off","hand offs","long process","process length","stages"]],
+ [4,"Length of stationary object","Layers of hierarchy or fixed structure",["layers","hierarchy","levels of approval","org levels","reporting lines"]],
+ [5,"Area of moving object","Coverage or reach of the activity",["coverage","reach","scope","market coverage","service area"]],
+ [6,"Area of stationary object","Physical or office footprint",["space","office","footprint","floor","premises","desk"]],
+ [7,"Volume of moving object","Work in progress and volume in the pipeline",["wip","work in progress","backlog","pipeline","in-process","queue size"]],
+ [8,"Volume of stationary object","Storage and stock held",["storage","stock","warehouse","holding","archive"]],
+ [9,"Speed","Speed, turnaround time and cycle time",["fast","faster","speed","quick","turnaround","tat","cycle time","slow","sooner","timely","time to"]],
+ [10,"Force (Intensity)","Effort, push or enforcement applied",["effort","push","enforce","pressure on sales","drive","force"]],
+ [11,"Stress or pressure","Stress and strain on people or systems",["stress","burnout","strain","pressure","tension","fatigue","morale"]],
+ [12,"Shape","Structure, format or layout of the process or product",["structure","format","layout","template","design of","shape"]],
+ [13,"Stability of the object's composition","Stability and consistency of team or process",["stability","stable","consistency","attrition","turnover","standard","standardis","standardiz"]],
+ [14,"Strength","Robustness and resilience",["robust","resilien","strength","strong","withstand","durable"]],
+ [15,"Duration of action of moving object","How long an activity or initiative keeps running",["lasts","duration","sustain","long-running","lifespan","keep going"]],
+ [16,"Duration of action by stationary object","Longevity of fixed assets, systems or policies",["shelf life","longevity","asset life","legacy","long-term"]],
+ [17,"Temperature","Heat of the situation: escalations, conflict, urgency",["escalation","heated","conflict","firefight","urgent","intensity"]],
+ [18,"Illumination intensity","Visibility, transparency and clarity of information",["visibility","transparen","clarity","insight","dashboard","visible","see what"]],
+ [19,"Use of energy by moving object","Effort and operating cost used by the process",["man-hours","man hours","manhours","operating cost","resources used","effort required","cost to run","spend"]],
+ [20,"Use of energy by stationary object","Idle or standby cost",["idle","standby","maintenance cost","keep running","running cost"]],
+ [21,"Power","Capacity and bandwidth to deliver",["capacity","bandwidth","capability","horsepower","scale up"]],
+ [22,"Loss of Energy","Wasted effort and inefficiency",["wasted effort","inefficien","duplicate work","duplication","wasted"]],
+ [23,"Loss of substance","Leakage of money, material, customers or data",["leakage","loss","churn","write-off","write off","wastage","revenue loss","scrap"]],
+ [24,"Loss of Information","Information loss, miscommunication, knowledge gaps",["information","miscommunication","knowledge","documentation","communication","handover gap","data loss","missing info"]],
+ [25,"Loss of Time","Waiting, delays and idle time",["waiting","wait","wasted time","idle time","bottleneck","lead time","lag","delay","pending","late","overdue","held up"]],
+ [26,"Quantity of substance/the matter","Amount of resources, stock, data or headcount",["quantity","headcount","amount of","inventory","volume of data","more staff","more people"]],
+ [27,"Reliability","Accuracy, error-free work and dependability",["error","errors","mistake","accuracy","accurate","reliab","defect","rework","quality","wrong"]],
+ [28,"Measurement accuracy","Accuracy of measurement, reporting and KPIs",["measurement","reporting accuracy","kpi","metric","forecast","estimate","measure"]],
+ [29,"Manufacturing precision","Precision of execution, conformance to spec",["precision","conformance","to spec","specification","exactness","consistent output"]],
+ [30,"Object-affected harmful factors","External risks: regulation, competition, fraud, attacks",["external","regulat","competitor","fraud","cyber","attack","market risk","threat"]],
+ [31,"Object-generated harmful factors","Harmful side effects the process creates",["side effect","complaint","unintended","non-compliance","breach","harm","negative impact"]],
+ [32,"Ease of manufacture","Ease of producing or implementing",["implement","ease of execution","easy to build","easy to deliver","rollout","roll out"]],
+ [33,"Ease of operation","Ease of use and customer convenience",["easy to use","user friendly","user-friendly","convenien","customer experience","usability","simple for","ux"]],
+ [34,"Ease of repair","Ease of fixing, correcting and supporting",["fix","repair","maintain","troubleshoot","correct","support","resolve issue"]],
+ [35,"Adaptability or versatility","Flexibility, customisation and agility",["flexib","adapt","customi","agil","versatil","tailor"]],
+ [36,"Device complexity","Complexity of the system or organisation",["complex","complicated","many components","too many parts","complexity"]],
+ [37,"Difficulty of detecting and measuring","Difficulty of monitoring, auditing or controlling",["monitor","audit","control","track","detect","hard to measure","oversight","traceab"]],
+ [38,"Extent of automation","Level of automation versus manual work",["automat","manual","digital","robot","rpa","bot","system-driven"]],
+ [39,"Productivity","Output per person or per hour, throughput",["productiv","output","throughput","efficien","volume handled","per person","per hour","time management","prioriti","get more done"]]
+].map(([id,name,biz,kw])=>({id,name,biz,kw}));
+const P = Object.fromEntries(PARAMS.map(p=>[p.id,p]));
 
-// worksheet
-['prob','imp','wor'].forEach(k=>{const el=$('#'+k);el.value=st[k];el.oninput=()=>{st[k]=el.value;save()}});
-// contradiction matrix
-const opts='<option value="">— choose a parameter —</option>'+PAR.map(p=>`<option value="${p.n}">${p.n}. ${esc(p.name)}</option>`).join('');
-['pi','pw'].forEach(k=>{const el=$('#'+k);el.innerHTML=opts;el.value=st[k];el.onchange=()=>{st[k]=el.value;st[k+'m']=true;save();renderMatrix();renderSugg()}});
-// plain-language → parameter matching
-const KW={1:['weight','heavy','workload','burden','load'],2:['overhead','fixed cost','infrastructure','rent'],3:['length','handoff','hand-off','route','travel','long process','many steps','chain'],4:['footprint','distance','span'],5:['coverage','reach','surface'],6:['floor space','office space','space','premises','area'],7:['batch','shipment','consignment','lot size'],8:['storage','warehouse','stockroom','shelf'],9:['speed','fast','quick','delay','late','slow','turnaround','tat','cycle time','lead time','on time','timely','deadline','closure','close','response time','sla'],10:['effort','push','follow-up','follow up','followup','chase','chasing','escalat','persuad','reminder'],11:['pressure','stress','burnout','strain','tension','overload'],12:['layout','structure','format','template','shape','form','design'],13:['stability','stable','attrition','turnover','disruption','continuity','volatil'],14:['strength','robust','resilien','strong','sturdy'],15:['lifespan','longevity','wear','last longer','durab'],16:['asset life','shelf life','permanent'],17:['temperature','heat','cooling','hot','cold','thermal'],18:['visibility','visible','transparen','brightness','lighting','clarity'],19:['manpower','man-hours','man hours','energy','fuel','labour','labor'],20:['idle cost','standby','electricity','utility bill'],21:['capacity','bandwidth','power','output rate','scale up'],22:['wasted effort','duplicat','redundan','double work','repetit'],23:['wastage','waste','scrap','leakage','spoil','loss of material','pilferage'],24:['information','data','document','communicat','knowledge','record','details','missing','reporting','visibility of'],25:['waiting','wait','idle','rework','downtime','bottleneck','backlog','pending','queue','time wasted','waste of time','delay'],26:['quantity','headcount','resources','stock','inventory','amount','number of','volume'],27:['reliab','error','mistake','defect','failure','consisten','depend','support','cooperat','co-operat','responsive','quality','compliance','non-complian','trust'],28:['measure','tracking','track','metric','kpi','forecast','estimate','monitoring data'],29:['precision','precise','accura','exact','tolerance','correct'],30:['risk','threat','fraud','cyber','external','regulator','market','vendor','supplier','third party','competition'],31:['side effect','pollution','emission','complaint','dissatisf','penalty','harm','damage','reputation'],32:['manufactur','produc','implement','execut','deliver','build','rollout','roll out'],33:['convenien','user friendly','user-friendly','ease of use','easy','usabil','experience','satisfaction','simple','friendly','hassle'],34:['repair','fix','maintenance','recover','troubleshoot','restore','resolution'],35:['flexib','adapt','customi','variety','agile','change','versatil','tailor'],36:['complex','complicated','features','sophisticat'],37:['control','oversight','governance','supervis','monitor','check','sign-off','sign off','review','audit trail'],38:['automat','manual','digital','bot','rpa','software','tool','system'],39:['productiv','output','throughput','efficien','completion','complete','utili','performance','closure']};
-function match(txt){
- txt=' '+txt.toLowerCase().replace(/[^a-z0-9\- ]/g,' ')+' ';const toks=txt.split(/\s+/).filter(Boolean);const sc={};
- for(const n in KW)for(const k of KW[n]){const hit=k.includes(' ')?txt.includes(' '+k):toks.some(t=>t.startsWith(k));if(hit){const pos=txt.indexOf(' '+k);sc[n]=(sc[n]||0)+1+k.length/20+(pos>=0?0.4*(1-pos/txt.length):0)}}
- return Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>+e[0]);
-}
-function renderSugg(){
- [['imp','pi','si'],['wor','pw','sw']].forEach(([t,p,s])=>{
-  const m=match(st[t]||'');const box=$('#'+s);
-  if(!st[t]||!st[t].trim()){box.innerHTML='';return}
-  if(!m.length){box.innerHTML='<span>No close match — choose a parameter below.</span>';return}
-  if(!st[p+'m']&&String(m[0])!==String(st[p])){st[p]=String(m[0]);$('#'+p).value=st[p];save();renderMatrix()}
-  box.innerHTML='<span>Closest parameters:</span>'+m.map(n=>`<button class="chip${String(n)===String(st[p])?' on':''}" data-p="${p}" data-n="${n}">${n}. ${esc(PAR[n-1].name)}</button>`).join('');
-  box.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{st[p]=c.dataset.n;st[p+'m']=true;$('#'+p).value=st[p];save();renderMatrix();renderSugg()});
- });
-}
-['imp','wor'].forEach(k=>$('#'+k).addEventListener('input',renderSugg));
-const EXS=[{prob:'Audit closure is getting delayed because the client does not share information on time.',imp:'Speed of audit closure',wor:'Information from the client arrives late or incomplete'},{prob:'Every invoice needs partner sign-off, so approvals take 6 days.',imp:'Faster invoice approval turnaround',wor:'Control and risk of wrong payments'},{prob:'We want to automate month-end reporting, but the process is already complicated.',imp:'Level of automation in reporting',wor:'Complexity of the system to maintain'}];
-document.querySelectorAll('.exl').forEach(a=>a.onclick=e=>{e.preventDefault();const x=EXS[+a.dataset.x];['prob','imp','wor'].forEach(k=>{st[k]=x[k];$('#'+k).value=x[k]});st.pim=st.pwm=false;st.pi=st.pw='';save();renderSugg();renderMatrix()});
-const SEP=[1,2,3,10,15,19,35]; // separation in space / time / condition
-function suggested(){const i=+st.pi,w=+st.pw;if(!i||!w)return null;return i===w?{phys:true,list:SEP}:{phys:false,list:MX[i-1][w-1]}}
-function renderMatrix(){
- $('#gi').textContent=st.pi?PAR[st.pi-1].g:'';$('#gw').textContent=st.pw?PAR[st.pw-1].g:'';
- const s=suggested();if(!s){$('#mres').innerHTML='';return}
- let h;
- if(s.phys) h=`<b>Same parameter on both sides — a physical contradiction.</b><p class="hint" style="margin:4px 0 0">You need it to be both high and low. Try separating the two needs in <b>time</b>, <b>space</b> or <b>condition</b>. Principles that commonly help:</p>`;
- else if(!s.list.length) h=`<b>The matrix has no recommendation for this pair.</b><p class="hint" style="margin:4px 0 0">Try a neighbouring parameter, browse the 40 principles, or use the random suggestions below.</p>`;
- else h=`<b>The matrix suggests ${s.list.length} principle${s.list.length>1?'s':''}</b>:`;
- if(s.list.length) h+=`<div class="chips">${s.list.map(n=>`<span class="chip">${n}. ${esc(P[n-1].name)}</span>`).join('')}</div><button class="btn" id="useM">Use these in my worksheet</button>`;
- $('#mres').innerHTML=`<div class="mres">${h}</div>`;
- const b=$('#useM');if(b)b.onclick=()=>{s.list.forEach(n=>{if(!st.sel.includes(n))st.sel.push(n)});save();renderChips();renderIdeas();$('#ideas').scrollIntoView({behavior:'smooth'})};
-}
-function renderChips(){
- $('#chips').innerHTML=P.map(p=>`<button class="chip" data-n="${p.n}" aria-pressed="${st.sel.includes(p.n)}">${p.n}. ${esc(p.name)}</button>`).join('');
- document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{const n=+c.dataset.n;st.sel=st.sel.includes(n)?st.sel.filter(x=>x!==n):[...st.sel,n];save();renderChips();renderIdeas()});
-}
-function renderIdeas(){
- if(!st.sel.length){$('#ideas').innerHTML='<p class="hint"><i>Select principles in step 3 to start.</i></p>';return}
- $('#ideas').innerHTML=st.sel.map(n=>{const p=P[n-1];return `<div class="idea"><h4><span class="num">#${n}</span>${esc(p.name)}</h4>${sub(p)}<div class="ex"><b>Business example:</b> ${esc(p.ex)}</div><label for="i${n}">Your idea</label><textarea id="i${n}" data-n="${n}">${esc(st.ideas[n]||'')}</textarea></div>`}).join('');
- document.querySelectorAll('#ideas textarea').forEach(t=>t.oninput=()=>{st.ideas[t.dataset.n]=t.value;save()});
-}
-$('#rand').onclick=()=>{const a=P.map(p=>p.n).filter(n=>!st.sel.includes(n)).sort(()=>Math.random()-.5);st.sel=[...st.sel,...a.slice(0,5)];save();renderChips();renderIdeas()};
-$('#clear').onclick=()=>{st.sel=[];save();renderChips();renderIdeas()};
-function text(){
- let t=`TRIZ CONTRADICTION WORKSHEET\n${'='.repeat(28)}\n\nProblem: ${st.prob}\n\nI want to improve: ${st.imp}${st.pi?` [${st.pi}. ${PAR[st.pi-1].name}]`:''}\nBut this gets worse: ${st.wor}${st.pw?` [${st.pw}. ${PAR[st.pw-1].name}]`:''}\n${(s=>s&&s.list.length?`Matrix suggests: ${s.list.join(', ')}\n`:'')(suggested())}\nIDEAS\n`;
- st.sel.forEach(n=>{t+=`\n#${n} ${P[n-1].name}\n  ${(st.ideas[n]||'(no idea yet)').replace(/\n/g,'\n  ')}\n`});
- return t+`\n—\nTRIZ Inventive Toolkit · The Process Edge (Sahil Anand)\n`;
-}
-const msg=m=>{$('#msg').textContent=m;setTimeout(()=>$('#msg').textContent='',2500)};
-$('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text()],{type:'text/plain'}));a.download='triz-worksheet.txt';a.click();msg('Downloaded.')};
-$('#copy').onclick=()=>navigator.clipboard.writeText(text()).then(()=>msg('Copied.'),()=>msg('Copy not available in this browser — use Download.'));
-$('#print').onclick=()=>window.print();
-$('#reset').onclick=()=>{st={prob:'',imp:'',wor:'',pi:'',pw:'',sel:[],ideas:{}};save();renderSugg();['prob','imp','wor','pi','pw'].forEach(k=>$('#'+k).value='');renderMatrix();renderChips();renderIdeas()};
+const PRINCIPLES = [
+ [1,"Segmentation","Break a big process, team, offer or customer base into smaller, independent parts.","Split invoice processing by value band so small invoices flow straight through.",["Speed","Flexibility"]],
+ [2,"Taking out","Separate the troublesome part (or the only useful part) and handle it on its own.","Pull exception cases out of the main queue into a specialist desk.",["Speed","Quality"]],
+ [3,"Local quality","Stop treating everything the same; tailor each step, region or segment to its own need.","Different approval limits for low-risk and high-risk clients.",["Cost","Customer"]],
+ [4,"Asymmetry","Put effort, money or attention unevenly, where it matters most.","Senior reviewers check only high-value items; juniors handle the rest.",["Cost","Quality"]],
+ [5,"Merging","Combine similar or adjacent activities so they happen together.","Merge data entry and validation into one form with built-in checks.",["Speed","Cost"]],
+ [6,"Universality","Make one person, tool or step do several jobs.","A cross-trained team handles both billing queries and collections.",["Cost","Flexibility"]],
+ [7,"Nested doll","Place one thing inside another: embed a check or service within an existing step.","Build compliance checks into the ERP workflow instead of a separate review.",["Speed","Quality"]],
+ [8,"Counterweight","Offset a burden with something that gives lift: partners, incentives, shared resources.","Use a partner network to absorb seasonal peaks.",["Cost","Capacity"]],
+ [9,"Prior counter-action","Anticipate the push-back or side effect and neutralise it in advance.","Brief client teams before rollout to pre-empt resistance.",["Risk"]],
+ [10,"Prior action","Do part of the work before it is needed.","Pre-fill templates and prepare checklists before month-end.",["Speed"]],
+ [11,"Cushion in advance","Build safeguards beforehand for things that might fail.","Back-up approver, buffer stock or a contingency plan.",["Risk","Quality"]],
+ [12,"Level the load","Remove peaks and troughs so nothing has to be lifted or escalated.","Spread work across the month instead of a month-end spike.",["Speed","People"]],
+ [13,"The other way round","Invert the action: reverse the sequence, let the other party do it, do the opposite.","Ask vendors to submit data in your format instead of re-keying theirs.",["Cost","Speed"]],
+ [14,"Loops not lines","Replace one-way, linear flows with cycles and loops.","Turn a one-off annual audit into a rolling continuous review.",["Quality"]],
+ [15,"Dynamics","Make things adjustable so they change with conditions.","Staffing that flexes with daily volume; dynamic pricing.",["Flexibility"]],
+ [16,"Partial or excessive action","If 100% is hard, do a little less or a little more, then adjust.","Launch an 80% version, then refine; over-communicate at go-live.",["Speed"]],
+ [17,"Another dimension","Add a new channel, layer, view or time slot.","Add a self-service portal beside email; work across time zones.",["Capacity","Customer"]],
+ [18,"Rhythm","Use short, frequent pulses instead of long, rare ones.","Daily 10-minute stand-ups instead of a weekly two-hour meeting.",["Speed"]],
+ [19,"Periodic action","Replace continuous action with scheduled bursts, or change the frequency.","Batch low-value payments twice a week.",["Cost"]],
+ [20,"Continuity of useful action","Keep valuable work flowing with no idle gaps.","Remove waiting between steps; keep the bottleneck always busy.",["Productivity"]],
+ [21,"Skipping","Go through painful or risky stages very fast.","Run a hard change as a short, intense sprint rather than a long rollout.",["Speed","Risk"]],
+ [22,"Blessing in disguise","Use something harmful to create a benefit.","Turn customer complaints into a product-improvement backlog.",["Quality","Cost"]],
+ [23,"Feedback","Add or improve feedback loops.","Real-time error alerts go back to whoever created the error.",["Quality"]],
+ [24,"Intermediary","Use a go-between: a shared service, agent or buffer step.","A shared service centre between branches and head office.",["Cost","Speed"]],
+ [25,"Self-service","Let the system or customer serve itself.","Customer portals, automatic reminders, chatbots.",["Cost","Customer"]],
+ [26,"Copying","Use a cheap copy or model instead of the costly original.","Pilot on a sample or simulation; virtual meetings instead of travel.",["Cost","Risk"]],
+ [27,"Cheap and short-lived","Use cheap, disposable solutions instead of expensive, permanent ones.","Low-cost pilots, temporary staff, quick prototypes.",["Cost","Speed"]],
+ [28,"Replace the mechanism","Replace manual or physical work with digital, sensor or automated means.","E-workflow instead of physical files; OCR for invoices.",["Speed","Cost"]],
+ [29,"Make it fluid","Swap rigid elements for flexible, fluid ones.","A floating resource pool; flexible budgets.",["Flexibility"]],
+ [30,"Thin layers","Add light, thin layers instead of heavy rebuilds.","A lightweight front end over the legacy system.",["Cost","Speed"]],
+ [31,"Make it porous","Open channels so information or input can flow in.","Open idea channels; APIs to share data between teams.",["Innovation"]],
+ [32,"Change the colour","Make status visible at a glance.","RAG status and visual management boards.",["Quality","Visibility"]],
+ [33,"Homogeneity","Make interacting parts the same type or standard.","One data standard and template across all branches.",["Quality","Speed"]],
+ [34,"Discard and recover","Drop parts once they have done their job, or restore and reuse them.","Retire unused reports; archive closed files; reuse templates.",["Cost"]],
+ [35,"Change the parameters","Change a key setting: degree, frequency, batch size, threshold.","Change approval threshold, batch size, working hours or pricing model.",["Flexibility","Cost"]],
+ [36,"Phase transition","Use the moment something changes state.","Move a project into business-as-usual at the right point.",["Scale"]],
+ [37,"Expand and contract","Scale up and down with demand.","Capacity that grows in peak season and shrinks afterwards.",["Cost"]],
+ [38,"Boost the environment","Enrich or intensify the conditions around the work.","An expert war-room for critical issues; accelerators and incentives.",["Speed"]],
+ [39,"Protected environment","Create a neutral, protected space.","Quiet focus hours; a test sandbox; segregation of duties.",["Quality","Risk"]],
+ [40,"Composite","Combine different skills or materials into one.","Cross-functional teams mixing audit, IT and finance; human + AI review.",["Quality","Flexibility"]]
+].map(([id,name,plain,example,outcomes])=>({id,name,plain,example,outcomes}));
+const PR = Object.fromEntries(PRINCIPLES.map(p=>[p.id,p]));
 
-// explore
-function renderGrid(q=''){
- q=q.toLowerCase().trim();
- const list=P.filter(p=>!q||(p.n+' '+p.name+' '+p.s.join(' ')+' '+p.ex).toLowerCase().includes(q));
- $('#grid').innerHTML=list.length?list.map(p=>`<div class="card"><h4><span class="num">${p.n}</span>${esc(p.name)}</h4><div class="ex">${esc(p.ex)}</div><details><summary>Show ${p.s.length} sub-principle${p.s.length>1?'s':''}</summary>${sub(p)}</details><div class="btns"><button class="btn ghost" data-add="${p.n}">${st.sel.includes(p.n)?'✓ In worksheet':'+ Add to worksheet'}</button></div></div>`).join(''):'<p class="hint">No matches.</p>';
- document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const n=+b.dataset.add;if(!st.sel.includes(n)){st.sel.push(n);save();renderChips();renderIdeas()}b.textContent='✓ In worksheet'});
+const EXAMPLES = [
+ {label:"Faster month-end close", problem:"Our month-end close takes 8 working days. Management wants it done in 4.", improve:"Close the books faster", worsen:"More errors and rework in the numbers", up:9, down:27,
+  statement:"We want to close the books faster, but accuracy of the numbers drops.",
+  why:{up:"Closing faster is about turnaround time.", down:"Errors and rework are a reliability problem."},
+  ideas:{
+   11:{idea:"Run pre-close checks (cut-off checklist, reconciliation templates) in the last week of the month so errors are caught before day 1.",outcome:"Fewer corrections after the close.",kpi:"Post-close adjustments per month"},
+   35:{idea:"Move accruals and reconciliations to a weekly soft close, so month-end only handles the last few days.",outcome:"Month-end workload falls sharply.",kpi:"Working days to close"},
+   27:{idea:"Pilot the faster close for two months with simple Excel trackers before buying a close tool.",outcome:"Prove the 4-day close at almost no cost.",kpi:"Pilot close days and error count"},
+   28:{idea:"Replace manual bank and intercompany reconciliations with automated matching.",outcome:"Speed and accuracy improve together.",kpi:"% of reconciliations auto-matched"}},
+  first:"Start with the soft close (principle 35): schedule weekly reconciliations from next month and measure the days to close."},
+ {label:"More audits, same team", problem:"Our internal audit team must cover 40% more branches this year with no new hires.", improve:"Audit more branches", worsen:"Each audit becomes shallower and misses issues", up:39, down:28, ai:true},
+ {label:"Customer onboarding vs KYC", problem:"New clients wait 10 days to be onboarded because of KYC checks.", improve:"Onboard clients quicker", worsen:"Compliance and KYC risk goes up", up:9, down:30, ai:true},
+ {label:"Customise without complexity", problem:"Clients keep asking for customised reports; each one adds a new template to maintain.", improve:"Offer more customisation to clients", worsen:"Our reporting process gets complicated", up:35, down:36, ai:true}
+];
+
+/* ---------- state ---------- */
+const S = { up:null, down:null, why:{}, statement:"", ideas:{}, first:"", isExample:false, aiUsed:false, source:"" };
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* Related parameters (business families) used when Altshuller's cell is empty */
+const FAMILIES=[[9,25,15,16],[39,21,38,9,19],[19,20,21,22,10,1,2],[7,8,23,26],[24,28,37,18],[27,29,13,14],[32,33,34,35,36,38],[30,31,11,17],[3,4,5,6,12]];
+function related(id){ const s=new Set(); FAMILIES.forEach(f=>{ if(f.includes(id)) f.forEach(x=>{ if(x!==id) s.add(x); }); }); return [...s]; }
+function lookup(up,down){
+  if(up===down) return {list:[],exact:false,sources:[]};
+  const exact=MATRIX[up+","+down];
+  if(exact) return {list:exact.slice(),exact:true,sources:[]};
+  const score=new Map(), sources=[];
+  const add=(u,d,w,why)=>{ const c=MATRIX[u+","+d]; if(!c||u===d) return; sources.push({u,d,why}); c.forEach((id,i)=>score.set(id,(score.get(id)||0)+w+(c.length-i)*0.01)); };
+  add(down,up,3,"reverse of your pair");
+  related(down).forEach(d=>add(up,d,2,"same improvement, related side effect"));
+  related(up).forEach(u=>add(u,down,2,"related improvement, same side effect"));
+  if(!score.size){ for(let d=1;d<=39;d++) add(up,d,1,"same improvement"); for(let u=1;u<=39;u++) add(u,down,1,"same side effect"); }
+  const list=[...score.entries()].sort((a,b)=>b[1]-a[1]).slice(0,4).map(e=>e[0]);
+  return {list,exact:false,sources:sources.slice(0,4)};
 }
-$('#q').oninput=e=>renderGrid(e.target.value);
+function principlesFor(up,down){ return lookup(up,down).list; }
 
-// spinner
-$('#spinBtn').onclick=()=>{const p=P[Math.floor(Math.random()*40)];
- $('#sp').innerHTML=`<div class="num">Principle ${p.n}</div><div class="big">${esc(p.name)}</div><div class="q">${sub(p)}<div class="ex"><b>Example:</b> ${esc(p.ex)}</div><p><b>Ask yourself:</b> how could “${esc(p.name.toLowerCase())}” remove the trade-off in my problem?</p><div class="btns" style="justify-content:center"><button class="btn ghost" id="spAdd">+ Add to worksheet</button></div></div>`;
- $('#spAdd').onclick=()=>{if(!st.sel.includes(p.n)){st.sel.push(p.n);save();renderChips();renderIdeas()}$('#spAdd').textContent='✓ Added'};
- $('#spinBtn').textContent='Spin again'};
+/* keyword fallback */
+function rankParams(text){
+  const t = " "+String(text||"").toLowerCase()+" ";
+  return PARAMS.map(p=>{
+    let s=0; for(const k of p.kw){ if(t.includes(k)) s += k.length>5?2:1; }
+    return {id:p.id,s};
+  }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+}
+function keywordDetect(problem,improve,worsen){
+  const u = rankParams(improve), d = rankParams(worsen);
+  const up = (u[0]||rankParams(problem)[0]||{id:39}).id;
+  let down = (d.find(x=>x.id!==up)||{id: up===27?9:27}).id;
+  return {up,down,why:{up:u.length?"Matched words in what you want to improve.":"No clear match; best guess, please check.",
+                      down:d.length?"Matched words in what gets worse.":"No clear match; best guess, please check."}};
+}
 
-renderMatrix();renderSugg();renderChips();renderIdeas();renderGrid();
+/* ---------- rendering ---------- */
+function paramOptions(sel){
+  return PARAMS.map(p=>`<option value="${p.id}" ${p.id===sel?"selected":""}>${p.id}. ${esc(p.biz)}</option>`).join("");
+}
+function render(){
+  const r = $("results");
+  if(!S.up){ r.innerHTML=""; return; }
+  const ups=P[S.up], dn=P[S.down], L=lookup(S.up,S.down), list=L.list;
+  const stmt = S.statement || `We want to improve ${ups.biz.toLowerCase()}, but ${dn.biz.toLowerCase()} gets worse.`;
+  const haveIdeas = list.some(id=>S.ideas[id]);
+  r.innerHTML = `
+  ${S.isExample?`<span class="sample-badge">Worked example · edit the form to solve your own</span>`:""}
+  <section class="step" aria-labelledby="h1s">
+    <div class="step-head"><span class="step-no">STEP 1</span><h2 id="h1s">The contradiction</h2><span class="note">Change either side if the match is off</span></div>
+    <p class="statement">${esc(stmt)}</p>
+    <div class="pair">
+      <div class="param">
+        <span class="lab">Improving parameter · #${ups.id}</span>
+        <span class="biz">${esc(ups.biz)}</span>
+        <span class="why">TRIZ name: ${esc(ups.name)}${S.why.up?` · ${esc(S.why.up)}`:""}</span>
+        <label class="sr" for="selUp" style="position:absolute;left:-9999px">Improving parameter</label>
+        <select id="selUp">${paramOptions(S.up)}</select>
+      </div>
+      <div class="vs">vs</div>
+      <div class="param down">
+        <span class="lab">Worsening parameter · #${dn.id}</span>
+        <span class="biz">${esc(dn.biz)}</span>
+        <span class="why">TRIZ name: ${esc(dn.name)}${S.why.down?` · ${esc(S.why.down)}`:""}</span>
+        <label for="selDown" style="position:absolute;left:-9999px">Worsening parameter</label>
+        <select id="selDown">${paramOptions(S.down)}</select>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" aria-labelledby="h2s">
+    <div class="step-head"><span class="step-no">STEP 2</span><h2 id="h2s">What the matrix suggests</h2></div>
+    ${list.length?`${L.exact?"":`<div class="empty"><b>Altshuller's matrix has no entry for #${ups.id} × #${dn.id}.</b> The principles below are the nearest ones, taken from neighbouring cells: ${L.sources.map(x=>`#${x.u} × #${x.d} (${esc(x.why)})`).join("; ")}.</div>`}
+      <div class="cell"><span class="addr">${L.exact?`Matrix cell: improve #${ups.id} × worsen #${dn.id}`:`Nearest principles for #${ups.id} × #${dn.id}`}</span>
+      <span class="nums">${list.map(id=>`<span class="num" title="${esc(PR[id].name)}">${id} · ${esc(PR[id].name)}</span>`).join("")}</span></div>`
+     : `<div class="empty">Both sides are the same parameter. That is a physical contradiction: separate it in time, space or condition (for example, fast for routine cases, careful for risky ones). Change one side to a different parameter to get principles.</div>`}
+  </section>
+
+  ${list.length?`<section class="step" aria-labelledby="h3s">
+    <div class="step-head"><span class="step-no">STEP 3</span><h2 id="h3s">What it means for your business</h2>
+      <span class="note">${haveIdeas?(S.isExample?"Worked example":"Tailored to your problem by Claude"):"General business meaning"}</span></div>
+    <div class="cards">${list.map(id=>card(id)).join("")}</div>
+    ${S.first?`<div class="summary"><span class="k">Recommended first step</span><p>${esc(S.first)}</p></div>`:""}
+    <div class="btns">
+      ${(!haveIdeas && !S.isExample && aiReady)?`<button type="button" id="tailor" class="primary">Tailor these to my problem</button>`:""}
+      <button type="button" id="copy">Copy summary</button>
+    </div>
+    <div class="summary"><span class="k">Want help applying this?</span><p>Sahil runs TRIZ and Lean Six Sigma workshops for teams. <a style="color:var(--teal)" href="https://wa.me/918130902424?text=Hi%20Sahil%2C%20I%20used%20your%20TRIZ%20toolkit%20and%20would%20like%20help%20applying%20it." target="_blank" rel="noopener">WhatsApp</a> · <a style="color:var(--teal)" href="mailto:masterblackbeltpe@icloud.com?subject=TRIZ%20help%20%E2%80%94%20The%20Process%20Edge">masterblackbeltpe@icloud.com</a></p></div>
+    <div class="status" id="status2" aria-live="polite"></div>
+  </section>`:""}`;
+  $("selUp").onchange = e=>{ S.up=+e.target.value; S.ideas={}; S.first=""; S.statement=""; S.why.up="Chosen manually."; S.isExample=false; render(); };
+  $("selDown").onchange = e=>{ S.down=+e.target.value; S.ideas={}; S.first=""; S.statement=""; S.why.down="Chosen manually."; S.isExample=false; render(); };
+  const t=$("tailor"); if(t) t.onclick=()=>tailor();
+  const c=$("copy"); if(c) c.onclick=copySummary;
+}
+function card(id){
+  const p=PR[id], i=S.ideas[id];
+  return `<article class="card">
+    <div class="ph"><span class="pno">#${id}</span><h3>${esc(p.name)}</h3></div>
+    <p class="plain">${esc(p.plain)}</p>
+    ${i?`<p class="idea"><b>Action for you</b>${esc(i.idea)}</p>
+      <dl class="out"><dt>Outcome</dt><dd>${esc(i.outcome)}</dd><dt>Track</dt><dd>${esc(i.kpi)}</dd></dl>`
+     :`<p class="idea"><b>Business example</b>${esc(p.example)}</p>`}
+    <div class="chips">${p.outcomes.map(o=>`<span class="chip">${esc(o)}</span>`).join("")}</div>
+  </article>`;
+}
+function summaryText(){
+  const list=principlesFor(S.up,S.down);
+  const lines=["TRIZ Business Solver",
+    $("problem").value?("Problem: "+$("problem").value):"",
+    "Contradiction: improve #"+S.up+" "+P[S.up].name+" vs worsen #"+S.down+" "+P[S.down].name,
+    "Principles: "+list.map(id=>id+" "+PR[id].name).join(", "), ""];
+  for(const id of list){ const i=S.ideas[id];
+    lines.push(`${id}. ${PR[id].name}: ${i?i.idea+" Outcome: "+i.outcome+" Track: "+i.kpi:PR[id].example}`); }
+  if(S.first) lines.push("", "First step: "+S.first);
+  return lines.filter((l,ix)=>l!==""||ix>0).join("\n");
+}
+async function copySummary(){
+  const st=$("status2"), txt=summaryText();
+  try{ await navigator.clipboard.writeText(txt); st.textContent="Summary copied."; }
+  catch(e){ const ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0"; document.body.append(ta); ta.select();
+    try{ document.execCommand("copy"); st.textContent="Summary copied."; }catch(_){ st.textContent="Copy blocked here; select the text manually."; } ta.remove(); }
+}
+
+/* ---------- Claude (optional) ---------- */
+let sample=null, aiReady=false;
+(async()=>{ try{ sample = window.claude ? await window.claude.use("sample") : null; }catch(e){ sample=null; }
+  aiReady=!!sample; if(S.up) render(); })();
+
+const PARAM_LIST = PARAMS.map(p=>`${p.id}. ${p.name} = ${p.biz}`).join("\n");
+function aiErr(e){
+  const c=e&&e.code;
+  if(c==="not_granted"||c==="sampling_disabled"||c==="not_declared"||c==="capability_disabled"){ aiReady=false; return "Claude isn't available here, so keyword matching was used."; }
+  if(c==="rate_limited") return "Too many requests just now; keyword matching was used. Try again in a minute.";
+  return "Claude couldn't answer; keyword matching was used.";
+}
+async function detectAI(problem,improve,worsen){
+  const prompt = `You are a TRIZ expert helping business professionals (finance, audit, operations, services).
+Map the user's trade-off to Altshuller's 39 engineering parameters, interpreting them for business.
+
+Parameters (number. TRIZ name = business meaning):
+${PARAM_LIST}
+
+Problem: ${problem||"(not given)"}
+What they want to improve: ${improve||"(not given)"}
+What gets worse: ${worsen||"(not given)"}
+
+Pick the single best improving parameter and the single best worsening parameter (they must differ).
+Reply with only JSON:
+{"improving":{"id":9,"why":"<=15 words"},"worsening":{"id":27,"why":"<=15 words"},"statement":"We want to <improve>, but <worsen>. (one plain sentence)"}`;
+  const r = await sample.json(prompt,{modelTier:"default"});
+  const up=+r?.improving?.id, down=+r?.worsening?.id;
+  if(!P[up]||!P[down]) throw {code:"invalid_json"};
+  return {up,down,why:{up:String(r.improving.why||""),down:String(r.worsening.why||"")},statement:String(r.statement||"")};
+}
+async function tailorAI(problem,improve,worsen,list){
+  const pr = list.map(id=>`${id}. ${PR[id].name}: ${PR[id].plain}`).join("\n");
+  const prompt = `You are a Lean Six Sigma Master Black Belt teaching TRIZ to business professionals.
+Problem: ${problem||"(not given)"}
+They want to improve: ${improve} (TRIZ #${S.up} ${P[S.up].name})
+But this gets worse: ${worsen} (TRIZ #${S.down} ${P[S.down].name})
+
+${lookup(S.up,S.down).exact?"The contradiction matrix suggests these inventive principles:":"Altshuller's matrix has no entry for this exact pair, so these are the nearest principles from neighbouring cells. Apply each one directly to the problem:"}
+${pr}
+
+For EACH principle, write one concrete action for THIS problem that improves the first without worsening the second, the business outcome in plain words, and one KPI to track. Simple language a first-time learner understands; no jargon; no invented numbers about their company.
+Reply with only JSON:
+{"ideas":[{"id":11,"idea":"<=35 words","outcome":"<=14 words","kpi":"<=8 words"}],"first":"The single best first step, one sentence."}`;
+  const r = await sample.json(prompt,{modelTier:"default"});
+  const ideas={}; for(const x of (r?.ideas||[])){ const id=+x.id; if(list.includes(id)&&x.idea) ideas[id]={idea:String(x.idea),outcome:String(x.outcome||""),kpi:String(x.kpi||"")}; }
+  if(!Object.keys(ideas).length) throw {code:"invalid_json"};
+  return {ideas, first:String(r.first||"")};
+}
+
+let busy=false;
+async function solve(){
+  if(busy) return;
+  const problem=$("problem").value.trim(), improve=$("improve").value.trim(), worsen=$("worsen").value.trim();
+  const st=$("status");
+  if(!improve||!worsen){ st.textContent="Fill in what you want to improve and what gets worse."; return; }
+  busy=true; $("go").disabled=true;
+  S.isExample=false; S.ideas={}; S.first=""; S.statement="";
+  let det=null;
+  if(aiReady){
+    st.innerHTML='<span class="thinking"></span>Finding the contradiction…';
+    try{ det=await detectAI(problem,improve,worsen); }catch(e){ st.textContent=aiErr(e); }
+  }
+  if(!det){ det=keywordDetect(problem,improve,worsen); if(!aiReady) st.textContent="Matched by keywords. Check both parameters below."; }
+  Object.assign(S,{up:det.up,down:det.down,why:det.why,statement:det.statement||""});
+  render();
+  const list=principlesFor(S.up,S.down);
+  if(aiReady && list.length){
+    st.innerHTML='<span class="thinking"></span>Translating principles into business actions…';
+    try{ const t=await tailorAI(problem,improve,worsen,list); S.ideas=t.ideas; S.first=t.first; st.textContent="Done. Change a parameter to explore other options."; render(); }
+    catch(e){ st.textContent = aiErr(e).replace("keyword matching was used","showing general business meanings"); }
+  } else if(det && aiReady){ st.textContent="Done."; }
+  busy=false; $("go").disabled=false;
+  $("results").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"start"});
+}
+async function tailor(){
+  if(busy||!aiReady) return;
+  busy=true; const st=$("status2"); st.innerHTML='<span class="thinking"></span>Translating principles into business actions…';
+  try{ const t=await tailorAI($("problem").value,$("improve").value||P[S.up].biz,$("worsen").value||P[S.down].biz,principlesFor(S.up,S.down)); S.ideas=t.ideas; S.first=t.first; render(); }
+  catch(e){ st.textContent=aiErr(e).replace("keyword matching was used","general meanings are shown"); }
+  busy=false;
+}
+
+/* ---------- examples ---------- */
+function loadExample(ex){
+  $("problem").value=ex.problem; $("improve").value=ex.improve; $("worsen").value=ex.worsen;
+  if(ex.ideas){ Object.assign(S,{up:ex.up,down:ex.down,why:ex.why,statement:ex.statement,ideas:ex.ideas,first:ex.first,isExample:true}); render(); $("status").textContent=""; }
+  else { Object.assign(S,{up:ex.up,down:ex.down,why:{up:"",down:""},statement:`We want to ${ex.improve.toLowerCase()}, but ${ex.worsen.toLowerCase()}.`,ideas:{},first:"",isExample:false});
+    render(); $("status").textContent = aiReady ? "" : "Showing general business meanings for this example."; if(aiReady) tailor(); }
+}
+$("examples").innerHTML = EXAMPLES.map((e,i)=>`<button type="button" data-i="${i}">${esc(e.label)}</button>`).join("");
+$("examples").onclick = e=>{ const b=e.target.closest("button[data-i]"); if(b) loadExample(EXAMPLES[+b.dataset.i]); };
+$("f").addEventListener("submit", e=>{ e.preventDefault(); solve(); });
+$("clear").onclick = ()=>{ ["problem","improve","worsen"].forEach(id=>$(id).value=""); Object.assign(S,{up:null,down:null,ideas:{},first:"",statement:"",isExample:false}); render(); $("status").textContent=""; $("problem").focus(); };
+
+loadExample(EXAMPLES[0]);
 </script>
+
 </body>
 </html>
