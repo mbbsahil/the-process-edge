@@ -811,44 +811,6 @@ function sendFeedback(){
       <div class="case-title">AI for Business Professionals</div>
       <div class="case-desc">Practical, no-coding AI — prompting well, what AI tools can and can't do, and judging when a process is ready for AI.</div>
       <div class="case-metric">→ 1 day</div>
-      <a href="#ai-training" class="case-link">Course outline →</a>
-    </div>
-  </div>
-
-  <div class="ai-head" id="ai-training">
-    <div class="case-tag">New · AI for Business</div>
-    <h3>AI for Business Professionals: From Prompts to Process-Ready AI</h3>
-    <p class="train-intro" style="margin:10px 0 28px;">A practical, no-coding introduction to working with AI, taught from a process-excellence angle. You'll learn what today's AI tools can and can't do, how to prompt them well, and how to judge whether a process is ready for AI before anyone spends money on it.</p>
-  </div>
-  <div class="ai-grid">
-    <div class="case-card">
-      <div class="case-tag">Core course · No coding</div>
-      <div class="case-title">AI for Business Professionals</div>
-      <ol class="ai-mods">
-        <li><div>The AI landscape in plain English<span>AI vs ML vs deep learning, NLP, computer vision, and generative AI</span></div><i>20 min</i></li>
-        <li><div>Generative AI &amp; prompt engineering, hands-on<span>Role, context, examples and output format, with "bad prompt → better prompt" practice</span></div><i>40 min</i></li>
-        <li><div>How AI assistants use knowledge<span>Knowledge bases, why AI gives wrong answers, and when to prompt vs add a knowledge base vs fine-tune</span></div><i>25 min</i></li>
-        <li><div>Is this process ready for AI?<span>RPA vs intelligent automation, a suitability scorecard, and fixing the process before you automate it</span></div><i>30 min</i></li>
-        <li><div>Responsible AI<span>Bias, hallucinations, human oversight, and data privacy under India's DPDP Act</span></div><i>20 min</i></li>
-        <li><div>From idea to AI roadmap<span>A one-page AI requirements canvas and a 5-step plan from pilot to measure &amp; improve</span></div><i>30 min</i></li>
-        <li><div>Wrap-up &amp; Q&amp;A</div><i>5 min</i></li>
-      </ol>
-      <div class="case-metric">→ 3 hours (incl. a 10-min break)</div>
-    </div>
-    <div class="case-card ai-addon">
-      <div class="case-tag">Optional add-on · Separate fee</div>
-      <div class="case-title">Voiceflow AI Agent Build Lab</div>
-      <div class="case-desc">Build and publish your own working AI helpdesk agent in Voiceflow, step by step, with guidance throughout.</div>
-      <ol class="ai-mods plain">
-        <li><div>Designing the conversation: intents, flows and conditions</div></li>
-        <li><div>Collecting user details with slot filling</div></li>
-        <li><div>Setting up a well-structured knowledge base</div></li>
-        <li><div>Generative AI answers with guardrails and human handoff</div></li>
-        <li><div>Pulling in live data through an API (demo)</div></li>
-        <li><div>Testing, publishing and reviewing your agent</div></li>
-      </ol>
-      <div class="case-metric">→ 3 hours · after the core course</div>
-      <p class="ai-note">You leave with a working agent in your own Voiceflow account.</p>
     </div>
   </div>
 
@@ -950,17 +912,16 @@ function sendFeedback(){
   var MENU=['Training programs','AI course','Formats & duration','Fees','Book a session','Services','About Sahil','Contact'];
 
   var KB=[
-    { k:['ai','artificial intelligence','genai','generative','chatgpt','claude','gemini','copilot','llm','prompt','prompting','machine learning','ai course'], w:2, a:'<b>AI for Business Professionals — 3 hours, no coding.</b> Covers the AI landscape, hands-on prompt engineering, how AI assistants use knowledge, checking whether a process is ready for AI, responsible AI and DPDP, and a one-page AI roadmap. See the <a href="#ai-training">full outline</a>.', c:['Voiceflow lab','Fees','Book a session'] },
-    { k:['voiceflow','chatbot','chat bot','bot','agent','agents','build lab','lab','add-on','addon'], w:3, a:'<b>Voiceflow AI Agent Build Lab — 3 hours, optional add-on (separate fee).</b> Taken after the core AI course. You build and publish your own AI helpdesk agent: conversation design, slot filling, a knowledge base, generative AI answers with guardrails and human handoff, plus an API demo.', c:['AI course','Fees','Book a session'] },
+    { k:['ai','artificial intelligence','genai','generative','chatgpt','claude','gemini','copilot','llm','prompt','prompting','machine learning','ai course'], w:2, a:'<b>AI for Business Professionals — 1 day, no coding.</b> Covers the AI landscape, hands-on prompt engineering, how AI assistants use knowledge, checking whether a process is ready for AI, responsible AI and DPDP, and a one-page AI roadmap.', c:['Fees','Book a session'] },
     { k:['yellow'], a:'<b>Yellow Belt — 2 days.</b> Core Lean Six Sigma concepts, DMAIC basics and waste identification. Ideal if you are joining an improvement team.', c:['Green Belt','Book a session'] },
     { k:['green'], a:'<b>Green Belt — 4 days.</b> The full DMAIC toolkit with hands-on Excel templates, so you can lead improvement projects within your own function.', c:['Black Belt','Book a session'] },
     { k:['black'], a:'<b>Black Belt — 8 days.</b> Advanced statistics, experimental design and project leadership — for people driving cross-functional improvement programs.', c:['PFMEA workshop','Book a session'] },
     { k:['pfmea','fmea','failure mode','risk'], a:'<b>PFMEA Workshop — 1 day.</b> Process Failure Mode & Effects Analysis: identify, score and mitigate process risks before they reach the customer.', c:['Training programs','Book a session'] },
     { k:['fee','fees','price','pricing','cost','charge','charges','how much','rate','₹','rs','inr','discount'], w:3, a:'Fees depend on the program, format and group size, so Sahil shares them personally. Please '+bookLink+' or message on '+waTrain+' with the program you are interested in and he will reply with details.', c:['Book a session','Training programs'] },
     { k:['book','enrol','enroll','register','join','batch','date','dates','schedule','when','next','slot','seat'], w:3, a:'To book a session or ask about upcoming batches, '+bookLink+' or message on '+waTrain+' with the program, preferred format (online, classroom or corporate in-house) and group size. He replies personally with dates.', c:['Formats & duration','Fees'] },
-    { k:['format','formats','online','offline','classroom','in-house','inhouse','corporate','virtual','location','where','mode','duration','long','days','hours'], a:'Training is available <b>online</b>, in a <b>classroom</b>, or as <b>corporate in-house</b> sessions for your team.<br>Typical durations: Yellow Belt 2 days · Green Belt 4 days · Black Belt 8 days · PFMEA 1 day · AI for Business Professionals 3 hours (+ optional 3-hour Voiceflow lab).', c:['Book a session','Fees'] },
+    { k:['format','formats','online','offline','classroom','in-house','inhouse','corporate','virtual','location','where','mode','duration','long','days','hours'], a:'Training is available <b>online</b>, in a <b>classroom</b>, or as <b>corporate in-house</b> sessions for your team.<br>Typical durations: Yellow Belt 2 days · Green Belt 4 days · Black Belt 8 days · PFMEA 1 day · AI for Business Professionals 1 day.', c:['Book a session','Fees'] },
     { k:['certif','certificate','exam','accredit'], w:3, a:'Certification details for each program are shared on enquiry. Please '+bookLink+' and mention the belt level you are aiming for.', c:['Training programs','Book a session'] },
-    { k:['training','program','programs','programme','course','courses','belt','belts','learn','teach','workshop','class','lean six sigma','six sigma','lss'], a:'Sahil conducts Lean Six Sigma training for students and professionals, using his own LSS and PFMEA training decks and Excel tool templates:<br>• <b>Yellow Belt</b> — 2 days<br>• <b>Green Belt</b> — 4 days<br>• <b>Black Belt</b> — 8 days<br>• <b>PFMEA Workshop</b> — 1 day<br>He also runs <b>AI for Business Professionals</b> (3 hours), with an optional Voiceflow AI Agent Build Lab.', c:['Yellow Belt','Green Belt','Black Belt','AI course'] },
+    { k:['training','program','programs','programme','course','courses','belt','belts','learn','teach','workshop','class','lean six sigma','six sigma','lss'], a:'Sahil conducts Lean Six Sigma training for students and professionals, using his own LSS and PFMEA training decks and Excel tool templates:<br>• <b>Yellow Belt</b> — 2 days<br>• <b>Green Belt</b> — 4 days<br>• <b>Black Belt</b> — 8 days<br>• <b>PFMEA Workshop</b> — 1 day<br>He also runs <b>AI for Business Professionals</b> (1 day, no coding).', c:['Yellow Belt','Green Belt','Black Belt','AI course'] },
     { k:['dmaic'], a:'<b>DMAIC</b> is the core Six Sigma improvement cycle: Define, Measure, Analyze, Improve, Control. It is covered from Yellow Belt onwards, in most depth at Green and Black Belt.', c:['Training programs'] },
     { k:['service','services','consult','consulting','hire','help my','audit','erp','automation','automate','diagnostic','rollout','implementation','work with','project'], a:'Sahil offers three kinds of support:<br>• <b>Process & Audit Diagnostic</b> — where the time goes, where the risk sits, what to fix first<br>• <b>ERP & Automation Rollout Support</b> — requirements, UAT, stakeholder alignment, post-go-live<br>• <b>Lean Six Sigma / AI-for-Ops Training</b><br>To discuss your situation, '+workLink+'.', c:['Contact','About Sahil'] },
     { k:['about','who','sahil','experience','background','credential','credentials','qualification','master black belt','mbb','cv','profile'], a:'Sahil Anand has 20+ years in Process Excellence, ERP Transformation and automation. He is a <b>Lean Six Sigma Master Black Belt</b> and holds an Executive MBA in Operations & Six Sigma (IMT Ghaziabad), Certified AI Solutions Architect, ISO 9001:2015 Lead Auditor, ITIL Foundation and Project Management (IIT Delhi). He is based in New Delhi.', c:['Training programs','Services'] },
