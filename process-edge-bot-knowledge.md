@@ -53,4 +53,4 @@ Sahil conducts Lean Six Sigma training for students and professionals, using his
 ## Contact
 - Email: masterblackbeltpe@icloud.com
 - LinkedIn: https://www.linkedin.com/in/sahil-anand-41474a1a7/
-- Website: https://mbbsahil.github.io/the-process-edge/
+- Website: https://theprocessedge.in/
